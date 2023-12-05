@@ -3,11 +3,11 @@ import { key } from "./strengGeheim";
 const baseURL = `https://developer.nps.gov/api/v1`;
 
 // use this to set allNationalParks in App, then make derived var displayedParks that filters items in allNationalParks whose designation field includes "National Park"
-export const getParks = (limit: number): Promise<Response> => {
+export const getParks = (): Promise<Response> => {
   const myHeaders = new Headers();
   myHeaders.append("X-Api-Key", key);
 
-  return fetch(`${baseURL}/parks?limit=${limit}`, {
+  return fetch(`${baseURL}/parks?limit=471`, {
     method: "GET",
     headers: myHeaders,
     redirect: "follow",
