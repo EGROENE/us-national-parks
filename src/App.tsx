@@ -38,14 +38,16 @@ function App() {
       .then((response) => response.text())
       .then((result) => {
         const parksJSArray = JSON.parse(result).data;
-        const nationalParksArray = parksJSArray
-          .filter((park) => park.designation.includes("National Park"))
-          .concat(
-            parksJSArray.filter((park) =>
-              park.designation.includes("National and State Parks")
+        const nationalParksArray = getParksSortedAlphabeticallyByFullName(
+          parksJSArray
+            .filter((park) => park.designation.includes("National Park"))
+            .concat(
+              parksJSArray.filter((park) =>
+                park.designation.includes("National and State Parks")
+              )
             )
-          );
-        setDisplayedParks(getParksSortedAlphabeticallyByFullName(nationalParksArray));
+        );
+        setDisplayedParks(nationalParksArray);
       })
       .catch((error) => console.log("error", error));
   }, []);
