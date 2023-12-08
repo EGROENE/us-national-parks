@@ -5,6 +5,20 @@ import { getParks } from "./api";
 
 const MainContentContext = createContext();
 
+// Type param as Array<Park>
+const getParksSortedAlphabeticallyByFullName = (array: Array<unknown>) => {
+  // Type a & b as Park type
+  return array.sort(function (a, b) {
+    if (a.fullName < b.fullName) {
+      return -1;
+    }
+    if (a.fullName > b.fullName) {
+      return 1;
+    }
+    return 0;
+  });
+};
+
 // If, when retrieving all parks, !request.ok, don't display HomepageMainContent component, rather comp w/ msg & reload btn
 
 function App() {
@@ -24,10 +38,14 @@ function App() {
       .then((response) => response.text())
       .then((result) => {
         const parksJSArray = JSON.parse(result).data;
-        const nationalParksArray = parksJSArray.filter((park) =>
-          park.designation.includes("National Park")
-        );
-        setDisplayedParks(nationalParksArray);
+        const nationalParksArray = parksJSArray
+          .filter((park) => park.designation.includes("National Park"))
+          .concat(
+            parksJSArray.filter((park) =>
+              park.designation.includes("National and State Parks")
+            )
+          );
+        setDisplayedParks(getParksSortedAlphabeticallyByFullName(nationalParksArray));
       })
       .catch((error) => console.log("error", error));
   }, []);
