@@ -59,3 +59,5 @@ export interface TPark {
   designation: string;
   relevanceScore: number;
 }
+
+export type TParkDisplayLimit = 18 | 36 | 54 | 60;

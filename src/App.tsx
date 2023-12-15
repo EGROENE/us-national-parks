@@ -2,7 +2,7 @@ import "./App.css";
 import { useState, useEffect, createContext } from "react";
 import { HomepageMainContent } from "./Components/HomepageMainContent/HomepageMainContent";
 import { getParks } from "./api";
-import { TPark } from "./types";
+import { TPark, TParkDisplayLimit } from "./types";
 
 const MainContentContext = createContext(null);
 
@@ -30,7 +30,7 @@ function App() {
   // Will be used to limit number of parks from displayedParks will display
   // rows of 6
   // limit type should be a number that's either 18, 36, 54, or 60
-  const [limit, setLimit] = useState<number>(18);
+  const [limit, setLimit] = useState<TParkDisplayLimit>(18);
 
   // In useEffect, set initial value of displayedParks
   useEffect(() => {
