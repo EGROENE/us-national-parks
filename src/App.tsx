@@ -2,11 +2,11 @@ import "./App.css";
 import { useState, useEffect, createContext } from "react";
 import { HomepageMainContent } from "./Components/HomepageMainContent/HomepageMainContent";
 import { getParks } from "./api";
+import { TPark } from "./types";
 
-const MainContentContext = createContext();
+const MainContentContext = createContext(null);
 
-// Type param as Array<Park>
-const getParksSortedAlphabeticallyByFullName = (array: Array<unknown>) => {
+const getParksSortedAlphabeticallyByFullName = (array: Array<TPark>) => {
   // Type a & b as Park type
   return array.sort(function (a, b) {
     if (a.fullName < b.fullName) {
@@ -24,7 +24,7 @@ const getParksSortedAlphabeticallyByFullName = (array: Array<unknown>) => {
 function App() {
   // Type displayedParks as Park, defined in separate file
   // AllParkCards will need access to this. Use Context API to share values.
-  const [displayedParks, setDisplayedParks] = useState([]);
+  const [displayedParks, setDisplayedParks] = useState<TPark[]>([]);
 
   // Set limit when scrolling to certain point or when 'load more' btn is clicked
   // Will be used to limit number of parks from displayedParks will display
@@ -37,8 +37,8 @@ function App() {
     getParks()
       .then((response) => response.text())
       .then((result) => {
-        const parksJSArray = JSON.parse(result).data;
-        const nationalParksArray = getParksSortedAlphabeticallyByFullName(
+        const parksJSArray: TPark[] = JSON.parse(result).data;
+        const nationalParksArray: TPark[] = getParksSortedAlphabeticallyByFullName(
           parksJSArray
             .filter((park) => park.designation.includes("National Park"))
             .concat(
