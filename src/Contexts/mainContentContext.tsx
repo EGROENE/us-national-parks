@@ -1,11 +1,11 @@
 // Remember, this file contains MainContentContext, which will need to be consumed in hook file
 // Also contains provider that should wrap App inside main.tsx. this provider shares necessary state values, etc.
 import { createContext, ReactNode, useEffect, useState } from "react";
-import { TPark, TParkDisplayLimit } from "../types";
+import { TPark, TParkDisplayLimit, TMainContentContext } from "../types";
 import { getParks } from "../api";
 
 // Make sure to type this correctly
-export const MainContentContext = createContext(null);
+export const MainContentContext = createContext<TMainContentContext | null>(null);
 
 export const MainContentContextProvider = ({ children }: { children: ReactNode }) => {
   const getParksSortedAlphabeticallyByFullName = (array: Array<TPark>) => {
@@ -20,15 +20,15 @@ export const MainContentContextProvider = ({ children }: { children: ReactNode }
     });
   };
 
-  const [displayedParks, setDisplayedParks] = useState<TPark[]>([]);
+  const [allNationalParks, setAllNationalParks] = useState<TPark[]>([]);
 
   // Set limit when scrolling to certain point or when 'load more' btn is clicked
-  // Will be used to limit number of parks from displayedParks will display
+  // Will be used to limit number of parks from allNationalParks will display
   // rows of 6
   // limit type should be a number that's either 18, 36, 54, or 60
   const [limit, setLimit] = useState<TParkDisplayLimit>(18);
 
-  // In useEffect, set initial value of displayedParks
+  // In useEffect, set initial value of allNationalParks
   useEffect(() => {
     getParks()
       .then((response) => response.text())
@@ -43,13 +43,15 @@ export const MainContentContextProvider = ({ children }: { children: ReactNode }
               )
             )
         );
-        setDisplayedParks(nationalParksArray);
+        setAllNationalParks(nationalParksArray);
       })
       .catch((error) => console.log(error));
   }, []);
 
-  const mainContentContextValues: { displayedParks: TPark[] } = {
-    displayedParks,
+  const mainContentContextValues: TMainContentContext = {
+    allNationalParks,
+    limit,
+    setLimit,
   };
 
   return (

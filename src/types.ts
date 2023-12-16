@@ -1,3 +1,5 @@
+import { Dispatch, SetStateAction } from "react";
+
 export interface TPark {
   id: string;
   fullName: string;
@@ -61,3 +63,9 @@ export interface TPark {
 }
 
 export type TParkDisplayLimit = 18 | 36 | 54 | 60;
+
+export type TMainContentContext = {
+  allNationalParks: TPark[];
+  limit: TParkDisplayLimit;
+  setLimit: Dispatch<SetStateAction<TParkDisplayLimit>>;
+};

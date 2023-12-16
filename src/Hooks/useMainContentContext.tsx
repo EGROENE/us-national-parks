@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useContext } from "react";
 import { MainContentContext } from "../Contexts/mainContentContext";
+import { TMainContentContext } from "../types";
 
 export const useMainContentContext = () => {
-  const context = useState(MainContentContext);
+  const context = useContext<TMainContentContext | null>(MainContentContext);
 
   if (!context) {
     throw new Error(
