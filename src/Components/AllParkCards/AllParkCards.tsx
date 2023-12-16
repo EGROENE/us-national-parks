@@ -18,13 +18,14 @@ export const AllParkCards = () => {
       </div>
       {displayedParks.length !== allNationalParks.length && (
         <button
+          title="Show More Parks"
           onClick={() => {
             limit < allNationalParks.length
               ? setLimit(limit + 18)
               : setLimit(allNationalParks.length);
           }}
         >
-          Increase limit
+          Show More
         </button>
       )}
     </>
