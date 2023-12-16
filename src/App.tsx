@@ -1,5 +1,6 @@
 import "./App.css";
 import { HomepageMainContent } from "./Components/HomepageMainContent/HomepageMainContent";
+import { NavBar } from "./Components/NavBar/NavBar";
 
 // destructure things from useMainContentContext as necessary
 
@@ -8,7 +9,7 @@ import { HomepageMainContent } from "./Components/HomepageMainContent/HomepageMa
 function App() {
   return (
     <>
-      {/* <NavBar /> */}
+      <NavBar />
       {/* While data is fetching, display msg & animated icon (while isLoading in state is truthy) */}
       {/* HomepageMainContent = SearchTools + AllParksCards OR ErrorOnInitialFetch w/ 'failed to retrieve data' & reloadbtn*/}
       {/* So, in mainContentContext, have state value isLoading. If !response.ok, display ErrorOnInitialFetch */}
