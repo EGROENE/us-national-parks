@@ -20,6 +20,10 @@ export const MainContentContextProvider = ({ children }: { children: ReactNode }
     });
   };
 
+  const [successfulInitFetch, setSuccessfulInitFetch] = useState<boolean>(false);
+
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+
   const [allNationalParks, setAllNationalParks] = useState<TPark[]>([]);
 
   const [limit, setLimit] = useState<number>(18);
@@ -29,6 +33,7 @@ export const MainContentContextProvider = ({ children }: { children: ReactNode }
     getParks()
       .then((response) => response.text())
       .then((result) => {
+        setSuccessfulInitFetch(true);
         const parksJSArray: TPark[] = JSON.parse(result).data;
         const nationalParksArray: TPark[] = getParksSortedAlphabeticallyByFullName(
           parksJSArray
@@ -41,13 +46,18 @@ export const MainContentContextProvider = ({ children }: { children: ReactNode }
         );
         setAllNationalParks(nationalParksArray);
       })
-      .catch((error) => console.log(error));
+      .catch((error) => console.log(error))
+      .finally(() => setIsLoading(false));
   }, []);
 
   const mainContentContextValues: TMainContentContext = {
     allNationalParks,
     limit,
     setLimit,
+    isLoading,
+    setIsLoading,
+    successfulInitFetch,
+    setSuccessfulInitFetch,
   };
 
   return (

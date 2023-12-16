@@ -1,19 +1,18 @@
 import "./App.css";
+import { FailInitFetchMessage } from "./Components/FailInitFetchMessage/FailInitFetchMessage";
 import { HomepageMainContent } from "./Components/HomepageMainContent/HomepageMainContent";
+import { LoadingMessage } from "./Components/LoadingMessage/LoadingMessage";
 import { NavBar } from "./Components/NavBar/NavBar";
-
-// destructure things from useMainContentContext as necessary
-
-// If, when retrieving all parks, !request.ok, don't display HomepageMainContent component, rather comp w/ msg & reload btn
+import { useMainContentContext } from "./Hooks/useMainContentContext";
 
 function App() {
+  const { isLoading, successfulInitFetch } = useMainContentContext();
   return (
     <>
-      <NavBar />
-      {/* While data is fetching, display msg & animated icon (while isLoading in state is truthy) */}
       {/* HomepageMainContent = SearchTools + AllParksCards OR ErrorOnInitialFetch w/ 'failed to retrieve data' & reloadbtn*/}
-      {/* So, in mainContentContext, have state value isLoading. If !response.ok, display ErrorOnInitialFetch */}
-      <HomepageMainContent />
+      <NavBar />
+      {isLoading ? <LoadingMessage /> : <HomepageMainContent />}
+      {!successfulInitFetch && !isLoading && <FailInitFetchMessage />}
     </>
   );
 }

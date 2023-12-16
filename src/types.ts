@@ -69,4 +69,8 @@ export type TMainContentContext = {
   allNationalParks: TPark[];
   limit: number;
   setLimit: Dispatch<SetStateAction<number>>;
+  isLoading: boolean;
+  setIsLoading: Dispatch<SetStateAction<boolean>>;
+  successfulInitFetch: boolean;
+  setSuccessfulInitFetch: Dispatch<SetStateAction<boolean>>;
 };
