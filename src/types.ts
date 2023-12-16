@@ -62,10 +62,11 @@ export interface TPark {
   relevanceScore: number;
 }
 
-export type TParkDisplayLimit = 18 | 36 | 54 | 60;
+// Is it possible to set type as multiple of a certain number?
+//export type TParkDisplayLimit = 18 | 36 | 54 | 60;
 
 export type TMainContentContext = {
   allNationalParks: TPark[];
-  limit: TParkDisplayLimit;
-  setLimit: Dispatch<SetStateAction<TParkDisplayLimit>>;
+  limit: number;
+  setLimit: Dispatch<SetStateAction<number>>;
 };

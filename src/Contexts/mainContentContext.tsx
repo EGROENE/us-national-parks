@@ -1,7 +1,7 @@
 // Remember, this file contains MainContentContext, which will need to be consumed in hook file
 // Also contains provider that should wrap App inside main.tsx. this provider shares necessary state values, etc.
 import { createContext, ReactNode, useEffect, useState } from "react";
-import { TPark, TParkDisplayLimit, TMainContentContext } from "../types";
+import { TPark, TMainContentContext } from "../types";
 import { getParks } from "../api";
 
 // Make sure to type this correctly
@@ -22,11 +22,7 @@ export const MainContentContextProvider = ({ children }: { children: ReactNode }
 
   const [allNationalParks, setAllNationalParks] = useState<TPark[]>([]);
 
-  // Set limit when scrolling to certain point or when 'load more' btn is clicked
-  // Will be used to limit number of parks from allNationalParks will display
-  // rows of 6
-  // limit type should be a number that's either 18, 36, 54, or 60
-  const [limit, setLimit] = useState<TParkDisplayLimit>(18);
+  const [limit, setLimit] = useState<number>(18);
 
   // In useEffect, set initial value of allNationalParks
   useEffect(() => {
