@@ -1,6 +1,9 @@
 #root {
   max-width: 1280px;
   margin: 0 auto;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
 li {
@@ -11,10 +14,60 @@ li {
   position: sticky;
   top: 2%;
   display: flex;
-  width: 80vw;
+  width: 94vw;
   align-items: center;
   justify-content: space-between;
   margin-top: 1rem;
   background-color: var(--theme-brown);
   padding: 1rem;
+  z-index: 100;
+}
+
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  row-gap: 2rem;
+  column-gap: 0.5rem;
+  margin-top: 2rem;
+}
+
+.park-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid var(--theme-cream);
+  padding: 1rem;
+}
+
+.park-thumbnail-container {
+  display: flex;
+  align-items: center;
+}
+
+.park-thumbnail-container i:first-child {
+  rotate: 180deg;
+}
+
+.park-thumbnail-container i {
+  font-size: 2rem;
+  margin: auto 0.5rem;
+}
+
+.park-thumbnail-container i:hover {
+  cursor: pointer;
+}
+
+.park-card img {
+  float: left;
+  width: 18rem;
+  height: 10rem;
+  object-fit: cover;
+  border: 2px solid var(--theme-brown);
+}
+
+.park-card header {
+  font-size: 1.5rem;
+  text-align: center;
+  color: var(--theme-cream);
+  margin-top: 1rem;
 }
