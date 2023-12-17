@@ -21,7 +21,7 @@ export const AllParkCards = () => {
           title="Show More Parks"
           onClick={() => {
             limit < allNationalParks.length
-              ? setLimit(limit + 9)
+              ? setLimit(limit + 6)
               : setLimit(allNationalParks.length);
           }}
         >
