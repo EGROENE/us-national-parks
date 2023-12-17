@@ -26,7 +26,7 @@ export const MainContentContextProvider = ({ children }: { children: ReactNode }
 
   const [allNationalParks, setAllNationalParks] = useState<TPark[]>([]);
 
-  const [limit, setLimit] = useState<number>(18);
+  const [limit, setLimit] = useState<number>(9);
 
   // In useEffect, set initial value of allNationalParks
   useEffect(() => {
