@@ -36,11 +36,13 @@ export const ParkCard = ({ park }: TParkCardProps) => {
         <i
           onClick={() => changeThumbnail("prev", imgIndex, park.images)}
           className="fas fa-angle-right"
+          title="Previous Image"
         ></i>
         <img src={park.images[`${imgIndex}`].url} alt="" />
         <i
           onClick={() => changeThumbnail("next", imgIndex, park.images)}
           className="fas fa-angle-right"
+          title="Next Image"
         ></i>
       </div>
       <header>{park.fullName}</header>
