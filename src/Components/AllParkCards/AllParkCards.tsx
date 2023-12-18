@@ -1,10 +1,11 @@
 import { useMainContentContext } from "../../Hooks/useMainContentContext";
 import { TPark } from "../../types";
 import { ParkCard } from "../ParkCard/ParkCard";
+import { ShowMoreBtn } from "../ShowMoreBtn/ShowMoreBtn";
 
 // map inside this comp to create ParkCard for every park currently in allNationalParks
 export const AllParkCards = () => {
-  const { allNationalParks, limit, setLimit } = useMainContentContext();
+  const { allNationalParks, limit } = useMainContentContext();
   const displayedParks = allNationalParks.filter(
     (park) => allNationalParks.indexOf(park) < limit
   );
@@ -17,16 +18,7 @@ export const AllParkCards = () => {
         ))}
       </div>
       {displayedParks.length !== allNationalParks.length && (
-        <button
-          title="Show More Parks"
-          onClick={() => {
-            limit < allNationalParks.length
-              ? setLimit(limit + 6)
-              : setLimit(allNationalParks.length);
-          }}
-        >
-          Show More
-        </button>
+        <ShowMoreBtn limit={limit} allNationalParks={allNationalParks} />
       )}
     </>
   );
