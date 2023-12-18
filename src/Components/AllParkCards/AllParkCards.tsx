@@ -17,9 +17,7 @@ export const AllParkCards = () => {
           <ParkCard park={park} />
         ))}
       </div>
-      {displayedParks.length !== allNationalParks.length && (
-        <ShowMoreBtn limit={limit} allNationalParks={allNationalParks} />
-      )}
+      {displayedParks.length !== allNationalParks.length && <ShowMoreBtn />}
     </>
   );
 };

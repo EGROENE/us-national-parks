@@ -1,14 +1,7 @@
 import { useMainContentContext } from "../../Hooks/useMainContentContext";
-import { TPark } from "../../types";
 
-export const ShowMoreBtn = ({
-  limit,
-  allNationalParks,
-}: {
-  limit: number;
-  allNationalParks: TPark[];
-}) => {
-  const { setLimit } = useMainContentContext();
+export const ShowMoreBtn = () => {
+  const { limit, setLimit, allNationalParks } = useMainContentContext();
   return (
     <button
       title="Show More Parks"
