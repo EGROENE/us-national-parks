@@ -1,13 +1,9 @@
 import { useState } from "react";
 import { TPark } from "../../types";
 
-type TParkCardProps = {
-  park: TPark;
-};
-
 type TDirection = "next" | "prev";
 
-export const ParkCard = ({ park }: TParkCardProps) => {
+export const ParkCard = ({ park }: { park: TPark }) => {
   const [imgIndex, setImgIndex] = useState<number>(
     Math.floor(Math.random() * park.images.length)
   );
