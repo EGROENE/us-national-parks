@@ -14,7 +14,7 @@ export const AllParkCards = () => {
     <>
       <div className="card-container">
         {displayedParks.map((park: TPark) => (
-          <ParkCard park={park} />
+          <ParkCard key={park.id} park={park} />
         ))}
       </div>
       {displayedParks.length !== allNationalParks.length && <ShowMoreBtn />}
