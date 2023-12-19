@@ -58,7 +58,7 @@ export const ParkCard = ({ park }: { park: TPark }) => {
         )}
       </div>
       <header>{park.fullName}</header>
-      <p>
+      <p className="state-list">
         <span>{park.states.length > 3 ? "States: " : "State: "} </span>
         {parkStates()}
       </p>
