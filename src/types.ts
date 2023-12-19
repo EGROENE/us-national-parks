@@ -9,7 +9,7 @@ export interface TPark {
   longitude: string;
   activities: [{ id: string; name: string }];
   topics: [{ id: string; name: string }];
-  states: string | string[];
+  states: string;
   contacts: [
     emailAddresses: { description: string; emailAddress: string }[],
     phoneNumbers: {
