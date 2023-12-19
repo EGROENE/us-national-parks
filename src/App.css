@@ -71,3 +71,17 @@ li {
   color: var(--theme-cream);
   margin-top: 1rem;
 }
+
+#scroll-to-top-btn {
+  rotate: -90deg;
+  background-color: var(--theme-brown);
+  padding: 1rem 1.5rem;
+  font-size: 3rem;
+  position: fixed;
+  bottom: 0.75rem;
+  right: 2rem;
+}
+
+#scroll-to-top-btn:hover {
+  cursor: pointer;
+}
