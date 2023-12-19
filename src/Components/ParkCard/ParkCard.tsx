@@ -27,7 +27,7 @@ export const ParkCard = ({ park }: { park: TPark }) => {
     }
   };
 
-  const parkStates = () => {
+  const parkStates = (): string => {
     if (park.states.length > 3) {
       const stateIndices = park.states.replace(/,/g, " ").split(" ");
       return stateIndices.map((index) => statesArray[index]).join(", ");
