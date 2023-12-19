@@ -58,10 +58,14 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: var(--theme-brown);
   cursor: pointer;
   transition: border-color 0.25s;
+  margin: 2rem auto;
+  color: white;
 }
 button:hover {
-  border-color: #646cff;
+  color:var(--theme-brown);
+  background-color: white;
+  transition: 200ms;
 }
