@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { TPark } from "../../types";
+import { statesArray } from "../../constants";
 
 type TDirection = "next" | "prev";
 
@@ -26,6 +27,14 @@ export const ParkCard = ({ park }: { park: TPark }) => {
     }
   };
 
+  const parkStates = () => {
+    if (park.states.length > 3) {
+      const stateIndices = park.states.replace(/,/g, " ").split(" ");
+      return stateIndices.map((index) => statesArray[index]).join(", ");
+    }
+    return statesArray[`${park.states}`];
+  };
+
   return (
     <div className="park-card">
       <div className="park-thumbnail-container">
@@ -49,6 +58,10 @@ export const ParkCard = ({ park }: { park: TPark }) => {
         )}
       </div>
       <header>{park.fullName}</header>
+      <p>
+        <span>{park.states.length > 3 ? "States: " : "State: "} </span>
+        {parkStates()}
+      </p>
       <p>{park.description}</p>
     </div>
   );
