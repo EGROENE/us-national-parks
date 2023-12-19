@@ -1,7 +1,7 @@
 // AllParkCards (child ParkCard) & SearchTools should be this comp's children
 import { useEffect, useState } from "react";
 import { AllParkCards } from "../AllParkCards/AllParkCards";
-import { ScrollToTopBtn } from "../ScrollToTopBtn/ScrolltoTopBtn";
+import { ScrollToTopBtn } from "../ScrollToTopBtn/ScrollToTopBtn";
 
 export const HomepageMainContent = () => {
   const [distanceScrolledFromTop, setDistanceScrolledFromTop] = useState<number>(0);
