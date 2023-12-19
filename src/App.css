@@ -72,6 +72,10 @@ li {
   margin-top: 1rem;
 }
 
+.park-card p:first-child {
+  margin: 0.5rem auto;
+}
+
 #scroll-to-top-btn {
   rotate: -90deg;
   background-color: var(--theme-brown);
