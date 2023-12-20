@@ -10,6 +10,10 @@ li {
   list-style: none;
 }
 
+.init-loading-or-error-message {
+  margin-top: 10rem;
+}
+
 .navbar {
   position: sticky;
   top: 2%;
@@ -80,11 +84,11 @@ li {
 #scroll-to-top-btn {
   rotate: -90deg;
   background-color: var(--theme-brown);
-  padding: 1rem 1.5rem;
-  font-size: 3rem;
+  padding: 0.5rem 1rem;
+  font-size: 2rem;
   position: fixed;
   bottom: 0.75rem;
-  right: 2rem;
+  right: 1rem;
 }
 
 #scroll-to-top-btn:hover {
