@@ -10,7 +10,9 @@ export const AllParkCards = () => {
   const displayedParks =
     stateFilter === ""
       ? allNationalParks.filter((park) => allNationalParks.indexOf(park) < limit)
-      : allNationalParks.filter((park) => park.states.split(" ").includes(stateFilter));
+      : allNationalParks.filter((park) =>
+          park.states.replace(/,/g, " ").split(" ").includes(stateFilter)
+        );
 
   return (
     <>
