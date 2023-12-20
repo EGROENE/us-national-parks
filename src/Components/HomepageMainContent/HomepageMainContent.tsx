@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { AllParkCards } from "../AllParkCards/AllParkCards";
 import { ScrollToTopBtn } from "../ScrollToTopBtn/ScrollToTopBtn";
+import { SearchTools } from "../SearchTools/SearchTools";
 
 export const HomepageMainContent = () => {
   const [distanceScrolledFromTop, setDistanceScrolledFromTop] = useState<number>(0);
@@ -21,6 +22,7 @@ export const HomepageMainContent = () => {
 
   return (
     <>
+      <SearchTools />
       <AllParkCards />
       <ScrollToTopBtn distanceScrolledFromTop={distanceScrolledFromTop} />
     </>

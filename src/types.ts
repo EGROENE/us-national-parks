@@ -1,4 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
+import { statesArray } from "./constants";
 
 export interface TPark {
   id: string;
@@ -73,4 +74,8 @@ export type TMainContentContext = {
   setIsLoading: Dispatch<SetStateAction<boolean>>;
   successfulInitFetch: boolean;
   setSuccessfulInitFetch: Dispatch<SetStateAction<boolean>>;
+  stateFilter: TStateAbbreviations | "";
+  setStateFilter: Dispatch<SetStateAction<TStateAbbreviations | "">>;
 };
+
+export type TStateAbbreviations = keyof typeof statesArray;

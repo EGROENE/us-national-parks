@@ -1,7 +1,7 @@
 // Remember, this file contains MainContentContext, which will need to be consumed in hook file
 // Also contains provider that should wrap App inside main.tsx. this provider shares necessary state values, etc.
 import { createContext, ReactNode, useEffect, useState } from "react";
-import { TPark, TMainContentContext } from "../types";
+import { TPark, TMainContentContext, TStateAbbreviations } from "../types";
 import { getParks } from "../api";
 
 // Make sure to type this correctly
@@ -27,6 +27,8 @@ export const MainContentContextProvider = ({ children }: { children: ReactNode }
   const [allNationalParks, setAllNationalParks] = useState<TPark[]>([]);
 
   const [limit, setLimit] = useState<number>(6);
+
+  const [stateFilter, setStateFilter] = useState<TStateAbbreviations | "">("");
 
   // In useEffect, set initial value of allNationalParks
   useEffect(() => {
@@ -58,6 +60,8 @@ export const MainContentContextProvider = ({ children }: { children: ReactNode }
     setIsLoading,
     successfulInitFetch,
     setSuccessfulInitFetch,
+    stateFilter,
+    setStateFilter,
   };
 
   return (
