@@ -66,3 +66,7 @@ select {
   background-color: var(--theme-brown);
   color: white;
 }
+
+select:hover {
+  cursor: pointer;
+}
