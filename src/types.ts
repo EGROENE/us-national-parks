@@ -74,8 +74,10 @@ export type TMainContentContext = {
   setIsLoading: Dispatch<SetStateAction<boolean>>;
   successfulInitFetch: boolean;
   setSuccessfulInitFetch: Dispatch<SetStateAction<boolean>>;
-  stateFilter: TStateAbbreviations | "";
-  setStateFilter: Dispatch<SetStateAction<TStateAbbreviations | "">>;
+  stateFilter: TStateAbbreviations;
+  setStateFilter: Dispatch<SetStateAction<TStateAbbreviations>>;
+  searchQuery: string;
+  setSearchQuery: Dispatch<SetStateAction<string>>;
 };
 
 export type TStateAbbreviations = keyof typeof statesArray;

@@ -28,7 +28,9 @@ export const MainContentContextProvider = ({ children }: { children: ReactNode }
 
   const [limit, setLimit] = useState<number>(6);
 
-  const [stateFilter, setStateFilter] = useState<TStateAbbreviations | "">("");
+  const [stateFilter, setStateFilter] = useState<TStateAbbreviations>("");
+
+  const [searchQuery, setSearchQuery] = useState<string>("");
 
   // In useEffect, set initial value of allNationalParks
   useEffect(() => {
@@ -62,6 +64,8 @@ export const MainContentContextProvider = ({ children }: { children: ReactNode }
     setSuccessfulInitFetch,
     stateFilter,
     setStateFilter,
+    searchQuery,
+    setSearchQuery,
   };
 
   return (
