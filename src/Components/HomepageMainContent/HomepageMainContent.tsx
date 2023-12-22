@@ -8,8 +8,7 @@ import { SearchResultsMessage } from "../SearchResultsMessage/SearchResultsMessa
 import { stateFilterOptions } from "../../constants";
 
 export const HomepageMainContent = () => {
-  const { successfulInitFetch, stateFilter, searchQuery, displayedParks } =
-    useMainContentContext();
+  const { stateFilter, searchQuery, displayedParks } = useMainContentContext();
   const [distanceScrolledFromTop, setDistanceScrolledFromTop] = useState<number>(0);
 
   const filterUsed = stateFilter !== "" && searchQuery === "";
@@ -30,15 +29,13 @@ export const HomepageMainContent = () => {
 
   return (
     <>
-      {successfulInitFetch && <SearchTools />}
+      <SearchTools />
       {searchBarUsed && <SearchResultsMessage />}
-      {successfulInitFetch && <AllParkCards />}
+      <AllParkCards />
       {filterUsed &&
         !displayedParks.length &&
         `No national parks exist in ${stateFilterOptions[`${stateFilter}`]}`}
-      {successfulInitFetch && (
-        <ScrollToTopBtn distanceScrolledFromTop={distanceScrolledFromTop} />
-      )}
+      <ScrollToTopBtn distanceScrolledFromTop={distanceScrolledFromTop} />
     </>
   );
 };
