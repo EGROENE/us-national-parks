@@ -1,10 +1,9 @@
 // Remember, this file contains MainContentContext, which will need to be consumed in hook file
 // Also contains provider that should wrap App inside main.tsx. this provider shares necessary state values, etc.
 import { createContext, ReactNode, useEffect, useState } from "react";
-import { TPark, TMainContentContext, TStateAbbreviations } from "../types";
+import { TPark, TMainContentContext } from "../types";
 import { getParks } from "../api";
 
-// Make sure to type this correctly
 export const MainContentContext = createContext<TMainContentContext | null>(null);
 
 export const MainContentContextProvider = ({ children }: { children: ReactNode }) => {
@@ -26,13 +25,14 @@ export const MainContentContextProvider = ({ children }: { children: ReactNode }
 
   const [allNationalParks, setAllNationalParks] = useState<TPark[]>([]);
 
+  const [displayedParks, setDisplayedParks] = useState<TPark[]>([]);
+
   const [limit, setLimit] = useState<number>(6);
 
-  const [stateFilter, setStateFilter] = useState<TStateAbbreviations>("");
+  const [stateFilter, setStateFilter] = useState<string>("NONE");
 
   const [searchQuery, setSearchQuery] = useState<string>("");
 
-  // In useEffect, set initial value of allNationalParks
   useEffect(() => {
     getParks()
       .then((response) => response.text())
@@ -49,11 +49,43 @@ export const MainContentContextProvider = ({ children }: { children: ReactNode }
             )
         );
         setAllNationalParks(nationalParksArray);
+        if (searchQuery === "" && stateFilter !== "NONE") {
+          setDisplayedParks(
+            allNationalParks.filter((park) =>
+              park.states.replace(/,/g, " ").split(" ").includes(stateFilter)
+            )
+          );
+        } else if (searchQuery !== "" && stateFilter === "NONE") {
+          setDisplayedParks(
+            allNationalParks.filter((park) =>
+              park.fullName.toLowerCase().includes(searchQuery.toLowerCase())
+            )
+          );
+        } else {
+          setDisplayedParks(
+            allNationalParks.filter((park) => allNationalParks.indexOf(park) < limit)
+          );
+        }
       })
       .catch((error) => console.log(error))
       .finally(() => setIsLoading(false));
-  }, []);
+  }, [allNationalParks, limit, searchQuery, stateFilter]);
 
+  const handleStateFilter = (value: string): void => {
+    if (searchQuery !== "") {
+      setSearchQuery("");
+    }
+    setStateFilter(value);
+  };
+
+  const handleSearchQuery = (value: string): void => {
+    if (stateFilter !== "NONE") {
+      setStateFilter("NONE");
+    }
+    setSearchQuery(value);
+  };
+
+  // Eventually check if all these are actually used
   const mainContentContextValues: TMainContentContext = {
     allNationalParks,
     limit,
@@ -66,6 +98,9 @@ export const MainContentContextProvider = ({ children }: { children: ReactNode }
     setStateFilter,
     searchQuery,
     setSearchQuery,
+    displayedParks,
+    handleStateFilter,
+    handleSearchQuery,
   };
 
   return (

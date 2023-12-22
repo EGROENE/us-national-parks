@@ -74,10 +74,13 @@ export type TMainContentContext = {
   setIsLoading: Dispatch<SetStateAction<boolean>>;
   successfulInitFetch: boolean;
   setSuccessfulInitFetch: Dispatch<SetStateAction<boolean>>;
-  stateFilter: TStateAbbreviations;
-  setStateFilter: Dispatch<SetStateAction<TStateAbbreviations>>;
+  stateFilter: string;
+  setStateFilter: Dispatch<SetStateAction<string>>;
   searchQuery: string;
   setSearchQuery: Dispatch<SetStateAction<string>>;
+  displayedParks: TPark[];
+  handleStateFilter: (value: string) => void;
+  handleSearchQuery: (value: string) => void;
 };
 
 export type TStateAbbreviations = keyof typeof statesArray;

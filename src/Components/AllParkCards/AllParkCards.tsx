@@ -6,13 +6,8 @@ import { statesArray } from "../../constants";
 
 // map inside this comp to create ParkCard for every park currently in allNationalParks
 export const AllParkCards = () => {
-  const { allNationalParks, limit, stateFilter } = useMainContentContext();
-  const displayedParks =
-    stateFilter === ""
-      ? allNationalParks.filter((park) => allNationalParks.indexOf(park) < limit)
-      : allNationalParks.filter((park) =>
-          park.states.replace(/,/g, " ").split(" ").includes(stateFilter)
-        );
+  const { allNationalParks, stateFilter, searchQuery, displayedParks } =
+    useMainContentContext();
 
   return (
     <>
@@ -21,10 +16,10 @@ export const AllParkCards = () => {
           <ParkCard key={park.id} park={park} />
         ))}
       </div>
-      {displayedParks.length !== allNationalParks.length && stateFilter === "" && (
-        <ShowMoreBtn />
-      )}
-      {stateFilter !== "" && !displayedParks.length && (
+      {displayedParks.length !== allNationalParks.length &&
+        stateFilter === "NONE" &&
+        searchQuery === "" && <ShowMoreBtn />}
+      {stateFilter !== "NONE" && !displayedParks.length && searchQuery === "" && (
         <header>No national parks exist in {statesArray[`${stateFilter}`]}.</header>
       )}
     </>
