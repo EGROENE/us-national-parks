@@ -5,7 +5,7 @@ import { ScrollToTopBtn } from "../ScrollToTopBtn/ScrollToTopBtn";
 import { SearchTools } from "../SearchTools/SearchTools";
 import { useMainContentContext } from "../../Hooks/useMainContentContext";
 import { SearchResultsMessage } from "../SearchResultsMessage/SearchResultsMessage";
-import { statesArray } from "../../constants";
+import { stateFilterOptions } from "../../constants";
 
 export const HomepageMainContent = () => {
   const { successfulInitFetch, stateFilter, searchQuery, displayedParks } =
@@ -35,7 +35,7 @@ export const HomepageMainContent = () => {
       <AllParkCards />
       {filterUsed &&
         !displayedParks.length &&
-        `No national parks exist in ${statesArray[`${stateFilter}`]}`}
+        `No national parks exist in ${stateFilterOptions[`${stateFilter}`]}`}
       <ScrollToTopBtn distanceScrolledFromTop={distanceScrolledFromTop} />
     </>
   );

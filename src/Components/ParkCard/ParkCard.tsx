@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { TPark } from "../../types";
-import { statesArray } from "../../constants";
+import { stateFilterOptions } from "../../constants";
 
 type TDirection = "next" | "prev";
 
@@ -30,9 +30,9 @@ export const ParkCard = ({ park }: { park: TPark }) => {
   const parkStates = (): string => {
     if (park.states.length > 3) {
       const stateIndices = park.states.replace(/,/g, " ").split(" ");
-      return stateIndices.map((index) => statesArray[index]).join(", ");
+      return stateIndices.map((index) => stateFilterOptions[index]).join(", ");
     }
-    return statesArray[`${park.states}`];
+    return stateFilterOptions[`${park.states}`];
   };
 
   return (

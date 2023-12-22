@@ -1,4 +1,4 @@
-export const statesArray = {
+export const stateFilterOptions = {
   "AL": "Alabama",
   "AK": "Alaska",
   "AZ": "Arizona",

@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
-import { statesArray } from "./constants";
+import { stateFilterOptions } from "./constants";
 
 export interface TPark {
   id: string;
@@ -85,4 +85,4 @@ export type TMainContentContext = {
   setTotalNationalParks: Dispatch<SetStateAction<number>>;
 };
 
-export type TStateAbbreviations = keyof typeof statesArray;
+export type TStateAbbreviations = keyof typeof stateFilterOptions;
