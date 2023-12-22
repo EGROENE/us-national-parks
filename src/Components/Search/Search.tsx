@@ -2,7 +2,8 @@ import { useMainContentContext } from "../../Hooks/useMainContentContext";
 import { SearchResultsMessage } from "../SearchResultsMessage/SearchResultsMessage";
 
 export const Search = () => {
-  const { searchQuery, stateFilter, handleSearchQuery } = useMainContentContext();
+  const { searchQuery, setSearchQuery, stateFilter, handleSearchQuery } =
+    useMainContentContext();
   const searchBarUsed = stateFilter === "" && searchQuery !== "";
   return (
     <div className="search-container">
@@ -14,7 +15,11 @@ export const Search = () => {
           value={searchQuery}
           placeholder="Search parks"
         ></input>
-        <i className="fas fa-times"></i>
+        <i
+          title="Clear Search"
+          className="fas fa-times"
+          onClick={() => setSearchQuery("")}
+        ></i>
       </div>
       {searchBarUsed && <SearchResultsMessage />}
     </div>
