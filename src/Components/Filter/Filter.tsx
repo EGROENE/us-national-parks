@@ -4,7 +4,7 @@ export const Filter = () => {
   const { handleStateFilter } = useMainContentContext();
 
   return (
-    <>
+    <div className="filter">
       <header>Filter by state:</header>
       <select onChange={(e) => handleStateFilter(e.target.value)}>
         <option value="">No Filter</option>
@@ -59,6 +59,6 @@ export const Filter = () => {
         <option value="WI">Wisconsin</option>
         <option value="WY">Wyoming</option>
       </select>
-    </>
+    </div>
   );
 };

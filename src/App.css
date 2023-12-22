@@ -27,6 +27,58 @@ li {
   z-index: 100;
 }
 
+.search-tools {
+  display: flex;
+  width: 86%;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+.search-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.search-container p {
+  margin: 0.5rem 0 0 0;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+}
+
+.search-box input {
+  padding: 3px;
+    border-radius: 0.25rem;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border: 3px solid var(--theme-brown);
+    font-family: var(--body-font);
+    width: 16rem;
+    font-weight: 700;
+    font-size: 1.25rem;
+}
+
+.search-box input:focus {
+  outline: none;
+}
+
+.search-box i {
+  background-color: var(--theme-brown);
+    padding: 1rem;
+    border-top-right-radius: 0.25rem;
+    border-bottom-right-radius: 0.25rem;
+    height: 12px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+
 .card-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);

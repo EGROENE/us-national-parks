@@ -12,7 +12,6 @@ export const HomepageMainContent = () => {
   const [distanceScrolledFromTop, setDistanceScrolledFromTop] = useState<number>(0);
 
   const filterUsed = stateFilter !== "" && searchQuery === "";
-  const searchBarUsed = stateFilter === "" && searchQuery !== "";
 
   // Remember, any time useEffect adds an EL, it should be removed in its 'return' statement
   useEffect(() => {
@@ -30,7 +29,6 @@ export const HomepageMainContent = () => {
   return (
     <>
       <SearchTools />
-      {searchBarUsed && <SearchResultsMessage />}
       <AllParkCards />
       {filterUsed &&
         !displayedParks.length &&
