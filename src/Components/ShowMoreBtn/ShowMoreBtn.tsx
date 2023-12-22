@@ -1,13 +1,11 @@
 import { useMainContentContext } from "../../Hooks/useMainContentContext";
 
 export const ShowMoreBtn = () => {
-  const { limit, setLimit, allNationalParks } = useMainContentContext();
+  const { limit, setLimit, totalNationalParks } = useMainContentContext();
   return (
     <button
       onClick={() => {
-        limit < allNationalParks.length
-          ? setLimit(limit + 6)
-          : setLimit(allNationalParks.length);
+        limit < totalNationalParks ? setLimit(limit + 6) : setLimit(totalNationalParks);
       }}
     >
       Show More

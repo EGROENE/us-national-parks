@@ -23,9 +23,9 @@ export const MainContentContextProvider = ({ children }: { children: ReactNode }
 
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
-  const [allNationalParks, setAllNationalParks] = useState<TPark[]>([]);
-
   const [displayedParks, setDisplayedParks] = useState<TPark[]>([]);
+
+  const [totalNationalParks, setTotalNationalParks] = useState<number>(0);
 
   const [limit, setLimit] = useState<number>(6);
 
@@ -48,28 +48,28 @@ export const MainContentContextProvider = ({ children }: { children: ReactNode }
               )
             )
         );
-        setAllNationalParks(nationalParksArray);
+        setTotalNationalParks(nationalParksArray.length);
         if (searchQuery === "" && stateFilter !== "NONE") {
           setDisplayedParks(
-            allNationalParks.filter((park) =>
+            nationalParksArray.filter((park) =>
               park.states.replace(/,/g, " ").split(" ").includes(stateFilter)
             )
           );
         } else if (searchQuery !== "" && stateFilter === "NONE") {
           setDisplayedParks(
-            allNationalParks.filter((park) =>
+            nationalParksArray.filter((park) =>
               park.fullName.toLowerCase().includes(searchQuery.toLowerCase())
             )
           );
         } else {
           setDisplayedParks(
-            allNationalParks.filter((park) => allNationalParks.indexOf(park) < limit)
+            nationalParksArray.filter((park) => nationalParksArray.indexOf(park) < limit)
           );
         }
       })
       .catch((error) => console.log(error))
       .finally(() => setIsLoading(false));
-  }, [allNationalParks, limit, searchQuery, stateFilter]);
+  }, [displayedParks, limit, searchQuery, stateFilter]);
 
   const handleStateFilter = (value: string): void => {
     if (searchQuery !== "") {
@@ -87,7 +87,7 @@ export const MainContentContextProvider = ({ children }: { children: ReactNode }
 
   // Eventually check if all these are actually used
   const mainContentContextValues: TMainContentContext = {
-    allNationalParks,
+    displayedParks,
     limit,
     setLimit,
     isLoading,
@@ -98,9 +98,11 @@ export const MainContentContextProvider = ({ children }: { children: ReactNode }
     setStateFilter,
     searchQuery,
     setSearchQuery,
-    displayedParks,
+    //displayedParks,
     handleStateFilter,
     handleSearchQuery,
+    totalNationalParks,
+    setTotalNationalParks,
   };
 
   return (
