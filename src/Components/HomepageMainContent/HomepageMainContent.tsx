@@ -4,10 +4,16 @@ import { AllParkCards } from "../AllParkCards/AllParkCards";
 import { ScrollToTopBtn } from "../ScrollToTopBtn/ScrollToTopBtn";
 import { SearchTools } from "../SearchTools/SearchTools";
 import { useMainContentContext } from "../../Hooks/useMainContentContext";
+import { SearchResultsMessage } from "../SearchResultsMessage/SearchResultsMessage";
+import { statesArray } from "../../constants";
 
 export const HomepageMainContent = () => {
-  const { successfulInitFetch } = useMainContentContext();
+  const { successfulInitFetch, stateFilter, searchQuery, displayedParks } =
+    useMainContentContext();
   const [distanceScrolledFromTop, setDistanceScrolledFromTop] = useState<number>(0);
+
+  const filterUsed = stateFilter !== "NONE" && searchQuery === "";
+  const searchBarUsed = stateFilter === "NONE" && searchQuery !== "";
 
   // Remember, any time useEffect adds an EL, it should be removed in its 'return' statement
   useEffect(() => {
@@ -25,7 +31,11 @@ export const HomepageMainContent = () => {
   return (
     <>
       {successfulInitFetch && <SearchTools />}
+      {searchBarUsed && <SearchResultsMessage />}
       <AllParkCards />
+      {filterUsed &&
+        !displayedParks.length &&
+        `No national parks exist in ${statesArray[`${stateFilter}`]}`}
       <ScrollToTopBtn distanceScrolledFromTop={distanceScrolledFromTop} />
     </>
   );
