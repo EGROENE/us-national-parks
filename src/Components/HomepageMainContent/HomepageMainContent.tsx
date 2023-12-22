@@ -32,11 +32,13 @@ export const HomepageMainContent = () => {
     <>
       {successfulInitFetch && <SearchTools />}
       {searchBarUsed && <SearchResultsMessage />}
-      <AllParkCards />
+      {successfulInitFetch && <AllParkCards />}
       {filterUsed &&
         !displayedParks.length &&
         `No national parks exist in ${stateFilterOptions[`${stateFilter}`]}`}
-      <ScrollToTopBtn distanceScrolledFromTop={distanceScrolledFromTop} />
+      {successfulInitFetch && (
+        <ScrollToTopBtn distanceScrolledFromTop={distanceScrolledFromTop} />
+      )}
     </>
   );
 };
