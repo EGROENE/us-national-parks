@@ -50,3 +50,7 @@ export const stateFilterOptions = {
   "WI": "Wisconsin",
   "WY": "Wyoming",
 };
+
+export const territoryFilterOptions = {
+  "VI": "Virgin Islands",
+};
