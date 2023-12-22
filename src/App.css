@@ -29,7 +29,7 @@ li {
 
 .search-tools {
   display: flex;
-  width: 86%;
+  width: 100%;
   align-items: center;
   justify-content: space-between;
   margin-top: 1rem;
