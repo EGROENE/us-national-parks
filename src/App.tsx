@@ -6,12 +6,13 @@ import { NavBar } from "./Components/NavBar/NavBar";
 import { useMainContentContext } from "./Hooks/useMainContentContext";
 
 function App() {
-  const { isLoading, successfulInitFetch } = useMainContentContext();
+  const { isLoading, successfulInitFetch, displayedParks } = useMainContentContext();
+
   return (
     <>
       {/* HomepageMainContent = SearchTools + AllParksCards OR ErrorOnInitialFetch w/ 'failed to retrieve data' & reloadbtn*/}
       <NavBar />
-      {isLoading && <LoadingMessage />}
+      {isLoading && !displayedParks.length && <LoadingMessage />}
       {!isLoading && successfulInitFetch && <HomepageMainContent />}
       {!successfulInitFetch && !isLoading && <FailInitFetchMessage />}
     </>

@@ -1,11 +1,9 @@
-// AllParkCards (child ParkCard) & SearchTools should be this comp's children
 import { useEffect, useState } from "react";
 import { AllParkCards } from "../AllParkCards/AllParkCards";
 import { ScrollToTopBtn } from "../ScrollToTopBtn/ScrollToTopBtn";
 import { SearchTools } from "../SearchTools/SearchTools";
 import { useMainContentContext } from "../../Hooks/useMainContentContext";
-import { SearchResultsMessage } from "../SearchResultsMessage/SearchResultsMessage";
-import { stateFilterOptions } from "../../constants";
+import { NoFilterResultsMessage } from "../NoFilterResultsMessage/NoFilterResultsMessage";
 
 export const HomepageMainContent = () => {
   const { stateFilter, searchQuery, displayedParks } = useMainContentContext();
@@ -30,9 +28,7 @@ export const HomepageMainContent = () => {
     <>
       <SearchTools />
       <AllParkCards />
-      {filterUsed &&
-        !displayedParks.length &&
-        `No national parks exist in ${stateFilterOptions[`${stateFilter}`]}`}
+      {filterUsed && !displayedParks.length && <NoFilterResultsMessage />}
       <ScrollToTopBtn distanceScrolledFromTop={distanceScrolledFromTop} />
     </>
   );

@@ -67,6 +67,7 @@ export interface TPark {
 //export type TParkDisplayLimit = 18 | 36 | 54 | 60;
 
 export type TMainContentContext = {
+  allNationalParks: TPark[];
   displayedParks: TPark[];
   limit: number;
   setLimit: Dispatch<SetStateAction<number>>;
@@ -78,11 +79,8 @@ export type TMainContentContext = {
   setStateFilter: Dispatch<SetStateAction<string>>;
   searchQuery: string;
   setSearchQuery: Dispatch<SetStateAction<string>>;
-  //displayedParks: TPark[];
   handleStateFilter: (value: string) => void;
   handleSearchQuery: (value: string) => void;
-  totalNationalParks: number;
-  setTotalNationalParks: Dispatch<SetStateAction<number>>;
 };
 
 export type TStateAbbreviations = keyof typeof stateFilterOptions;

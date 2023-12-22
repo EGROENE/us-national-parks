@@ -23,9 +23,9 @@ export const MainContentContextProvider = ({ children }: { children: ReactNode }
 
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
-  const [displayedParks, setDisplayedParks] = useState<TPark[]>([]);
+  const [allNationalParks, setAllNationalParks] = useState<TPark[]>([]);
 
-  const [totalNationalParks, setTotalNationalParks] = useState<number>(0);
+  const [displayedParks, setDisplayedParks] = useState<TPark[]>([]);
 
   const [limit, setLimit] = useState<number>(6);
 
@@ -33,6 +33,8 @@ export const MainContentContextProvider = ({ children }: { children: ReactNode }
 
   const [searchQuery, setSearchQuery] = useState<string>("");
 
+  // This useEffect is to handle initial data request. If it is successful, allNationalParks is set once and for all.
+  // Is called only on loading of page in order to minimize amount of requests made to API.
   useEffect(() => {
     getParks()
       .then((response) => response.text())
@@ -48,31 +50,37 @@ export const MainContentContextProvider = ({ children }: { children: ReactNode }
               )
             )
         );
-        setTotalNationalParks(nationalParksArray.length);
-        if (searchQuery === "" && stateFilter !== "") {
-          setDisplayedParks(
-            nationalParksArray.filter((park) =>
-              park.states.replace(/,/g, " ").split(" ").includes(stateFilter)
-            )
-          );
-        } else if (searchQuery !== "" && stateFilter === "") {
-          setDisplayedParks(
-            nationalParksArray.filter((park) =>
-              park.fullName.toLowerCase().includes(searchQuery.toLowerCase())
-            )
-          );
-        } else {
-          setDisplayedParks(
-            nationalParksArray.filter((park) => nationalParksArray.indexOf(park) < limit)
-          );
-        }
+        setAllNationalParks(nationalParksArray);
       })
       .catch((error) => {
         setSuccessfulInitFetch(false);
         console.log(error);
       })
       .finally(() => setIsLoading(false));
-  }, [displayedParks, limit, searchQuery, stateFilter]);
+  }, []);
+
+  // This useEffect is to set displayedParks anew every time a pertinent state value changes.
+  // displayedParks must be dependent on allNationalParks, which is set once & for all upon page load, in order to minimize API requests.
+  // All this functionality is put into useEffect in order to prevent to many renders.
+  useEffect(() => {
+    if (searchQuery === "" && stateFilter !== "") {
+      setDisplayedParks(
+        allNationalParks.filter((park) =>
+          park.states.replace(/,/g, " ").split(" ").includes(stateFilter)
+        )
+      );
+    } else if (searchQuery !== "" && stateFilter === "") {
+      setDisplayedParks(
+        allNationalParks.filter((park) =>
+          park.fullName.toLowerCase().includes(searchQuery.toLowerCase())
+        )
+      );
+    } else {
+      setDisplayedParks(
+        allNationalParks.filter((park) => allNationalParks.indexOf(park) < limit)
+      );
+    }
+  }, [allNationalParks, limit, stateFilter, searchQuery]);
 
   const handleStateFilter = (value: string): void => {
     if (searchQuery !== "") {
@@ -90,6 +98,7 @@ export const MainContentContextProvider = ({ children }: { children: ReactNode }
 
   // Eventually check if all these are actually used
   const mainContentContextValues: TMainContentContext = {
+    allNationalParks,
     displayedParks,
     limit,
     setLimit,
@@ -103,8 +112,6 @@ export const MainContentContextProvider = ({ children }: { children: ReactNode }
     setSearchQuery,
     handleStateFilter,
     handleSearchQuery,
-    totalNationalParks,
-    setTotalNationalParks,
   };
 
   return (
