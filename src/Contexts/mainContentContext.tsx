@@ -67,7 +67,10 @@ export const MainContentContextProvider = ({ children }: { children: ReactNode }
           );
         }
       })
-      .catch((error) => console.log(error))
+      .catch((error) => {
+        setSuccessfulInitFetch(false);
+        console.log(error);
+      })
       .finally(() => setIsLoading(false));
   }, [displayedParks, limit, searchQuery, stateFilter]);
 
