@@ -79,6 +79,11 @@ li {
     font-size: 1.5rem;
 }
 
+.search-box i:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
 .card-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
