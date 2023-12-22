@@ -7,7 +7,7 @@ export const Filter = () => {
     <>
       <header>Filter by state:</header>
       <select onChange={(e) => handleStateFilter(e.target.value)}>
-        <option value="NONE">No Filter</option>
+        <option value="">No Filter</option>
         <option value="AL">Alabama</option>
         <option value="AK">Alaska</option>
         <option value="AZ">Arizona</option>

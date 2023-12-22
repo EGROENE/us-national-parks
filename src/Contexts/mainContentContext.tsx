@@ -29,7 +29,7 @@ export const MainContentContextProvider = ({ children }: { children: ReactNode }
 
   const [limit, setLimit] = useState<number>(6);
 
-  const [stateFilter, setStateFilter] = useState<string>("NONE");
+  const [stateFilter, setStateFilter] = useState<string>("");
 
   const [searchQuery, setSearchQuery] = useState<string>("");
 
@@ -49,13 +49,13 @@ export const MainContentContextProvider = ({ children }: { children: ReactNode }
             )
         );
         setTotalNationalParks(nationalParksArray.length);
-        if (searchQuery === "" && stateFilter !== "NONE") {
+        if (searchQuery === "" && stateFilter !== "") {
           setDisplayedParks(
             nationalParksArray.filter((park) =>
               park.states.replace(/,/g, " ").split(" ").includes(stateFilter)
             )
           );
-        } else if (searchQuery !== "" && stateFilter === "NONE") {
+        } else if (searchQuery !== "" && stateFilter === "") {
           setDisplayedParks(
             nationalParksArray.filter((park) =>
               park.fullName.toLowerCase().includes(searchQuery.toLowerCase())
@@ -79,8 +79,8 @@ export const MainContentContextProvider = ({ children }: { children: ReactNode }
   };
 
   const handleSearchQuery = (value: string): void => {
-    if (stateFilter !== "NONE") {
-      setStateFilter("NONE");
+    if (stateFilter !== "") {
+      setStateFilter("");
     }
     setSearchQuery(value);
   };
@@ -98,7 +98,6 @@ export const MainContentContextProvider = ({ children }: { children: ReactNode }
     setStateFilter,
     searchQuery,
     setSearchQuery,
-    //displayedParks,
     handleStateFilter,
     handleSearchQuery,
     totalNationalParks,

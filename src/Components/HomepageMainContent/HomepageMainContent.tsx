@@ -12,8 +12,8 @@ export const HomepageMainContent = () => {
     useMainContentContext();
   const [distanceScrolledFromTop, setDistanceScrolledFromTop] = useState<number>(0);
 
-  const filterUsed = stateFilter !== "NONE" && searchQuery === "";
-  const searchBarUsed = stateFilter === "NONE" && searchQuery !== "";
+  const filterUsed = stateFilter !== "" && searchQuery === "";
+  const searchBarUsed = stateFilter === "" && searchQuery !== "";
 
   // Remember, any time useEffect adds an EL, it should be removed in its 'return' statement
   useEffect(() => {

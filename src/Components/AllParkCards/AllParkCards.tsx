@@ -11,7 +11,7 @@ export const AllParkCards = () => {
   // If not all parks are displayed, & no filter or search query exists, 'show more' button should display
   const displayShowMoreBtn: boolean =
     totalNationalParks !== displayedParks.length &&
-    stateFilter === "NONE" &&
+    stateFilter === "" &&
     searchQuery === "";
 
   return (
