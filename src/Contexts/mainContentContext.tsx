@@ -70,11 +70,34 @@ export const MainContentContextProvider = ({ children }: { children: ReactNode }
         )
       );
     } else if (searchQuery !== "" && stateFilter === "") {
-      setDisplayedParks(
-        allNationalParks.filter((park) =>
-          park.fullName.toLowerCase().includes(searchQuery.toLowerCase())
-        )
-      );
+      const searchQueryCI = searchQuery.toLowerCase();
+      const newDisplayedParks = [];
+
+      const parkContainsSearchedActivityOrTopic = (park: TPark): boolean => {
+        const activities: string[] = park.activities.map((activity) =>
+          activity.name.toLowerCase()
+        );
+        const topics: string[] = park.topics.map((topic) => topic.name.toLowerCase());
+        if (topics.includes(searchQueryCI) || activities.includes(searchQueryCI)) {
+          return true;
+        }
+        return false;
+      };
+
+      for (const park of allNationalParks) {
+        if (
+          park.fullName.toLowerCase().includes(searchQueryCI) ||
+          park.description.toLowerCase().includes(searchQueryCI) ||
+          park.latitude.includes(searchQuery) ||
+          park.longitude.includes(searchQuery) ||
+          park.parkCode.toLowerCase().includes(searchQueryCI) ||
+          park.weatherInfo.toLowerCase().includes(searchQueryCI) ||
+          parkContainsSearchedActivityOrTopic(park)
+        ) {
+          newDisplayedParks.push(park);
+        }
+        setDisplayedParks(newDisplayedParks);
+      }
     } else {
       setDisplayedParks(
         allNationalParks.filter((park) => allNationalParks.indexOf(park) < limit)
