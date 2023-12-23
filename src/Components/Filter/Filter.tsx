@@ -1,13 +1,15 @@
 import { useMainContentContext } from "../../Hooks/useMainContentContext";
 
 export const Filter = () => {
-  const { handleStateFilter } = useMainContentContext();
+  const { handleStateFilter, stateFilter } = useMainContentContext();
 
   return (
     <div className="filter">
       <header>Filter by state/territory:</header>
       <select onChange={(e) => handleStateFilter(e.target.value)}>
-        <option value="">No Filter</option>
+        <option selected={stateFilter === ""} value="">
+          No Filter
+        </option>
         <option value="AL">Alabama</option>
         <option value="AK">Alaska</option>
         <option value="AZ">Arizona</option>
