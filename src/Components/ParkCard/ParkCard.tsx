@@ -90,7 +90,7 @@ export const ParkCard = ({ park }: { park: TPark }) => {
         )}
       </div>
       <header>{park.fullName}</header>
-      <div>
+      <div className="state-list">
         {isInOneTerritoryAndOneState && <p>State: {parkStates().join(", ")}</p> && (
           <p>Territory: {parkTerritories().join(", ")}</p>
         )}
