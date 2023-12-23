@@ -27,7 +27,6 @@ export const ParkCard = ({ park }: { park: TPark }) => {
     }
   };
 
-  // maybe return arrays from these, .join(", ") in JSX
   const parkStates = (): string[] => {
     const stateIndices = park.states
       .replace(/,/g, " ")
