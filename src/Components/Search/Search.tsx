@@ -14,6 +14,7 @@ export const Search = () => {
           onChange={(e) => handleSearchQuery(e.target.value)}
           value={searchQuery}
           placeholder="Search parks"
+          title="Search parks by name, description, weather info, activities, topics, longitude/latitude, or park code"
         ></input>
         <i
           title="Clear Search"
