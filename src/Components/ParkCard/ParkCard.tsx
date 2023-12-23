@@ -107,7 +107,7 @@ export const ParkCard = ({ park }: { park: TPark }) => {
         {isInOneStateAndNoTerritories && <p>State: {parkStates().join(", ")}</p>}
         {isInSeveralStatesAndNoTerritories && <p>States: {parkStates().join(", ")}</p>}
       </div>
-      <p>{park.description}</p>
+      <p className="park-description">{park.description}</p>
     </div>
   );
 };

@@ -71,7 +71,7 @@ li {
     padding: 1rem;
     border-top-right-radius: 0.25rem;
     border-bottom-right-radius: 0.25rem;
-    height: 12px;
+    height: 7px;
     color: white;
     display: flex;
     align-items: center;
@@ -98,7 +98,7 @@ li {
   flex-direction: column;
   align-items: center;
   border: 1px solid var(--theme-cream);
-  padding: 1rem;
+  padding: 0.75rem;
 }
 
 .park-thumbnail-container {
@@ -128,14 +128,18 @@ li {
 }
 
 .park-card header {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   text-align: center;
   color: var(--theme-cream);
-  margin-top: 1rem;
+  margin-top: 0.75rem;
 }
 
 .park-card .state-list p {
-  margin: 0.5rem auto;
+  margin: 0.25rem auto;
+}
+
+.park-description {
+  margin: 0.25rem auto;
 }
 
 #scroll-to-top-btn {
