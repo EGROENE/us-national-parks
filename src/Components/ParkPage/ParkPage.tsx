@@ -4,6 +4,7 @@ import { NavBar } from "../NavBar/NavBar";
 import { getParks } from "../../api";
 import { TPark } from "../../types";
 import { getParksSortedAlphabeticallyByFullName } from "../../methods";
+import { ImageSlideshow } from "../ImageSlideshow/ImageSlideshow";
 
 export const ParkPage = () => {
   const { parkCode } = useParams();
@@ -39,7 +40,11 @@ export const ParkPage = () => {
     <>
       <NavBar notOnHomepage={true} />
       <h1>{park?.fullName}</h1>
-      <img src={park?.images[0].url} alt={park?.images[0].altText} />
+      {park && (
+        <div className="park-page-img-slideshow-container">
+          <ImageSlideshow park={park} />
+        </div>
+      )}
     </>
   );
 };

@@ -1,33 +1,9 @@
-import { useState } from "react";
 import { TPark } from "../../types";
 import { stateFilterOptions, territoryFilterOptions } from "../../constants";
 import { Link } from "react-router-dom";
-
-type TDirection = "next" | "prev";
+import { ImageSlideshow } from "../ImageSlideshow/ImageSlideshow";
 
 export const ParkCard = ({ park }: { park: TPark }) => {
-  const [imgIndex, setImgIndex] = useState<number>(
-    Math.floor(Math.random() * park.images.length)
-  );
-
-  const changeThumbnail = (
-    direction: TDirection,
-    imgIndex: number,
-    imgArray: {
-      credit: string;
-      title: string;
-      altText: string;
-      caption: string;
-      url: string;
-    }[]
-  ): void => {
-    if (direction === "next") {
-      imgIndex === imgArray.length - 1 ? setImgIndex(0) : setImgIndex(imgIndex + 1);
-    } else {
-      imgIndex === 0 ? setImgIndex(imgArray.length - 1) : setImgIndex(imgIndex - 1);
-    }
-  };
-
   const parkStates = (): string[] => {
     const stateIndices = park.states
       .replace(/,/g, " ")
@@ -70,24 +46,7 @@ export const ParkCard = ({ park }: { park: TPark }) => {
   return (
     <div className="park-card">
       <div className="park-thumbnail-container">
-        {park.images.length > 1 && (
-          <i
-            onClick={() => changeThumbnail("prev", imgIndex, park.images)}
-            className="fas fa-angle-right"
-            title="Previous Image"
-          ></i>
-        )}
-        <img
-          src={park.images[`${imgIndex}`].url}
-          alt={park.images[`${imgIndex}`].altText}
-        />
-        {park.images.length > 1 && (
-          <i
-            onClick={() => changeThumbnail("next", imgIndex, park.images)}
-            className="fas fa-angle-right"
-            title="Next Image"
-          ></i>
-        )}
+        <ImageSlideshow park={park} />
       </div>
       <Link to={`parks/${park.parkCode}`}>
         <header>{park.fullName}</header>
