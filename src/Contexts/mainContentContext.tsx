@@ -3,22 +3,11 @@
 import { createContext, ReactNode, useEffect, useState } from "react";
 import { TPark, TMainContentContext } from "../types";
 import { getParks } from "../api";
+import { getParksSortedAlphabeticallyByFullName } from "../methods";
 
 export const MainContentContext = createContext<TMainContentContext | null>(null);
 
 export const MainContentContextProvider = ({ children }: { children: ReactNode }) => {
-  const getParksSortedAlphabeticallyByFullName = (array: Array<TPark>) => {
-    return array.sort(function (a, b) {
-      if (a.fullName < b.fullName) {
-        return -1;
-      }
-      if (a.fullName > b.fullName) {
-        return 1;
-      }
-      return 0;
-    });
-  };
-
   const [successfulInitFetch, setSuccessfulInitFetch] = useState<boolean>(false);
 
   const [isLoading, setIsLoading] = useState<boolean>(true);
