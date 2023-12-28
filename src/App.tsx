@@ -11,7 +11,7 @@ function App() {
   return (
     <>
       {/* HomepageMainContent = SearchTools + AllParksCards OR ErrorOnInitialFetch w/ 'failed to retrieve data' & reloadbtn*/}
-      <NavBar />
+      <NavBar notOnHomepage={false} />
       {isLoading && !displayedParks.length && <LoadingMessage />}
       {!isLoading && successfulInitFetch && <HomepageMainContent />}
       {!successfulInitFetch && !isLoading && <FailInitFetchMessage />}
