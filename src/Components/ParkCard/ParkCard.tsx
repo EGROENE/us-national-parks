@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { TPark } from "../../types";
 import { stateFilterOptions, territoryFilterOptions } from "../../constants";
+import { Link } from "react-router-dom";
 
 type TDirection = "next" | "prev";
 
@@ -88,7 +89,9 @@ export const ParkCard = ({ park }: { park: TPark }) => {
           ></i>
         )}
       </div>
-      <header>{park.fullName}</header>
+      <Link to={`parks/${park.parkCode}`}>
+        <header>{park.fullName}</header>
+      </Link>
       <div className="state-list">
         {isInOneTerritoryAndOneState && <p>State: {parkStates().join(", ")}</p> && (
           <p>Territory: {parkTerritories().join(", ")}</p>
