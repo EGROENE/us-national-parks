@@ -1,7 +1,15 @@
-export const NavBar = () => {
+import { Link } from "react-router-dom";
+
+export const NavBar = ({ notOnHomepage }: { notOnHomepage: boolean }) => {
   return (
     <div className="navbar">
-      <h1>U.S. National Parks</h1>
+      {notOnHomepage ? (
+        <Link to="/">
+          <h1>U.S. National Parks</h1>
+        </Link>
+      ) : (
+        <h1>U.S. National Parks</h1>
+      )}
       <nav>
         <ul>
           <li>Quiz</li>
