@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { ImageSlideshow } from "../ImageSlideshow/ImageSlideshow";
 
 export const ParkCard = ({ park }: { park: TPark }) => {
+  // Maybe combine parkStates and parkTerritories
   const parkStates = (): string[] => {
     const stateIndices = park.states
       .replace(/,/g, " ")
@@ -45,8 +46,8 @@ export const ParkCard = ({ park }: { park: TPark }) => {
 
   return (
     <div className="park-card">
-      <div className="park-thumbnail-container">
-        <ImageSlideshow park={park} />
+      <div className="homepage-park-slideshow-container">
+        <ImageSlideshow park={park} showCaption={false} />
       </div>
       <Link to={`parks/${park.parkCode}`}>
         <header>{park.fullName}</header>
