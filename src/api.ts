@@ -12,3 +12,14 @@ export const getParks = (): Promise<Response> => {
     redirect: "follow",
   });
 };
+
+export const getParkByCode = (code: string | undefined): Promise<Response> => {
+  const myHeaders = new Headers();
+  myHeaders.append("X-Api-Key", key);
+
+  return fetch(`${baseURL}/parks?parkCode=${code}`, {
+    method: "GET",
+    headers: myHeaders,
+    redirect: "follow",
+  });
+};
