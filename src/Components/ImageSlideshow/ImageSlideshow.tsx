@@ -3,7 +3,13 @@ import { TPark } from "../../types";
 
 type TDirection = "next" | "prev";
 
-export const ImageSlideshow = ({ park }: { park: TPark }) => {
+export const ImageSlideshow = ({
+  park,
+  showCaption,
+}: {
+  park: TPark;
+  showCaption: boolean;
+}) => {
   const [imgIndex, setImgIndex] = useState<number>(
     Math.floor(Math.random() * park.images.length)
   );
@@ -27,25 +33,28 @@ export const ImageSlideshow = ({ park }: { park: TPark }) => {
   };
 
   return (
-    <>
-      {park?.images.length > 1 && (
-        <i
-          onClick={() => changeImage("prev", imgIndex, park?.images)}
-          className="fas fa-angle-right"
-          title="Previous Image"
-        ></i>
-      )}
-      <img
-        src={park?.images[`${imgIndex}`].url}
-        alt={park?.images[`${imgIndex}`].altText}
-      />
-      {park?.images.length > 1 && (
-        <i
-          onClick={() => changeImage("next", imgIndex, park?.images)}
-          className="fas fa-angle-right"
-          title="Next Image"
-        ></i>
-      )}
-    </>
+    <div className="slideshow-container">
+      <div className="slideshow-img-container">
+        {park?.images.length > 1 && (
+          <i
+            onClick={() => changeImage("prev", imgIndex, park?.images)}
+            className="fas fa-angle-right"
+            title="Previous Image"
+          ></i>
+        )}
+        <img
+          src={park?.images[`${imgIndex}`].url}
+          alt={park?.images[`${imgIndex}`].altText}
+        />
+        {park?.images.length > 1 && (
+          <i
+            onClick={() => changeImage("next", imgIndex, park?.images)}
+            className="fas fa-angle-right"
+            title="Next Image"
+          ></i>
+        )}
+      </div>
+      {showCaption && <p>{park?.images[`${imgIndex}`].caption}</p>}
+    </div>
   );
 };
