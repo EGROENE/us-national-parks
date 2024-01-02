@@ -20,23 +20,23 @@ export const ParkCard = ({ park }: { park: TPark }) => {
 
   // All possible combinations of where a park could be (in reality, only a couple of these will likely actually be used)
   // Ensures wording of state/territory labels are grammatically correct & appear only if park is in a state/territory
-  const isInOneTerritoryAndOneState =
+  const isInOneTerritoryAndOneState: boolean =
     parkStates.length === 1 && parkTerritories.length === 1;
 
   const isInSeveralTerritoriesAndOneState =
     parkTerritories.length > 1 && parkStates.length === 1;
 
-  const isInSeveralStatesAndOneTerritory =
+  const isInSeveralStatesAndOneTerritory: boolean =
     parkStates.length > 1 && parkTerritories.length === 1;
 
-  const isInOneTerritoryAndNoStates = parkTerritories.length === 1 && !parkStates.length;
+  const isInOneTerritoryAndNoStates: boolean = parkTerritories.length === 1 && !parkStates.length;
 
-  const isInSeveralTerritoriesAndNoStates =
+  const isInSeveralTerritoriesAndNoStates: boolean =
     parkTerritories.length > 1 && !parkStates.length;
 
-  const isInOneStateAndNoTerritories = parkStates.length === 1 && !parkTerritories.length;
+  const isInOneStateAndNoTerritories: boolean = parkStates.length === 1 && !parkTerritories.length;
 
-  const isInSeveralStatesAndNoTerritories =
+  const isInSeveralStatesAndNoTerritories: boolean =
     parkStates.length > 1 && !parkTerritories.length;
 
   return (
