@@ -29,21 +29,21 @@ export const ParkPage = () => {
       .finally(() => setIsLoading(false));
   }, [parkCode]);
 
-  const parkStates = (): string[] | undefined => {
-    const stateIndices = park?.states
-      .replace(/,/g, " ")
-      .split(" ")
-      .filter((index) => Object.keys(stateFilterOptions).includes(index));
-    return stateIndices?.map((index) => stateFilterOptions[index]);
-  };
+  const stateIndices: string[] | undefined = park?.states
+    .replace(/,/g, " ")
+    .split(" ")
+    .filter((index) => Object.keys(stateFilterOptions).includes(index));
+  const parkStates: string[] | undefined = stateIndices?.map(
+    (index) => stateFilterOptions[index]
+  );
 
-  const parkTerritories = (): string[] | undefined => {
-    const territoryIndices = park?.states
-      .replace(/,/g, " ")
-      .split(" ")
-      .filter((index) => Object.keys(territoryFilterOptions).includes(index));
-    return territoryIndices?.map((index) => territoryFilterOptions[index]);
-  };
+  const territoryIndices: string[] | undefined = park?.states
+    .replace(/,/g, " ")
+    .split(" ")
+    .filter((index) => Object.keys(territoryFilterOptions).includes(index));
+  const parkTerritories: string[] | undefined = territoryIndices?.map(
+    (index) => territoryFilterOptions[index]
+  );
 
   return (
     <>
@@ -52,7 +52,7 @@ export const ParkPage = () => {
       {successfulFetch && !isLoading && (
         <>
           <h1>{park?.fullName}</h1>
-          <p>Located in {parkStates()?.join(", ") + parkTerritories()?.join(", ")}</p>
+          <p>Located in {parkStates?.join(", ") + parkTerritories?.join(", ")}</p>
           {park && (
             <div className="park-page-main-content-container">
               <div className="park-page-img-slideshow-container">
