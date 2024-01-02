@@ -1,50 +1,71 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { NavBar } from "../NavBar/NavBar";
-import { getParks } from "../../api";
+import { getParkByCode } from "../../api";
 import { TPark } from "../../types";
-import { getParksSortedAlphabeticallyByFullName } from "../../methods";
 import { ImageSlideshow } from "../ImageSlideshow/ImageSlideshow";
+import { stateFilterOptions, territoryFilterOptions } from "../../constants";
+import { LoadingMessage } from "../LoadingMessage/LoadingMessage";
+import { FailInitFetchMessage } from "../FailInitFetchMessage/FailInitFetchMessage";
 
 export const ParkPage = () => {
   const { parkCode } = useParams();
 
-  /* Must have its own state & useEffect to set state values in case user lands on this page first, not on homepage. If this happens, allNationalParks state value from mainContentContext wouldn't yet be set, resulting in an error */
-  const [allNationalParks, setAllNationalParks] = useState<TPark[]>();
   const [park, setPark] = useState<TPark>();
-  // Maybe add isLoading state to work w/ <Loading Message /> & <FailInitFetchMessage />
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [successfulFetch, setSuccessfulFetch] = useState<boolean>(false);
 
   useEffect(() => {
-    getParks()
+    getParkByCode(parkCode)
       .then((response) => response.text())
       .then((result) => {
-        const parksJSArray: TPark[] = JSON.parse(result).data;
-        const nationalParksArray: TPark[] = getParksSortedAlphabeticallyByFullName(
-          parksJSArray
-            .filter((park) => park.designation.includes("National Park"))
-            .concat(
-              parksJSArray.filter((park) =>
-                park.designation.includes("National and State Parks")
-              )
-            )
-        );
-        setAllNationalParks(nationalParksArray);
-        setPark(allNationalParks?.filter((park) => park.parkCode === parkCode)[0]);
+        setSuccessfulFetch(true);
+        const returnedPark = JSON.parse(result).data[0];
+        setPark(returnedPark);
       })
       .catch((error) => {
         console.log(error);
-      });
-  }, [allNationalParks, parkCode]);
+      })
+      .finally(() => setIsLoading(false));
+  }, [parkCode]);
+
+  const parkStates = (): string[] | undefined => {
+    const stateIndices = park?.states
+      .replace(/,/g, " ")
+      .split(" ")
+      .filter((index) => Object.keys(stateFilterOptions).includes(index));
+    return stateIndices?.map((index) => stateFilterOptions[index]);
+  };
+
+  const parkTerritories = (): string[] | undefined => {
+    const territoryIndices = park?.states
+      .replace(/,/g, " ")
+      .split(" ")
+      .filter((index) => Object.keys(territoryFilterOptions).includes(index));
+    return territoryIndices?.map((index) => territoryFilterOptions[index]);
+  };
 
   return (
     <>
       <NavBar notOnHomepage={true} />
-      <h1>{park?.fullName}</h1>
-      {park && (
-        <div className="park-page-img-slideshow-container">
-          <ImageSlideshow park={park} />
-        </div>
+      {isLoading && !successfulFetch && <LoadingMessage />}
+      {successfulFetch && !isLoading && (
+        <>
+          <h1>{park?.fullName}</h1>
+          <p>Located in {parkStates()?.join(", ") + parkTerritories()?.join(", ")}</p>
+          {park && (
+            <div className="park-page-main-content-container">
+              <div className="park-page-img-slideshow-container">
+                <ImageSlideshow park={park} showCaption={true} />
+              </div>
+              <div className="park-info-container">
+                <p>{park.description}</p>
+              </div>
+            </div>
+          )}
+        </>
       )}
+      {!isLoading && !successfulFetch && <FailInitFetchMessage />}
     </>
   );
 };
