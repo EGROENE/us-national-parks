@@ -62,15 +62,31 @@ export const MainContentContextProvider = ({ children }: { children: ReactNode }
       const searchQueryCI = searchQuery.toLowerCase();
       const newDisplayedParks = [];
 
-      const parkContainsSearchedActivityOrTopic = (park: TPark): boolean => {
+      const queryIsTopicOrActivity = (park: TPark): boolean => {
         const activities: string[] = park.activities.map((activity) =>
           activity.name.toLowerCase()
         );
-        const topics: string[] = park.topics.map((topic) => topic.name.toLowerCase());
-        if (topics.includes(searchQueryCI) || activities.includes(searchQueryCI)) {
-          return true;
+
+        let isActivity = false;
+        for (const activity of activities) {
+          if (
+            activity.includes(searchQueryCI) ||
+            activity.includes(searchQueryCI.trim())
+          ) {
+            isActivity = true;
+          }
         }
-        return false;
+
+        const topics: string[] = park.topics.map((topic) => topic.name.toLowerCase());
+
+        let isTopic = false;
+        for (const topic of topics) {
+          if (topic.includes(searchQueryCI) || topic.includes(searchQueryCI.trim())) {
+            isTopic = true;
+          }
+        }
+
+        return isTopic || isActivity ? true : false;
       };
 
       for (const park of allNationalParks) {
@@ -81,7 +97,7 @@ export const MainContentContextProvider = ({ children }: { children: ReactNode }
           park.longitude.includes(searchQuery) ||
           park.parkCode.toLowerCase().includes(searchQueryCI) ||
           park.weatherInfo.toLowerCase().includes(searchQueryCI) ||
-          parkContainsSearchedActivityOrTopic(park)
+          queryIsTopicOrActivity(park)
         ) {
           newDisplayedParks.push(park);
         }
