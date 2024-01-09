@@ -15,6 +15,7 @@ export const ParkPage = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [successfulFetch, setSuccessfulFetch] = useState<boolean>(false);
   const [showActivities, setShowActivities] = useState<boolean>(false);
+  const [showEntranceFees, setShowEntranceFees] = useState<boolean>(false);
 
   useEffect(() => {
     getParkByCode(parkCode)
@@ -88,6 +89,31 @@ export const ParkPage = () => {
                   <div className="park-activities-container">
                     {park.activities.map((activity) => (
                       <p className="park-activity">{activity.name}</p>
+                    ))}
+                  </div>
+                )}
+                <button
+                  onClick={() =>
+                    showEntranceFees
+                      ? setShowEntranceFees(false)
+                      : setShowEntranceFees(true)
+                  }
+                  title={showEntranceFees ? "Hide Entrance Fees" : "Show Entrance Fees"}
+                >
+                  <p>Entrance Fees</p>
+                  <i
+                    style={{ rotate: showEntranceFees ? "0deg" : "90deg" }}
+                    className="fas fa-angle-right"
+                  ></i>
+                </button>
+                {showEntranceFees && (
+                  <div className="entrance-fees-container">
+                    {park.entranceFees.map((entranceFee) => (
+                      <div className="entrance-fee">
+                        <header>{entranceFee.title}</header>
+                        <p>{+entranceFee.cost === 0 ? "FREE" : `$${entranceFee.cost}`}</p>
+                        <p>{entranceFee.description}</p>
+                      </div>
                     ))}
                   </div>
                 )}
