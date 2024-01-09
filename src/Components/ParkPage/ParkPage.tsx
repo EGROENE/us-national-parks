@@ -76,7 +76,7 @@ export const ParkPage = () => {
                   onClick={() =>
                     showActivities ? setShowActivities(false) : setShowActivities(true)
                   }
-                  title="Show Activities"
+                  title={showActivities ? "Hide Activities" : "Show Activities"}
                 >
                   <p>Activities</p>
                   <i
