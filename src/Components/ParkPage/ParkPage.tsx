@@ -71,6 +71,27 @@ export const ParkPage = () => {
                   <p>{park.weatherInfo}</p>
                 </div>
               </div>
+              <div className="park-page-bottom-section">
+                <button
+                  onClick={() =>
+                    showActivities ? setShowActivities(false) : setShowActivities(true)
+                  }
+                  title="Show Activities"
+                >
+                  <p>Activities</p>
+                  <i
+                    style={{ rotate: showActivities ? "0deg" : "90deg" }}
+                    className="fas fa-angle-right"
+                  ></i>
+                </button>
+                {showActivities && (
+                  <div className="park-activities-container">
+                    {park.activities.map((activity) => (
+                      <p className="park-activity">{activity.name}</p>
+                    ))}
+                  </div>
+                )}
+              </div>
             </div>
           )}
         </>
