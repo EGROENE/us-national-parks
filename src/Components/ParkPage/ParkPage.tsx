@@ -93,20 +93,25 @@ export const ParkPage = () => {
                   </div>
                 )}
                 <button
-                  onClick={() =>
-                    showEntranceFees
-                      ? setShowEntranceFees(false)
-                      : setShowEntranceFees(true)
+                  onClick={
+                    park.entranceFees.length
+                      ? () =>
+                          showEntranceFees
+                            ? setShowEntranceFees(false)
+                            : setShowEntranceFees(true)
+                      : undefined
                   }
                   title={showEntranceFees ? "Hide Entrance Fees" : "Show Entrance Fees"}
                 >
                   <p>Entrance Fees</p>
-                  <i
-                    style={{ rotate: showEntranceFees ? "0deg" : "90deg" }}
-                    className="fas fa-angle-right"
-                  ></i>
+                  {park.entranceFees.length > 0 && (
+                    <i
+                      style={{ rotate: showEntranceFees ? "0deg" : "90deg" }}
+                      className="fas fa-angle-right"
+                    ></i>
+                  )}
                 </button>
-                {showEntranceFees && (
+                {showEntranceFees && park.entranceFees.length && (
                   <div className="entrance-fees-container">
                     {park.entranceFees.map((entranceFee) => (
                       <div className="entrance-fee">
@@ -117,6 +122,7 @@ export const ParkPage = () => {
                     ))}
                   </div>
                 )}
+                {!park.entranceFees.length && <p>NONE</p>}
               </div>
             </div>
           )}
