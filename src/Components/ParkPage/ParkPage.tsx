@@ -14,6 +14,7 @@ export const ParkPage = () => {
   const [park, setPark] = useState<TPark>();
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [successfulFetch, setSuccessfulFetch] = useState<boolean>(false);
+  const [showActivities, setShowActivities] = useState<boolean>(false);
 
   useEffect(() => {
     getParkByCode(parkCode)
@@ -52,14 +53,23 @@ export const ParkPage = () => {
       {successfulFetch && !isLoading && (
         <>
           <h1>{park?.fullName}</h1>
+          {/* Add 'and' before last item in list of states/territories */}
           <p>Located in {parkStates?.join(", ") + parkTerritories?.join(", ")}</p>
+          <p className="longitude-latitude">
+            Longitude: {`${park?.longitude}`} | Latitude: {`${park?.latitude}`}
+          </p>
           {park && (
             <div className="park-page-main-content-container">
-              <div className="park-page-img-slideshow-container">
-                <ImageSlideshow park={park} showCaption={true} />
-              </div>
-              <div className="park-info-container">
-                <p>{park.description}</p>
+              <div className="park-page-top-section">
+                <div className="park-page-img-slideshow-container">
+                  <ImageSlideshow park={park} showCaption={true} />
+                </div>
+                <div className="park-basic-info-container">
+                  <header>Description</header>
+                  <p>{park.description}</p>
+                  <header>General Weather Info</header>
+                  <p>{park.weatherInfo}</p>
+                </div>
               </div>
             </div>
           )}
