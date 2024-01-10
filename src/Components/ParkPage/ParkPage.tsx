@@ -60,7 +60,12 @@ export const ParkPage = () => {
         <>
           <h1>{park?.fullName}</h1>
           {/* Add 'and' before last item in list of states/territories */}
-          <p>Located in {parkStates?.join(", ") + parkTerritories?.join(", ")}</p>
+          <p>
+            Located in{" "}
+            {parkStates !== undefined &&
+              parkTerritories !== undefined &&
+              parkStates.join(", ") + parkTerritories.join(", ")}
+          </p>
           <p className="longitude-latitude">
             Longitude: {`${park?.longitude}`} | Latitude: {`${park?.latitude}`}
           </p>
