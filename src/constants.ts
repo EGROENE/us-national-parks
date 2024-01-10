@@ -1,3 +1,5 @@
+/* A separate object for state & territory filter options exists b/c these are counted separately in other 
+component(s) */
 export const stateFilterOptions = {
   "AL": "Alabama",
   "AK": "Alaska",
@@ -52,5 +54,9 @@ export const stateFilterOptions = {
 };
 
 export const territoryFilterOptions = {
+  "AS": "American Samoa",
+  "GU": "Guam",
+  "MP": "Northern Mariana Islands",
+  "PR": "Puerto Rico",
   "VI": "Virgin Islands",
 };
