@@ -18,6 +18,7 @@ export const ParkPage = () => {
   const [showActivities, setShowActivities] = useState<boolean>(false);
   const [showEntranceFees, setShowEntranceFees] = useState<boolean>(false);
   const [showEntrancePasses, setShowEntrancePasses] = useState<boolean>(false);
+  const [showContactInfo, setShowContactInfo] = useState<boolean>(false);
 
   document.title = `${park?.fullName}`;
 
@@ -105,7 +106,7 @@ export const ParkPage = () => {
                 )}
                 <button
                   onClick={
-                    park.entranceFees.length
+                    park.entranceFees.length > 0
                       ? () =>
                           showEntranceFees
                             ? setShowEntranceFees(false)
@@ -141,7 +142,7 @@ export const ParkPage = () => {
                 {!park.entranceFees.length && <p>NONE</p>}
                 <button
                   onClick={
-                    park.entrancePasses
+                    park.entrancePasses.length > 0
                       ? () =>
                           showEntrancePasses
                             ? setShowEntrancePasses(false)
@@ -175,6 +176,45 @@ export const ParkPage = () => {
                   </div>
                 )}
                 {!park.entrancePasses.length && <p>NONE</p>}
+                <button
+                  onClick={
+                    Object.keys(park.contacts).length > 0
+                      ? () =>
+                          showContactInfo
+                            ? setShowContactInfo(false)
+                            : setShowContactInfo(true)
+                      : undefined
+                  }
+                  title={showContactInfo ? "Hide Contact Info" : "Hide Contact Info"}
+                >
+                  <p>Contact Info</p>
+                  {Object.keys(park.contacts).length > 0 && (
+                    <i
+                      style={{ rotate: showContactInfo ? "0deg" : "90deg" }}
+                      className="fas fa-angle-right"
+                    ></i>
+                  )}
+                </button>
+                {showContactInfo && Object.keys(park.contacts).length > 0 && (
+                  <div className="contact-infos-container">
+                    <header>
+                      Phone Numbers:
+                      {park.contacts.phoneNumbers.map((numberInfo) => (
+                        <span key={numberInfo.phoneNumber}>
+                          {`${numberInfo.phoneNumber} `}
+                          {numberInfo.type.toUpperCase() !== "TTY"
+                            ? `(${numberInfo.type})`
+                            : "(Teletypewriter)"}
+                        </span>
+                      ))}
+                    </header>
+                    <header>
+                      E-Mail Address:{" "}
+                      <span>{park.contacts.emailAddresses[0].emailAddress}</span>
+                    </header>
+                  </div>
+                )}
+                {!Object.keys(park.contacts).length && <p>NONE</p>}
               </div>
             </div>
           )}
