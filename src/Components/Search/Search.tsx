@@ -2,9 +2,9 @@ import { useMainContentContext } from "../../Hooks/useMainContentContext";
 import { SearchResultsMessage } from "../SearchResultsMessage/SearchResultsMessage";
 
 export const Search = () => {
-  const { searchQuery, setSearchQuery, stateFilter, handleSearchQuery } =
+  const { searchQuery, setSearchQuery, stateOrTerritoryFilter, handleSearchQuery } =
     useMainContentContext();
-  const searchBarUsed = stateFilter === "" && searchQuery !== "";
+  const searchBarUsed = stateOrTerritoryFilter === "" && searchQuery !== "";
   return (
     <div className="search-container">
       <div className="search-box">

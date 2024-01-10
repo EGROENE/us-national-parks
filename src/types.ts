@@ -75,8 +75,8 @@ export type TMainContentContext = {
   setIsLoading: Dispatch<SetStateAction<boolean>>;
   successfulInitFetch: boolean;
   setSuccessfulInitFetch: Dispatch<SetStateAction<boolean>>;
-  stateFilter: string;
-  setStateFilter: Dispatch<SetStateAction<string>>;
+  stateOrTerritoryFilter: string;
+  setStateOrTerritoryFilter: Dispatch<SetStateAction<string>>;
   searchQuery: string;
   setSearchQuery: Dispatch<SetStateAction<string>>;
   handleStateFilter: (value: string) => void;

@@ -1,178 +1,178 @@
 import { useMainContentContext } from "../../Hooks/useMainContentContext";
 
 export const Filter = () => {
-  const { handleStateFilter, stateFilter } = useMainContentContext();
+  const { handleStateFilter, stateOrTerritoryFilter } = useMainContentContext();
 
   return (
     <div className="filter">
       <header>Filter by state/territory:</header>
       <select onChange={(e) => handleStateFilter(e.target.value)}>
-        <option selected={stateFilter === ""} value="">
+        <option selected={stateOrTerritoryFilter === ""} value="">
           No Filter
         </option>
-        <option selected={stateFilter === "AL"} value="AL">
+        <option selected={stateOrTerritoryFilter === "AL"} value="AL">
           Alabama
         </option>
-        <option selected={stateFilter === "AK"} value="AK">
+        <option selected={stateOrTerritoryFilter === "AK"} value="AK">
           Alaska
         </option>
-        <option selected={stateFilter === "AR"} value="AR">
+        <option selected={stateOrTerritoryFilter === "AR"} value="AR">
           Arkansas
         </option>
-        <option selected={stateFilter === "AS"} value="AS">
+        <option selected={stateOrTerritoryFilter === "AS"} value="AS">
           American Samoa
         </option>
-        <option selected={stateFilter === "AZ"} value="AZ">
+        <option selected={stateOrTerritoryFilter === "AZ"} value="AZ">
           Arizona
         </option>
-        <option selected={stateFilter === "CA"} value="CA">
+        <option selected={stateOrTerritoryFilter === "CA"} value="CA">
           California
         </option>
-        <option selected={stateFilter === "CO"} value="CO">
+        <option selected={stateOrTerritoryFilter === "CO"} value="CO">
           Colorado
         </option>
-        <option selected={stateFilter === "CT"} value="CT">
+        <option selected={stateOrTerritoryFilter === "CT"} value="CT">
           Connecticut
         </option>
-        <option selected={stateFilter === "DE"} value="DE">
+        <option selected={stateOrTerritoryFilter === "DE"} value="DE">
           Delaware
         </option>
-        <option selected={stateFilter === "FL"} value="FL">
+        <option selected={stateOrTerritoryFilter === "FL"} value="FL">
           Florida
         </option>
-        <option selected={stateFilter === "GA"} value="GA">
+        <option selected={stateOrTerritoryFilter === "GA"} value="GA">
           Georgia
         </option>
-        <option selected={stateFilter === "GU"} value="GU">
+        <option selected={stateOrTerritoryFilter === "GU"} value="GU">
           Guam
         </option>
-        <option selected={stateFilter === "HI"} value="HI">
+        <option selected={stateOrTerritoryFilter === "HI"} value="HI">
           Hawaii
         </option>
-        <option selected={stateFilter === "ID"} value="ID">
+        <option selected={stateOrTerritoryFilter === "ID"} value="ID">
           Idaho
         </option>
-        <option selected={stateFilter === "IL"} value="IL">
+        <option selected={stateOrTerritoryFilter === "IL"} value="IL">
           Illinois
         </option>
-        <option selected={stateFilter === "IN"} value="IN">
+        <option selected={stateOrTerritoryFilter === "IN"} value="IN">
           Indiana
         </option>
-        <option selected={stateFilter === "IA"} value="IA">
+        <option selected={stateOrTerritoryFilter === "IA"} value="IA">
           Iowa
         </option>
-        <option selected={stateFilter === "KS"} value="KS">
+        <option selected={stateOrTerritoryFilter === "KS"} value="KS">
           Kansas
         </option>
-        <option selected={stateFilter === "KY"} value="KY">
+        <option selected={stateOrTerritoryFilter === "KY"} value="KY">
           Kentucky
         </option>
-        <option selected={stateFilter === "LA"} value="LA">
+        <option selected={stateOrTerritoryFilter === "LA"} value="LA">
           Louisiana
         </option>
-        <option selected={stateFilter === "ME"} value="ME">
+        <option selected={stateOrTerritoryFilter === "ME"} value="ME">
           Maine
         </option>
-        <option selected={stateFilter === "MD"} value="MD">
+        <option selected={stateOrTerritoryFilter === "MD"} value="MD">
           Maryland
         </option>
-        <option selected={stateFilter === "MA"} value="MA">
+        <option selected={stateOrTerritoryFilter === "MA"} value="MA">
           Massachusetts
         </option>
-        <option selected={stateFilter === "MI"} value="MI">
+        <option selected={stateOrTerritoryFilter === "MI"} value="MI">
           Michigan
         </option>
-        <option selected={stateFilter === "MN"} value="MN">
+        <option selected={stateOrTerritoryFilter === "MN"} value="MN">
           Minnesota
         </option>
-        <option selected={stateFilter === "MS"} value="MS">
+        <option selected={stateOrTerritoryFilter === "MS"} value="MS">
           Mississippi
         </option>
-        <option selected={stateFilter === "MO"} value="MO">
+        <option selected={stateOrTerritoryFilter === "MO"} value="MO">
           Missouri
         </option>
-        <option selected={stateFilter === "MT"} value="MT">
+        <option selected={stateOrTerritoryFilter === "MT"} value="MT">
           Montana
         </option>
-        <option selected={stateFilter === "NE"} value="NE">
+        <option selected={stateOrTerritoryFilter === "NE"} value="NE">
           Nebraska
         </option>
-        <option selected={stateFilter === "MP"} value="MP">
+        <option selected={stateOrTerritoryFilter === "MP"} value="MP">
           Northern Mariana Islands
         </option>
-        <option selected={stateFilter === "NV"} value="NV">
+        <option selected={stateOrTerritoryFilter === "NV"} value="NV">
           Nevada
         </option>
-        <option selected={stateFilter === "NH"} value="NH">
+        <option selected={stateOrTerritoryFilter === "NH"} value="NH">
           New Hampshire
         </option>
-        <option selected={stateFilter === "NJ"} value="NJ">
+        <option selected={stateOrTerritoryFilter === "NJ"} value="NJ">
           New Jersey
         </option>
-        <option selected={stateFilter === "NM"} value="NM">
+        <option selected={stateOrTerritoryFilter === "NM"} value="NM">
           New Mexico
         </option>
-        <option selected={stateFilter === "NY"} value="NY">
+        <option selected={stateOrTerritoryFilter === "NY"} value="NY">
           New York
         </option>
-        <option selected={stateFilter === "NC"} value="NC">
+        <option selected={stateOrTerritoryFilter === "NC"} value="NC">
           North Carolina
         </option>
-        <option selected={stateFilter === "ND"} value="ND">
+        <option selected={stateOrTerritoryFilter === "ND"} value="ND">
           North Dakota
         </option>
-        <option selected={stateFilter === "OH"} value="OH">
+        <option selected={stateOrTerritoryFilter === "OH"} value="OH">
           Ohio
         </option>
-        <option selected={stateFilter === "OK"} value="OK">
+        <option selected={stateOrTerritoryFilter === "OK"} value="OK">
           Oklahoma
         </option>
-        <option selected={stateFilter === "OR"} value="OR">
+        <option selected={stateOrTerritoryFilter === "OR"} value="OR">
           Oregon
         </option>
-        <option selected={stateFilter === "PA"} value="PA">
+        <option selected={stateOrTerritoryFilter === "PA"} value="PA">
           Pennsylvania
         </option>
-        <option selected={stateFilter === "PR"} value="PR">
+        <option selected={stateOrTerritoryFilter === "PR"} value="PR">
           Puerto Rico
         </option>
-        <option selected={stateFilter === "RI"} value="RI">
+        <option selected={stateOrTerritoryFilter === "RI"} value="RI">
           Rhode Island
         </option>
-        <option selected={stateFilter === "SC"} value="SC">
+        <option selected={stateOrTerritoryFilter === "SC"} value="SC">
           South Carolina
         </option>
-        <option selected={stateFilter === "SD"} value="SD">
+        <option selected={stateOrTerritoryFilter === "SD"} value="SD">
           South Dakota
         </option>
-        <option selected={stateFilter === "TN"} value="TN">
+        <option selected={stateOrTerritoryFilter === "TN"} value="TN">
           Tennessee
         </option>
-        <option selected={stateFilter === "TX"} value="TX">
+        <option selected={stateOrTerritoryFilter === "TX"} value="TX">
           Texas
         </option>
-        <option selected={stateFilter === "UT"} value="UT">
+        <option selected={stateOrTerritoryFilter === "UT"} value="UT">
           Utah
         </option>
-        <option selected={stateFilter === "VT"} value="VT">
+        <option selected={stateOrTerritoryFilter === "VT"} value="VT">
           Vermont
         </option>
-        <option selected={stateFilter === "VA"} value="VA">
+        <option selected={stateOrTerritoryFilter === "VA"} value="VA">
           Virginia
         </option>
-        <option selected={stateFilter === "VI"} value="VI">
+        <option selected={stateOrTerritoryFilter === "VI"} value="VI">
           Virgin Islands
         </option>
-        <option selected={stateFilter === "WA"} value="WA">
+        <option selected={stateOrTerritoryFilter === "WA"} value="WA">
           Washington
         </option>
-        <option selected={stateFilter === "WV"} value="WV">
+        <option selected={stateOrTerritoryFilter === "WV"} value="WV">
           West Virginia
         </option>
-        <option selected={stateFilter === "WI"} value="WI">
+        <option selected={stateOrTerritoryFilter === "WI"} value="WI">
           Wisconsin
         </option>
-        <option selected={stateFilter === "WY"} value="WY">
+        <option selected={stateOrTerritoryFilter === "WY"} value="WY">
           Wyoming
         </option>
       </select>

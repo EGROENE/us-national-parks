@@ -18,7 +18,7 @@ export const MainContentContextProvider = ({ children }: { children: ReactNode }
 
   const [limit, setLimit] = useState<number>(6);
 
-  const [stateFilter, setStateFilter] = useState<string>("");
+  const [stateOrTerritoryFilter, setStateOrTerritoryFilter] = useState<string>("");
 
   const [searchQuery, setSearchQuery] = useState<string>("");
 
@@ -54,13 +54,13 @@ export const MainContentContextProvider = ({ children }: { children: ReactNode }
   // displayedParks must be dependent on allNationalParks, which is set once & for all upon page load, in order to minimize API requests.
   // All this functionality is put into useEffect in order to prevent to many renders.
   useEffect(() => {
-    if (searchQuery === "" && stateFilter !== "") {
+    if (searchQuery === "" && stateOrTerritoryFilter !== "") {
       setDisplayedParks(
         allNationalParks.filter((park) =>
-          park.states.replace(/,/g, " ").split(" ").includes(stateFilter)
+          park.states.replace(/,/g, " ").split(" ").includes(stateOrTerritoryFilter)
         )
       );
-    } else if (searchQuery !== "" && stateFilter === "") {
+    } else if (searchQuery !== "" && stateOrTerritoryFilter === "") {
       const searchQueryCI = searchQuery.toLowerCase();
       const newDisplayedParks = [];
 
@@ -110,18 +110,18 @@ export const MainContentContextProvider = ({ children }: { children: ReactNode }
         allNationalParks.filter((park) => allNationalParks.indexOf(park) < limit)
       );
     }
-  }, [allNationalParks, limit, stateFilter, searchQuery]);
+  }, [allNationalParks, limit, stateOrTerritoryFilter, searchQuery]);
 
   const handleStateFilter = (value: string): void => {
     if (searchQuery !== "") {
       setSearchQuery("");
     }
-    setStateFilter(value);
+    setStateOrTerritoryFilter(value);
   };
 
   const handleSearchQuery = (value: string): void => {
-    if (stateFilter !== "") {
-      setStateFilter("");
+    if (stateOrTerritoryFilter !== "") {
+      setStateOrTerritoryFilter("");
     }
     setSearchQuery(value);
   };
@@ -136,8 +136,8 @@ export const MainContentContextProvider = ({ children }: { children: ReactNode }
     setIsLoading,
     successfulInitFetch,
     setSuccessfulInitFetch,
-    stateFilter,
-    setStateFilter,
+    stateOrTerritoryFilter,
+    setStateOrTerritoryFilter,
     searchQuery,
     setSearchQuery,
     handleStateFilter,

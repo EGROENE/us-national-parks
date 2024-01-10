@@ -6,10 +6,10 @@ import { useMainContentContext } from "../../Hooks/useMainContentContext";
 import { NoFilterResultsMessage } from "../NoFilterResultsMessage/NoFilterResultsMessage";
 
 export const HomepageMainContent = () => {
-  const { stateFilter, searchQuery, displayedParks } = useMainContentContext();
+  const { stateOrTerritoryFilter, searchQuery, displayedParks } = useMainContentContext();
   const [distanceScrolledFromTop, setDistanceScrolledFromTop] = useState<number>(0);
 
-  const filterUsed = stateFilter !== "" && searchQuery === "";
+  const filterUsed = stateOrTerritoryFilter !== "" && searchQuery === "";
 
   // Remember, any time useEffect adds an EL, it should be removed in its 'return' statement
   useEffect(() => {

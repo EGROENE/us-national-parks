@@ -5,13 +5,13 @@ import { ShowMoreBtn } from "../ShowMoreBtn/ShowMoreBtn";
 
 // map inside this comp to create ParkCard for every park currently in displayedParks
 export const AllParkCards = () => {
-  const { displayedParks, stateFilter, searchQuery, allNationalParks } =
+  const { displayedParks, stateOrTerritoryFilter, searchQuery, allNationalParks } =
     useMainContentContext();
 
   // If not all parks are displayed, & no filter or search query exists, 'show more' button should display
   const displayShowMoreBtn: boolean =
     allNationalParks.length !== displayedParks.length &&
-    stateFilter === "" &&
+    stateOrTerritoryFilter === "" &&
     searchQuery === "";
 
   return (
