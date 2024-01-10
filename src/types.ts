@@ -11,15 +11,15 @@ export interface TPark {
   activities: [{ id: string; name: string }];
   topics: [{ id: string; name: string }];
   states: string;
-  contacts: [
-    emailAddresses: { description: string; emailAddress: string }[],
+  contacts: {
+    emailAddresses: { description: string; emailAddress: string }[];
     phoneNumbers: {
       phoneNumber: string;
       description: string;
       extension: string;
       type: string;
-    }[]
-  ];
+    }[];
+  };
   entranceFees: { cost: string; description: string; title: string }[];
   entrancePasses: { cost: string; description: string; title: string }[];
   fees: [];
