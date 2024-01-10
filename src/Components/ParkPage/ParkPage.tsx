@@ -16,6 +16,7 @@ export const ParkPage = () => {
   const [successfulFetch, setSuccessfulFetch] = useState<boolean>(false);
   const [showActivities, setShowActivities] = useState<boolean>(false);
   const [showEntranceFees, setShowEntranceFees] = useState<boolean>(false);
+  const [showEntrancePasses, setShowEntrancePasses] = useState<boolean>(false);
 
   useEffect(() => {
     getParkByCode(parkCode)
@@ -123,6 +124,39 @@ export const ParkPage = () => {
                   </div>
                 )}
                 {!park.entranceFees.length && <p>NONE</p>}
+                <button
+                  onClick={
+                    park.entrancePasses
+                      ? () =>
+                          showEntrancePasses
+                            ? setShowEntrancePasses(false)
+                            : setShowEntrancePasses(true)
+                      : undefined
+                  }
+                  title={
+                    showEntrancePasses ? "Hide Available Passes" : "Show Available Passes"
+                  }
+                >
+                  <p>Available Passes</p>
+                  {park.entrancePasses.length > 0 && (
+                    <i
+                      style={{ rotate: showEntrancePasses ? "0deg" : "90deg" }}
+                      className="fas fa-angle-right"
+                    ></i>
+                  )}
+                </button>
+                {showEntrancePasses && park.entrancePasses.length && (
+                  <div className="entrance-fees-container">
+                    {park.entrancePasses.map((pass) => (
+                      <div className="entrance-fee">
+                        <header>{pass.title}</header>
+                        <p>{+pass.cost === 0 ? "FREE" : `$${pass.cost}`}</p>
+                        <p>{pass.description}</p>
+                      </div>
+                    ))}
+                  </div>
+                )}
+                {!park.entrancePasses.length && <p>NONE</p>}
               </div>
             </div>
           )}
