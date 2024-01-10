@@ -89,7 +89,12 @@ export const ParkPage = () => {
                 {showActivities && (
                   <div className="park-activities-container">
                     {park.activities.map((activity) => (
-                      <p className="park-activity">{activity.name}</p>
+                      <p
+                        key={park.activities[park.activities.indexOf(activity)].id}
+                        className="park-activity"
+                      >
+                        {activity.name}
+                      </p>
                     ))}
                   </div>
                 )}
@@ -115,7 +120,12 @@ export const ParkPage = () => {
                 {showEntranceFees && park.entranceFees.length && (
                   <div className="entrance-fee-or-passes-container">
                     {park.entranceFees.map((entranceFee) => (
-                      <div className="entrance-fee-or-pass">
+                      <div
+                        key={
+                          park.entranceFees[park.entranceFees.indexOf(entranceFee)].title
+                        }
+                        className="entrance-fee-or-pass"
+                      >
                         <header>{entranceFee.title}</header>
                         <p>{+entranceFee.cost === 0 ? "FREE" : `$${entranceFee.cost}`}</p>
                         <p>{entranceFee.description}</p>
@@ -148,7 +158,10 @@ export const ParkPage = () => {
                 {showEntrancePasses && park.entrancePasses.length && (
                   <div className="entrance-fee-or-passes-container">
                     {park.entrancePasses.map((pass) => (
-                      <div className="entrance-fee-or-pass">
+                      <div
+                        key={park.entrancePasses[park.entrancePasses.indexOf(pass)].title}
+                        className="entrance-fee-or-pass"
+                      >
                         <header>{pass.title}</header>
                         <p>{+pass.cost === 0 ? "FREE" : `$${pass.cost}`}</p>
                         <p>{pass.description}</p>
