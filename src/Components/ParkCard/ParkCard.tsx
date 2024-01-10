@@ -8,14 +8,16 @@ export const ParkCard = ({ park }: { park: TPark }) => {
     .replace(/,/g, " ")
     .split(" ")
     .filter((index) => Object.keys(stateFilterOptions).includes(index));
-  const parkStates: string[] = stateIndices.map((index) => stateFilterOptions[index]);
+  const parkStates: string[] = stateIndices.map(
+    (index) => stateFilterOptions[index as keyof typeof stateFilterOptions]
+  );
 
   const territoryIndices: string[] = park.states
     .replace(/,/g, " ")
     .split(" ")
     .filter((index) => Object.keys(territoryFilterOptions).includes(index));
   const parkTerritories: string[] = territoryIndices.map(
-    (index) => territoryFilterOptions[index]
+    (index) => territoryFilterOptions[index as keyof typeof territoryFilterOptions]
   );
 
   // All possible combinations of where a park could be (in reality, only a couple of these will likely actually be used)
@@ -29,12 +31,14 @@ export const ParkCard = ({ park }: { park: TPark }) => {
   const isInSeveralStatesAndOneTerritory: boolean =
     parkStates.length > 1 && parkTerritories.length === 1;
 
-  const isInOneTerritoryAndNoStates: boolean = parkTerritories.length === 1 && !parkStates.length;
+  const isInOneTerritoryAndNoStates: boolean =
+    parkTerritories.length === 1 && !parkStates.length;
 
   const isInSeveralTerritoriesAndNoStates: boolean =
     parkTerritories.length > 1 && !parkStates.length;
 
-  const isInOneStateAndNoTerritories: boolean = parkStates.length === 1 && !parkTerritories.length;
+  const isInOneStateAndNoTerritories: boolean =
+    parkStates.length === 1 && !parkTerritories.length;
 
   const isInSeveralStatesAndNoTerritories: boolean =
     parkStates.length > 1 && !parkTerritories.length;

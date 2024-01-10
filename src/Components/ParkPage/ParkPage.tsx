@@ -41,7 +41,7 @@ export const ParkPage = () => {
     .split(" ")
     .filter((index) => Object.keys(stateFilterOptions).includes(index));
   const parkStates: string[] | undefined = stateIndices?.map(
-    (index) => stateFilterOptions[index]
+    (index) => stateFilterOptions[index as keyof typeof stateFilterOptions]
   );
 
   const territoryIndices: string[] | undefined = park?.states
@@ -49,7 +49,7 @@ export const ParkPage = () => {
     .split(" ")
     .filter((index) => Object.keys(territoryFilterOptions).includes(index));
   const parkTerritories: string[] | undefined = territoryIndices?.map(
-    (index) => territoryFilterOptions[index]
+    (index) => territoryFilterOptions[index as keyof typeof territoryFilterOptions]
   );
 
   return (
