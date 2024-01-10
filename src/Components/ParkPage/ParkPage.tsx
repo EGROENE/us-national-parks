@@ -7,6 +7,7 @@ import { ImageSlideshow } from "../ImageSlideshow/ImageSlideshow";
 import { stateFilterOptions, territoryFilterOptions } from "../../constants";
 import { LoadingMessage } from "../LoadingMessage/LoadingMessage";
 import { FailInitFetchMessage } from "../FailInitFetchMessage/FailInitFetchMessage";
+import { getParkActivitiesSortedAlphabeticallyByName } from "../../methods";
 
 export const ParkPage = () => {
   const { parkCode } = useParams();
@@ -90,14 +91,16 @@ export const ParkPage = () => {
                 </button>
                 {showActivities && (
                   <div className="park-activities-container">
-                    {park.activities.map((activity) => (
-                      <p
-                        key={park.activities[park.activities.indexOf(activity)].id}
-                        className="park-activity"
-                      >
-                        {activity.name}
-                      </p>
-                    ))}
+                    {getParkActivitiesSortedAlphabeticallyByName(park.activities).map(
+                      (activity) => (
+                        <p
+                          key={park.activities[park.activities.indexOf(activity)].id}
+                          className="park-activity"
+                        >
+                          {activity.name}
+                        </p>
+                      )
+                    )}
                   </div>
                 )}
                 <button
