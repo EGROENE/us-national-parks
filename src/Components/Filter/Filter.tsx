@@ -16,11 +16,11 @@ export const Filter = () => {
         <option selected={stateFilter === "AK"} value="AK">
           Alaska
         </option>
-        <option selected={stateFilter === "AL"} value="AZ">
-          Arizona
-        </option>
         <option selected={stateFilter === "AR"} value="AR">
           Arkansas
+        </option>
+        <option selected={stateFilter === "AZ"} value="AZ">
+          Arizona
         </option>
         <option selected={stateFilter === "CA"} value="CA">
           California
