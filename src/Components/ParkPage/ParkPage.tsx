@@ -113,9 +113,9 @@ export const ParkPage = () => {
                   )}
                 </button>
                 {showEntranceFees && park.entranceFees.length && (
-                  <div className="entrance-fees-container">
+                  <div className="entrance-fee-or-passes-container">
                     {park.entranceFees.map((entranceFee) => (
-                      <div className="entrance-fee">
+                      <div className="entrance-fee-or-pass">
                         <header>{entranceFee.title}</header>
                         <p>{+entranceFee.cost === 0 ? "FREE" : `$${entranceFee.cost}`}</p>
                         <p>{entranceFee.description}</p>
@@ -146,9 +146,9 @@ export const ParkPage = () => {
                   )}
                 </button>
                 {showEntrancePasses && park.entrancePasses.length && (
-                  <div className="entrance-fees-container">
+                  <div className="entrance-fee-or-passes-container">
                     {park.entrancePasses.map((pass) => (
-                      <div className="entrance-fee">
+                      <div className="entrance-fee-or-pass">
                         <header>{pass.title}</header>
                         <p>{+pass.cost === 0 ? "FREE" : `$${pass.cost}`}</p>
                         <p>{pass.description}</p>
