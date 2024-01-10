@@ -69,7 +69,8 @@ export const ParkPage = () => {
           <p className="longitude-latitude">
             Longitude: {`${park?.longitude}`} | Latitude: {`${park?.latitude}`}
           </p>
-          <a className="park-google-maps-link"
+          <a
+            className="park-google-maps-link"
             target="_blank"
             href={`https://www.google.com/maps/search/?api=1&query=${park?.fullName
               .toLowerCase()
@@ -153,7 +154,7 @@ export const ParkPage = () => {
                     ))}
                   </div>
                 )}
-                {!park.entranceFees.length && <p>NONE</p>}
+                {!park.entranceFees.length && <span>NONE</span>}
                 <button
                   onClick={
                     park.entrancePasses.length > 0
@@ -189,7 +190,7 @@ export const ParkPage = () => {
                     ))}
                   </div>
                 )}
-                {!park.entrancePasses.length && <p>NONE</p>}
+                {!park.entrancePasses.length && <span>NONE</span>}
                 <button
                   onClick={
                     Object.keys(park.contacts).length > 0
