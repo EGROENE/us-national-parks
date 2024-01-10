@@ -19,6 +19,9 @@ export const Filter = () => {
         <option selected={stateFilter === "AR"} value="AR">
           Arkansas
         </option>
+        <option selected={stateFilter === "AS"} value="AR">
+          American Samoa
+        </option>
         <option selected={stateFilter === "AZ"} value="AZ">
           Arizona
         </option>
@@ -39,6 +42,9 @@ export const Filter = () => {
         </option>
         <option selected={stateFilter === "GA"} value="GA">
           Georgia
+        </option>
+        <option selected={stateFilter === "GU"} value="GA">
+          Guam
         </option>
         <option selected={stateFilter === "HI"} value="HI">
           Hawaii
@@ -91,6 +97,9 @@ export const Filter = () => {
         <option selected={stateFilter === "NE"} value="NE">
           Nebraska
         </option>
+        <option selected={stateFilter === "MP"} value="NE">
+          Northern Mariana Islands
+        </option>
         <option selected={stateFilter === "NV"} value="NV">
           Nevada
         </option>
@@ -123,6 +132,9 @@ export const Filter = () => {
         </option>
         <option selected={stateFilter === "PA"} value="PA">
           Pennsylvania
+        </option>
+        <option selected={stateFilter === "PR"} value="PA">
+          Puerto Rico
         </option>
         <option selected={stateFilter === "RI"} value="RI">
           Rhode Island
