@@ -1,4 +1,5 @@
 import { TPark } from "./types";
+
 type TParkActivities = [
   {
     id: string;
@@ -6,39 +7,15 @@ type TParkActivities = [
   }
 ];
 
-/* export const getObjectArraySortedAlphabeticallyByProperty = (
+export const getObjectArraySortedAlphabeticallyByProperty = (
   array: TParkActivities | TPark[],
-  property
+  property: string
 ) => {
   return array.sort(function (a, b) {
-    if (a[property] < b[property]) {
+    if (a[property as keyof typeof a] < b[property as keyof typeof b]) {
       return -1;
     }
-    if (a[property] > b[property]) {
-      return 1;
-    }
-    return 0;
-  });
-}; */
-
-export const getParksSortedAlphabeticallyByFullName = (array: Array<TPark>) => {
-  return array.sort(function (a, b) {
-    if (a.fullName < b.fullName) {
-      return -1;
-    }
-    if (a.fullName > b.fullName) {
-      return 1;
-    }
-    return 0;
-  });
-};
-
-export const getParkActivitiesSortedAlphabeticallyByName = (array: TParkActivities) => {
-  return array.sort(function (a, b) {
-    if (a.name < b.name) {
-      return -1;
-    }
-    if (a.name > b.name) {
+    if (a[property as keyof typeof a] > b[property as keyof typeof b]) {
       return 1;
     }
     return 0;

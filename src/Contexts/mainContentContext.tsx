@@ -3,7 +3,7 @@
 import { createContext, ReactNode, useEffect, useState } from "react";
 import { TPark, TMainContentContext } from "../types";
 import { getParks } from "../api";
-import { getParksSortedAlphabeticallyByFullName } from "../methods";
+import { getObjectArraySortedAlphabeticallyByProperty } from "../methods";
 
 export const MainContentContext = createContext<TMainContentContext | null>(null);
 
@@ -30,15 +30,17 @@ export const MainContentContextProvider = ({ children }: { children: ReactNode }
       .then((result) => {
         setSuccessfulInitFetch(true);
         const parksJSArray: TPark[] = JSON.parse(result).data;
-        const nationalParksArray: TPark[] = getParksSortedAlphabeticallyByFullName(
+        const nationalParksArray = getObjectArraySortedAlphabeticallyByProperty(
           parksJSArray
             .filter((park) => park.designation.includes("National Park"))
             .concat(
               parksJSArray.filter((park) =>
                 park.designation.includes("National and State Parks")
               )
-            )
+            ),
+          "fullName"
         );
+        /* @ts-expect-error: allNationalParks should only be of type TPark[], not of any other type of object array. allNationalParks is being set here to nationalParksArray, the result of getObjectArraySortedAlphabeticallyByProperty(), which can be either TPark[] or other types of object arrays. getObjectArraySortedAlphabeticallyByProperty() was created to serve as the only function necessary in this project to sort object arrays alphabetically by a passed-in property value. */
         setAllNationalParks(nationalParksArray);
       })
       .catch((error) => {
