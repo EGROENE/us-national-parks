@@ -69,6 +69,14 @@ export const ParkPage = () => {
           <p className="longitude-latitude">
             Longitude: {`${park?.longitude}`} | Latitude: {`${park?.latitude}`}
           </p>
+          <a className="park-google-maps-link"
+            target="_blank"
+            href={`https://www.google.com/maps/search/?api=1&query=${park?.fullName
+              .toLowerCase()
+              .replace(/\s/g, "+")}`}
+          >
+            See on Google Maps
+          </a>
           {park && (
             <div className="park-page-main-content-container">
               <div className="park-page-top-section">
