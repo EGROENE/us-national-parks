@@ -8,6 +8,8 @@ import { useMainContentContext } from "./Hooks/useMainContentContext";
 function App() {
   const { isLoading, successfulInitFetch, displayedParks } = useMainContentContext();
 
+  document.title = "U.S. National Parks";
+
   return (
     <>
       {/* HomepageMainContent = SearchTools + AllParksCards OR ErrorOnInitialFetch w/ 'failed to retrieve data' & reloadbtn*/}

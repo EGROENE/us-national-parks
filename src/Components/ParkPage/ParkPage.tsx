@@ -18,6 +18,8 @@ export const ParkPage = () => {
   const [showEntranceFees, setShowEntranceFees] = useState<boolean>(false);
   const [showEntrancePasses, setShowEntrancePasses] = useState<boolean>(false);
 
+  document.title = `${park?.fullName}`;
+
   useEffect(() => {
     getParkByCode(parkCode)
       .then((response) => response.text())
@@ -30,7 +32,7 @@ export const ParkPage = () => {
         console.log(error);
       })
       .finally(() => setIsLoading(false));
-  }, [parkCode]);
+  }, [parkCode, park]);
 
   const stateIndices: string[] | undefined = park?.states
     .replace(/,/g, " ")
