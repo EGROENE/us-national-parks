@@ -9,6 +9,7 @@ import { LoadingMessage } from "../LoadingMessage/LoadingMessage";
 import { FailInitFetchMessage } from "../FailInitFetchMessage/FailInitFetchMessage";
 import { DropdownButton } from "../DropdownButton/DropdownButton";
 import { ParkActivities } from "../ParkPageItems/ParkActivities/ParkActivities";
+import { ParkEntranceFees } from "../ParkPageItems/ParkEntranceFees/ParkEntranceFees";
 
 export const ParkPage = () => {
   const { parkCode } = useParams();
@@ -114,23 +115,7 @@ export const ParkPage = () => {
                   showItems={showEntranceFees}
                   numberOfItems={park.entranceFees.length}
                 />
-                {showEntranceFees && park.entranceFees.length && (
-                  <div className="entrance-fee-or-passes-container">
-                    {park.entranceFees.map((entranceFee) => (
-                      <div
-                        key={
-                          park.entranceFees[park.entranceFees.indexOf(entranceFee)].title
-                        }
-                        className="entrance-fee-or-pass"
-                      >
-                        <header>{entranceFee.title}</header>
-                        <p>{+entranceFee.cost === 0 ? "FREE" : `$${entranceFee.cost}`}</p>
-                        <p>{entranceFee.description}</p>
-                      </div>
-                    ))}
-                  </div>
-                )}
-                {!park.entranceFees.length && <span>NONE</span>}
+                <ParkEntranceFees park={park} showEntranceFees={showEntranceFees} />
                 <DropdownButton
                   text="Available Passes"
                   action={() =>
