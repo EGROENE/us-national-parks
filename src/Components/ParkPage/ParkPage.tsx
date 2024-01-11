@@ -8,6 +8,7 @@ import { stateFilterOptions, territoryFilterOptions } from "../../constants";
 import { LoadingMessage } from "../LoadingMessage/LoadingMessage";
 import { FailInitFetchMessage } from "../FailInitFetchMessage/FailInitFetchMessage";
 import { getObjectArraySortedAlphabeticallyByProperty } from "../../methods";
+import { DropdownButton } from "../DropdownButton/DropdownButton";
 
 export const ParkPage = () => {
   const { parkCode } = useParams();
@@ -92,18 +93,15 @@ export const ParkPage = () => {
                 </div>
               </div>
               <div className="park-page-bottom-section">
-                <button
-                  onClick={() =>
+                <DropdownButton
+                  text="Activities"
+                  action={() =>
                     showActivities ? setShowActivities(false) : setShowActivities(true)
                   }
                   title={showActivities ? "Hide Activities" : "Show Activities"}
-                >
-                  <p>Activities</p>
-                  <i
-                    style={{ rotate: showActivities ? "0deg" : "90deg" }}
-                    className="fas fa-angle-right"
-                  ></i>
-                </button>
+                  showItems={showActivities}
+                  numberOfItems={park.activities.length}
+                />
                 {showActivities && (
                   <div className="park-activities-container">
                     {getObjectArraySortedAlphabeticallyByProperty(
@@ -119,25 +117,17 @@ export const ParkPage = () => {
                     ))}
                   </div>
                 )}
-                <button
-                  onClick={
-                    park.entranceFees.length > 0
-                      ? () =>
-                          showEntranceFees
-                            ? setShowEntranceFees(false)
-                            : setShowEntranceFees(true)
-                      : undefined
+                <DropdownButton
+                  action={() =>
+                    showEntranceFees
+                      ? setShowEntranceFees(false)
+                      : setShowEntranceFees(true)
                   }
+                  text="Entrance Fees"
                   title={showEntranceFees ? "Hide Entrance Fees" : "Show Entrance Fees"}
-                >
-                  <p>Entrance Fees</p>
-                  {park.entranceFees.length > 0 && (
-                    <i
-                      style={{ rotate: showEntranceFees ? "0deg" : "90deg" }}
-                      className="fas fa-angle-right"
-                    ></i>
-                  )}
-                </button>
+                  showItems={showEntranceFees}
+                  numberOfItems={park.entranceFees.length}
+                />
                 {showEntranceFees && park.entranceFees.length && (
                   <div className="entrance-fee-or-passes-container">
                     {park.entranceFees.map((entranceFee) => (
@@ -155,27 +145,19 @@ export const ParkPage = () => {
                   </div>
                 )}
                 {!park.entranceFees.length && <span>NONE</span>}
-                <button
-                  onClick={
-                    park.entrancePasses.length > 0
-                      ? () =>
-                          showEntrancePasses
-                            ? setShowEntrancePasses(false)
-                            : setShowEntrancePasses(true)
-                      : undefined
+                <DropdownButton
+                  text="Available Passes"
+                  action={() =>
+                    showEntrancePasses
+                      ? setShowEntrancePasses(false)
+                      : setShowEntrancePasses(true)
                   }
                   title={
                     showEntrancePasses ? "Hide Available Passes" : "Show Available Passes"
                   }
-                >
-                  <p>Available Passes</p>
-                  {park.entrancePasses.length > 0 && (
-                    <i
-                      style={{ rotate: showEntrancePasses ? "0deg" : "90deg" }}
-                      className="fas fa-angle-right"
-                    ></i>
-                  )}
-                </button>
+                  showItems={showEntrancePasses}
+                  numberOfItems={park.entrancePasses.length}
+                />
                 {showEntrancePasses && park.entrancePasses.length && (
                   <div className="entrance-fee-or-passes-container">
                     {park.entrancePasses.map((pass) => (
@@ -191,25 +173,15 @@ export const ParkPage = () => {
                   </div>
                 )}
                 {!park.entrancePasses.length && <span>NONE</span>}
-                <button
-                  onClick={
-                    Object.keys(park.contacts).length > 0
-                      ? () =>
-                          showContactInfo
-                            ? setShowContactInfo(false)
-                            : setShowContactInfo(true)
-                      : undefined
+                <DropdownButton
+                  text="Contact Info"
+                  action={() =>
+                    showContactInfo ? setShowContactInfo(false) : setShowContactInfo(true)
                   }
                   title={showContactInfo ? "Hide Contact Info" : "Hide Contact Info"}
-                >
-                  <p>Contact Info</p>
-                  {Object.keys(park.contacts).length > 0 && (
-                    <i
-                      style={{ rotate: showContactInfo ? "0deg" : "90deg" }}
-                      className="fas fa-angle-right"
-                    ></i>
-                  )}
-                </button>
+                  showItems={showContactInfo}
+                  numberOfItems={Object.keys(park.contacts).length}
+                />
                 {showContactInfo && Object.keys(park.contacts).length > 0 && (
                   <div className="contact-infos-container">
                     <header>
