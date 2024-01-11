@@ -1,4 +1,5 @@
 import { TPark } from "../../../types";
+import { formatPhoneNumber } from "../../../methods";
 
 export const ParkContacts = ({
   park,
@@ -15,7 +16,7 @@ export const ParkContacts = ({
             Phone Numbers:
             {park.contacts.phoneNumbers.map((numberInfo) => (
               <span key={numberInfo.phoneNumber}>
-                {`${numberInfo.phoneNumber} `}
+                {`${formatPhoneNumber(numberInfo.phoneNumber)} `}
                 {numberInfo.type.toUpperCase() !== "TTY"
                   ? `(${numberInfo.type})`
                   : "(Teletypewriter)"}
