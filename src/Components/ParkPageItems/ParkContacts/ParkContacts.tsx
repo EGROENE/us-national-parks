@@ -8,21 +8,30 @@ export const ParkContacts = ({
   park: TPark;
   showContactInfo: boolean;
 }) => {
+  const phoneNumberIsTTY = (numberInfo: {
+    phoneNumber: string;
+    description: string;
+    extension: string;
+    type: string;
+  }) => {
+    return numberInfo.type.toUpperCase() === "TTY" ? true : false;
+  };
+
   return (
     <>
       {showContactInfo && Object.keys(park.contacts).length > 0 && (
         <div className="contact-infos-container">
-          <header>
-            Phone Numbers:
+          <header>Phone Numbers:</header>
+          <div className="phone-numbers-container">
             {park.contacts.phoneNumbers.map((numberInfo) => (
-              <span key={numberInfo.phoneNumber}>
+              <p>
                 {`${formatPhoneNumber(numberInfo.phoneNumber)} `}
-                {numberInfo.type.toUpperCase() !== "TTY"
-                  ? `(${numberInfo.type})`
-                  : "(Teletypewriter)"}
-              </span>
+                {phoneNumberIsTTY(numberInfo)
+                  ? "(teletypewriter)"
+                  : `(${numberInfo.type.toLowerCase()})`}
+              </p>
             ))}
-          </header>
+          </div>
           <header>
             E-Mail Address: <span>{park.contacts.emailAddresses[0].emailAddress}</span>
           </header>
