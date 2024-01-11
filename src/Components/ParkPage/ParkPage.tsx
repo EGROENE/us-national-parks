@@ -7,8 +7,8 @@ import { ImageSlideshow } from "../ImageSlideshow/ImageSlideshow";
 import { stateFilterOptions, territoryFilterOptions } from "../../constants";
 import { LoadingMessage } from "../LoadingMessage/LoadingMessage";
 import { FailInitFetchMessage } from "../FailInitFetchMessage/FailInitFetchMessage";
-import { getObjectArraySortedAlphabeticallyByProperty } from "../../methods";
 import { DropdownButton } from "../DropdownButton/DropdownButton";
+import { ParkActivities } from "../ParkPageItems/ParkActivities/ParkActivities";
 
 export const ParkPage = () => {
   const { parkCode } = useParams();
@@ -102,21 +102,7 @@ export const ParkPage = () => {
                   showItems={showActivities}
                   numberOfItems={park.activities.length}
                 />
-                {showActivities && (
-                  <div className="park-activities-container">
-                    {getObjectArraySortedAlphabeticallyByProperty(
-                      park.activities,
-                      "name"
-                    ).map((activity) => (
-                      <p
-                        key={park.activities[park.activities.indexOf(activity)].id}
-                        className="park-activity"
-                      >
-                        {activity.name}
-                      </p>
-                    ))}
-                  </div>
-                )}
+                <ParkActivities showActivities={showActivities} park={park} />
                 <DropdownButton
                   action={() =>
                     showEntranceFees
