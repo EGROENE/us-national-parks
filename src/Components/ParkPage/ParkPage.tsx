@@ -11,6 +11,7 @@ import { DropdownButton } from "../DropdownButton/DropdownButton";
 import { ParkActivities } from "../ParkPageItems/ParkActivities/ParkActivities";
 import { ParkEntranceFees } from "../ParkPageItems/ParkEntranceFees/ParkEntranceFees";
 import { ParkEntrancePasses } from "../ParkPageItems/ParkEntrancePasses/ParkEntrancePasses";
+import { ParkContacts } from "../ParkPageItems/ParkContacts/ParkContacts";
 
 export const ParkPage = () => {
   const { parkCode } = useParams();
@@ -140,26 +141,7 @@ export const ParkPage = () => {
                   showItems={showContactInfo}
                   numberOfItems={Object.keys(park.contacts).length}
                 />
-                {showContactInfo && Object.keys(park.contacts).length > 0 && (
-                  <div className="contact-infos-container">
-                    <header>
-                      Phone Numbers:
-                      {park.contacts.phoneNumbers.map((numberInfo) => (
-                        <span key={numberInfo.phoneNumber}>
-                          {`${numberInfo.phoneNumber} `}
-                          {numberInfo.type.toUpperCase() !== "TTY"
-                            ? `(${numberInfo.type})`
-                            : "(Teletypewriter)"}
-                        </span>
-                      ))}
-                    </header>
-                    <header>
-                      E-Mail Address:{" "}
-                      <span>{park.contacts.emailAddresses[0].emailAddress}</span>
-                    </header>
-                  </div>
-                )}
-                {!Object.keys(park.contacts).length && <p>NONE</p>}
+                <ParkContacts park={park} showContactInfo={showContactInfo} />
               </div>
             </div>
           )}
