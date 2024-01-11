@@ -10,6 +10,7 @@ import { FailInitFetchMessage } from "../FailInitFetchMessage/FailInitFetchMessa
 import { DropdownButton } from "../DropdownButton/DropdownButton";
 import { ParkActivities } from "../ParkPageItems/ParkActivities/ParkActivities";
 import { ParkEntranceFees } from "../ParkPageItems/ParkEntranceFees/ParkEntranceFees";
+import { ParkEntrancePasses } from "../ParkPageItems/ParkEntrancePasses/ParkEntrancePasses";
 
 export const ParkPage = () => {
   const { parkCode } = useParams();
@@ -129,21 +130,7 @@ export const ParkPage = () => {
                   showItems={showEntrancePasses}
                   numberOfItems={park.entrancePasses.length}
                 />
-                {showEntrancePasses && park.entrancePasses.length && (
-                  <div className="entrance-fee-or-passes-container">
-                    {park.entrancePasses.map((pass) => (
-                      <div
-                        key={park.entrancePasses[park.entrancePasses.indexOf(pass)].title}
-                        className="entrance-fee-or-pass"
-                      >
-                        <header>{pass.title}</header>
-                        <p>{+pass.cost === 0 ? "FREE" : `$${pass.cost}`}</p>
-                        <p>{pass.description}</p>
-                      </div>
-                    ))}
-                  </div>
-                )}
-                {!park.entrancePasses.length && <span>NONE</span>}
+                <ParkEntrancePasses park={park} showEntrancePasses={showEntrancePasses} />
                 <DropdownButton
                   text="Contact Info"
                   action={() =>
