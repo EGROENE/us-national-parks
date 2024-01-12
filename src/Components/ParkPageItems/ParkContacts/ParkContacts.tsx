@@ -24,7 +24,7 @@ export const ParkContacts = ({
           <header>Phone Numbers:</header>
           <div className="phone-numbers-container">
             {park.contacts.phoneNumbers.map((numberInfo) => (
-              <p>
+              <p key={numberInfo.phoneNumber}>
                 {`${formatPhoneNumber(numberInfo.phoneNumber)} `}
                 {phoneNumberIsTTY(numberInfo)
                   ? "(teletypewriter)"
