@@ -12,29 +12,31 @@ import { ParkActivities } from "../ParkPageItems/ParkActivities/ParkActivities";
 import { ParkEntranceFees } from "../ParkPageItems/ParkEntranceFees/ParkEntranceFees";
 import { ParkEntrancePasses } from "../ParkPageItems/ParkEntrancePasses/ParkEntrancePasses";
 import { ParkContacts } from "../ParkPageItems/ParkContacts/ParkContacts";
+import { ParkAlerts } from "../ParkPageItems/ParkAlerts/ParkAlerts";
 
 export const ParkPage = () => {
   const { parkCode } = useParams();
 
   const [park, setPark] = useState<TPark>();
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [successfulFetch, setSuccessfulFetch] = useState<boolean>(false);
+  const [successfulFetch, setSuccessfulFetch] = useState<boolean>(true);
   const [showActivities, setShowActivities] = useState<boolean>(false);
   const [showEntranceFees, setShowEntranceFees] = useState<boolean>(false);
   const [showEntrancePasses, setShowEntrancePasses] = useState<boolean>(false);
   const [showContactInfo, setShowContactInfo] = useState<boolean>(false);
 
-  document.title = `${park?.fullName}`;
+  document.title = "U.S. National Parks";
 
   useEffect(() => {
     getParkByCode(parkCode)
       .then((response) => response.text())
       .then((result) => {
-        setSuccessfulFetch(true);
         const returnedPark = JSON.parse(result).data[0];
         setPark(returnedPark);
+        document.title = `${park?.fullName}`;
       })
       .catch((error) => {
+        setSuccessfulFetch(false);
         console.log(error);
       })
       .finally(() => setIsLoading(false));
@@ -142,6 +144,7 @@ export const ParkPage = () => {
                   numberOfItems={Object.keys(park.contacts).length}
                 />
                 <ParkContacts park={park} showContactInfo={showContactInfo} />
+                <ParkAlerts park={park} />
               </div>
             </div>
           )}
