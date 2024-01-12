@@ -23,3 +23,15 @@ export const getParkByCode = (code: string | undefined): Promise<Response> => {
     redirect: "follow",
   });
 };
+
+export const getAlertsByParkCode = (code: string): Promise<Response> => {
+  const myHeaders = new Headers();
+  myHeaders.append("Content-type", "application/json");
+  myHeaders.append("X-Api-Key", key);
+
+  return fetch(`${baseURL}/alerts?parkCode=${code}`, {
+    method: "GET",
+    headers: myHeaders,
+    redirect: "follow",
+  });
+};
