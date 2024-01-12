@@ -84,3 +84,21 @@ export type TMainContentContext = {
 };
 
 export type TStateAbbreviations = keyof typeof stateFilterOptions;
+
+export interface TParkAlert {
+  category: string;
+  description: string;
+  id: string;
+  parkCode: string;
+  title: string;
+  url: string;
+  lastIndexedDate: string;
+  relatedRoadEvents:
+    | {
+        title: string;
+        id: string;
+        type: string;
+        url: string;
+      }[]
+    | [];
+}
