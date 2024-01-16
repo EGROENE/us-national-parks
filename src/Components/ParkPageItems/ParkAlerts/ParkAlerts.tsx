@@ -1,9 +1,9 @@
 import { useMainContentContext } from "../../../Hooks/useMainContentContext";
 
 export const ParkAlerts = ({ parkCode }: { parkCode: string | undefined }) => {
-  const { allParkAlerts, didFetchAlerts, alertsAreLoading } = useMainContentContext();
+  const { allNPAlerts, didFetchAlerts, alertsAreLoading } = useMainContentContext();
   const failedToFetchAlerts: boolean = !didFetchAlerts && !alertsAreLoading;
-  const parkAlerts = allParkAlerts.filter((park) => park.parkCode === parkCode);
+  const parkAlerts = allNPAlerts.filter((park) => park.parkCode === parkCode);
 
   return (
     <>

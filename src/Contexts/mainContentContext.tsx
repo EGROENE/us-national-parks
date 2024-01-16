@@ -2,7 +2,7 @@
 // Also contains provider that should wrap App inside main.tsx. this provider shares necessary state values, etc.
 import { createContext, ReactNode, useEffect, useState } from "react";
 import { TPark, TMainContentContext, TParkAlert } from "../types";
-import { getParks, getAllAlerts } from "../api";
+import { getParks, getAllNPAlerts } from "../api";
 import { getObjectArraySortedAlphabeticallyByProperty } from "../methods";
 
 export const MainContentContext = createContext<TMainContentContext | null>(null);
@@ -14,7 +14,7 @@ export const MainContentContextProvider = ({ children }: { children: ReactNode }
 
   const [allNationalParks, setAllNationalParks] = useState<TPark[]>([]);
 
-  const [allParkAlerts, setAllParkAlerts] = useState<TParkAlert[]>([]);
+  const [allNPAlerts, setAllNPAlerts] = useState<TParkAlert[]>([]);
 
   const [didFetchAlerts, setDidFetchAlerts] = useState(false);
 
@@ -118,13 +118,13 @@ export const MainContentContextProvider = ({ children }: { children: ReactNode }
     }
   }, [allNationalParks, limit, stateOrTerritoryFilter, searchQuery]);
 
-  // Set allParkAlerts:
+  // Set allNPAlerts:
   useEffect(() => {
-    getAllAlerts()
+    getAllNPAlerts()
       .then((response) => response.text())
       .then((result) => {
         setDidFetchAlerts(true);
-        setAllParkAlerts(JSON.parse(result).data);
+        setAllNPAlerts(JSON.parse(result).data);
       })
       .catch((error) => {
         console.log(error);
@@ -162,7 +162,7 @@ export const MainContentContextProvider = ({ children }: { children: ReactNode }
     setSearchQuery,
     handleStateFilter,
     handleSearchQuery,
-    allParkAlerts,
+    allNPAlerts,
     didFetchAlerts,
     alertsAreLoading,
   };
