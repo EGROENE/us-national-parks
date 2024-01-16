@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { NavBar } from "../NavBar/NavBar";
-import { getAlertsByParkCode } from "../../api";
-import { TPark, TParkAlert } from "../../types";
+import { getParkByCode } from "../../api";
+import { TPark } from "../../types";
 import { ImageSlideshow } from "../ImageSlideshow/ImageSlideshow";
 import { stateFilterOptions, territoryFilterOptions } from "../../constants";
 import { DropdownButton } from "../DropdownButton/DropdownButton";
@@ -11,10 +11,16 @@ import { ParkEntranceFees } from "../ParkPageItems/ParkEntranceFees/ParkEntrance
 import { ParkEntrancePasses } from "../ParkPageItems/ParkEntrancePasses/ParkEntrancePasses";
 import { ParkContacts } from "../ParkPageItems/ParkContacts/ParkContacts";
 import { ParkAlerts } from "../ParkPageItems/ParkAlerts/ParkAlerts";
+import { LoadingMessage } from "../LoadingMessage/LoadingMessage";
+import { FailInitFetchMessage } from "../FailInitFetchMessage/FailInitFetchMessage";
 import { useMainContentContext } from "../../Hooks/useMainContentContext";
 
 export const ParkPage = () => {
+  const { allNPAlerts } = useMainContentContext();
   const { parkCode } = useParams();
+  const [park, setPark] = useState<TPark>();
+  const [parkIsLoading, setParkIsLoading] = useState(true);
+  const [didFetchPark, setDidFetchPark] = useState(false);
 
   // State values dictating if certain park info should be shown (changed by user & hidden by default):
   const [showActivities, setShowActivities] = useState<boolean>(false);
@@ -26,22 +32,21 @@ export const ParkPage = () => {
   document.title = "U.S. National Parks";
 
   useEffect(() => {
-    getAlertsByParkCode(park.parkCode)
+    getParkByCode(parkCode)
       .then((response) => response.text())
       .then((result) => {
-        setDidFetchAlerts(true);
-        const alertsArray = JSON.parse(result).data;
-        setParkAlerts(alertsArray);
+        setDidFetchPark(true);
+        setPark(JSON.parse(result).data[0]);
       })
       .catch((error) => console.log(error))
-      .finally(() => setAlertsAreLoading(false));
-  }, [park]);
+      .finally(() => setParkIsLoading(false));
+  }, [setParkIsLoading, parkCode, setPark]);
 
-  const stateIndices: string[] | undefined = park.states
+  const stateIndices: string[] | undefined = park?.states
     .replace(/,/g, " ")
     .split(" ")
     .filter((index) => Object.keys(stateFilterOptions).includes(index));
-  const parkStates: string[] | undefined = stateIndices.map(
+  const parkStates: string[] | undefined = stateIndices?.map(
     (index) => stateFilterOptions[index as keyof typeof stateFilterOptions]
   );
 
@@ -53,14 +58,16 @@ export const ParkPage = () => {
     (index) => territoryFilterOptions[index as keyof typeof territoryFilterOptions]
   );
 
-  const areAlerts =
-    didFetchAlerts && !alertsAreLoading && parkAlerts && parkAlerts.length > 0;
+  const parkAlerts = allNPAlerts.filter((alert) => {
+    return alert.parkCode === parkCode;
+  });
+  const areAlerts = parkAlerts.length > 0;
 
   return (
     <>
       <NavBar notOnHomepage={true} />
-      {isLoading && !successfulFetch && <LoadingMessage />}
-      {successfulFetch && !isLoading && (
+      {parkIsLoading && !didFetchPark && <LoadingMessage />}
+      {didFetchPark && !parkIsLoading && (
         <>
           <h1>{park?.fullName}</h1>
           {/* Add 'and' before last item in list of states/territories */}
@@ -93,7 +100,11 @@ export const ParkPage = () => {
                   <p>{park.description}</p>
                   <header>General Weather Info</header>
                   <p>{park.weatherInfo}</p>
-                  <button onClick={() => setShowAlerts(true)}>Show Alerts</button>
+                  {areAlerts ? (
+                    <button onClick={() => setShowAlerts(true)}>Show Alerts</button>
+                  ) : (
+                    <p>No current alerts for this park.</p>
+                  )}
                 </div>
               </div>
               <div className="park-page-bottom-section">
@@ -149,7 +160,7 @@ export const ParkPage = () => {
           )}
         </>
       )}
-      {!isLoading && !successfulFetch && <FailInitFetchMessage />}
+      {!parkIsLoading && !didFetchPark && <FailInitFetchMessage />}
     </>
   );
 };
