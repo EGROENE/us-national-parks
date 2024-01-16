@@ -69,9 +69,33 @@ export const ParkPage = () => {
     (index) => territoryFilterOptions[index as keyof typeof territoryFilterOptions]
   );
 
-  const parkAlerts = allNPAlerts.filter((alert) => {
-    return alert.parkCode === parkCode;
-  });
+  // Process of adding '&' to last item in locations array:
+  const inStates = !parkIsLoading && parkStates && parkStates?.length > 0;
+  const inTerritories = !parkIsLoading && parkTerritories && parkTerritories?.length > 0;
+
+  // Set initial value (most likely case):
+  let locations: string[] | undefined = parkStates;
+  // Concat parkStates & parkTerritories arrays if park's in at least one state and at least one territory:
+  if (inStates && inTerritories) {
+    locations = parkStates?.concat(parkTerritories);
+    // Else, set to parkTerritories if only in territories and no states:
+  } else if (inTerritories && !inStates) {
+    locations = parkTerritories;
+  }
+
+  let lastLocation: string;
+  if (!parkIsLoading && locations && locations.length > 1) {
+    // Get last element in locations array:
+    lastLocation = locations[locations.length - 1];
+    // Get array of locations excluding lastLocation:
+    locations = locations?.filter((location) => location !== lastLocation);
+    // Add " & " to lastLocation:
+    lastLocation = ` & ${lastLocation}`;
+    // Add lastLocation to end of locations array:
+    locations.push(lastLocation);
+  }
+
+  const parkAlerts = allNPAlerts.filter((alert) => alert.parkCode === parkCode);
   const areAlerts = parkAlerts.length > 0;
 
   return (
@@ -84,9 +108,7 @@ export const ParkPage = () => {
           {/* Add 'and' before last item in list of states/territories */}
           <p>
             Located in{" "}
-            {parkStates !== undefined &&
-              parkTerritories !== undefined &&
-              parkStates.join(", ") + parkTerritories.join(", ")}
+            {locations && locations.length > 2 ? locations.join(", ") : locations}
           </p>
           <p className="longitude-latitude">
             Longitude: {`${park?.longitude}`} | Latitude: {`${park?.latitude}`}
