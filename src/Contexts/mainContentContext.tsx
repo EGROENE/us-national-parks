@@ -124,13 +124,17 @@ export const MainContentContextProvider = ({ children }: { children: ReactNode }
       .then((response) => response.text())
       .then((result) => {
         setDidFetchAlerts(true);
-        setAllNPAlerts(JSON.parse(result).data);
+        const allNPParkCodes: string[] = allNationalParks.map((park) => park.parkCode);
+        const allParkAlerts: TParkAlert[] = JSON.parse(result).data;
+        setAllNPAlerts(
+          allParkAlerts.filter((alert) => allNPParkCodes.includes(alert.parkCode))
+        );
       })
       .catch((error) => {
         console.log(error);
       })
       .finally(() => setAlertsAreLoading(false));
-  }, []);
+  }, [allNationalParks]);
 
   const handleStateFilter = (value: string): void => {
     if (searchQuery !== "") {
