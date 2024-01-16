@@ -24,12 +24,12 @@ export const getParkByCode = (code: string | undefined): Promise<Response> => {
   });
 };
 
-export const getAlertsByParkCode = (code: string | undefined): Promise<Response> => {
+export const getAllAlerts = (): Promise<Response> => {
   const myHeaders = new Headers();
   myHeaders.append("Content-type", "application/json");
   myHeaders.append("X-Api-Key", key);
 
-  return fetch(`${baseURL}/alerts?parkCode=${code}`, {
+  return fetch(`${baseURL}/alerts`, {
     method: "GET",
     headers: myHeaders,
     redirect: "follow",
