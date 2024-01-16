@@ -16,11 +16,12 @@ import { FailInitFetchMessage } from "../FailInitFetchMessage/FailInitFetchMessa
 import { useMainContentContext } from "../../Hooks/useMainContentContext";
 
 export const ParkPage = () => {
+  // Values relating to park alerts:
   const { allNPAlerts } = useMainContentContext();
   const { parkCode } = useParams();
   const [park, setPark] = useState<TPark>();
-  const [parkIsLoading, setParkIsLoading] = useState(true);
-  const [didFetchPark, setDidFetchPark] = useState(false);
+  const [parkIsLoading, setParkIsLoading] = useState<boolean>(true);
+  const [didFetchPark, setDidFetchPark] = useState<boolean>(false);
 
   // State values dictating if certain park info should be shown (changed by user & hidden by default):
   const [showActivities, setShowActivities] = useState<boolean>(false);
