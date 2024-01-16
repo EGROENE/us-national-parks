@@ -24,7 +24,7 @@ export const getParkByCode = (code: string | undefined): Promise<Response> => {
   });
 };
 
-export const getAlertsByParkCode = (code: string): Promise<Response> => {
+export const getAlertsByParkCode = (code: string | undefined): Promise<Response> => {
   const myHeaders = new Headers();
   myHeaders.append("Content-type", "application/json");
   myHeaders.append("X-Api-Key", key);
