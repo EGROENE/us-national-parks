@@ -13,12 +13,23 @@ export const getParks = (): Promise<Response> => {
   });
 };
 
-export const getAlertsByParkCode = (code: string | undefined): Promise<Response> => {
+export const getParkByCode = (code: string | undefined): Promise<Response> => {
+  const myHeaders = new Headers();
+  myHeaders.append("X-Api-Key", key);
+
+  return fetch(`${baseURL}/parks?parkCode=${code}`, {
+    method: "GET",
+    headers: myHeaders,
+    redirect: "follow",
+  });
+};
+
+export const getAllNPAlerts = (): Promise<Response> => {
   const myHeaders = new Headers();
   myHeaders.append("Content-type", "application/json");
   myHeaders.append("X-Api-Key", key);
 
-  return fetch(`${baseURL}/alerts?parkCode=${code}`, {
+  return fetch(`${baseURL}/alerts`, {
     method: "GET",
     headers: myHeaders,
     redirect: "follow",

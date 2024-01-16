@@ -21,17 +21,9 @@ export const ParkPage = () => {
   const [showEntranceFees, setShowEntranceFees] = useState<boolean>(false);
   const [showEntrancePasses, setShowEntrancePasses] = useState<boolean>(false);
   const [showContactInfo, setShowContactInfo] = useState<boolean>(false);
-
-  // State values relating to park's alerts:
-  const [parkAlerts, setParkAlerts] = useState<TParkAlert[]>();
-  const [didFetchAlerts, setDidFetchAlerts] = useState<boolean>(false);
-  const [alertsAreLoading, setAlertsAreLoading] = useState<boolean>(true);
   const [showAlerts, setShowAlerts] = useState<boolean>(false);
 
-  // Get park by park code from allNationalParks:
-  const { allNationalParks } = useMainContentContext();
-  const park: TPark = allNationalParks.filter((park) => park.parkCode === parkCode)[0];
-  document.title = `${park.fullName}`;
+  document.title = "U.S. National Parks";
 
   useEffect(() => {
     getAlertsByParkCode(park.parkCode)
@@ -67,90 +59,97 @@ export const ParkPage = () => {
   return (
     <>
       <NavBar notOnHomepage={true} />
-      <h1>{park.fullName}</h1>
-      <p>Located in {parkStates.join(", ") + parkTerritories.join(", ")}</p>
-      <p className="longitude-latitude">
-        Longitude: {`${park.longitude}`} | Latitude: {`${park.latitude}`}
-      </p>
-      <a
-        className="park-google-maps-link"
-        target="_blank"
-        href={`https://www.google.com/maps/search/?api=1&query=${park.fullName
-          .toLowerCase()
-          .replace(/\s/g, "+")}`}
-      >
-        See on Google Maps
-      </a>
-      {park && (
-        <div className="park-page-main-content-container">
-          <div className="park-page-top-section">
-            <div className="park-page-img-slideshow-container">
-              <ImageSlideshow park={park} showCaption={true} />
+      {isLoading && !successfulFetch && <LoadingMessage />}
+      {successfulFetch && !isLoading && (
+        <>
+          <h1>{park?.fullName}</h1>
+          {/* Add 'and' before last item in list of states/territories */}
+          <p>
+            Located in{" "}
+            {parkStates !== undefined &&
+              parkTerritories !== undefined &&
+              parkStates.join(", ") + parkTerritories.join(", ")}
+          </p>
+          <p className="longitude-latitude">
+            Longitude: {`${park?.longitude}`} | Latitude: {`${park?.latitude}`}
+          </p>
+          <a
+            className="park-google-maps-link"
+            target="_blank"
+            href={`https://www.google.com/maps/search/?api=1&query=${park?.fullName
+              .toLowerCase()
+              .replace(/\s/g, "+")}`}
+          >
+            See on Google Maps
+          </a>
+          {park && (
+            <div className="park-page-main-content-container">
+              <div className="park-page-top-section">
+                <div className="park-page-img-slideshow-container">
+                  <ImageSlideshow park={park} showCaption={true} />
+                </div>
+                <div className="park-basic-info-container">
+                  <header>Description</header>
+                  <p>{park.description}</p>
+                  <header>General Weather Info</header>
+                  <p>{park.weatherInfo}</p>
+                  <button onClick={() => setShowAlerts(true)}>Show Alerts</button>
+                </div>
+              </div>
+              <div className="park-page-bottom-section">
+                {showAlerts && <ParkAlerts parkCode={parkCode} />}
+                <DropdownButton
+                  text="Activities"
+                  action={() =>
+                    showActivities ? setShowActivities(false) : setShowActivities(true)
+                  }
+                  title={showActivities ? "Hide Activities" : "Show Activities"}
+                  showItems={showActivities}
+                  numberOfItems={park.activities.length}
+                />
+                <ParkActivities showActivities={showActivities} park={park} />
+                <DropdownButton
+                  action={() =>
+                    showEntranceFees
+                      ? setShowEntranceFees(false)
+                      : setShowEntranceFees(true)
+                  }
+                  text="Entrance Fees"
+                  title={showEntranceFees ? "Hide Entrance Fees" : "Show Entrance Fees"}
+                  showItems={showEntranceFees}
+                  numberOfItems={park.entranceFees.length}
+                />
+                <ParkEntranceFees park={park} showEntranceFees={showEntranceFees} />
+                <DropdownButton
+                  text="Available Passes"
+                  action={() =>
+                    showEntrancePasses
+                      ? setShowEntrancePasses(false)
+                      : setShowEntrancePasses(true)
+                  }
+                  title={
+                    showEntrancePasses ? "Hide Available Passes" : "Show Available Passes"
+                  }
+                  showItems={showEntrancePasses}
+                  numberOfItems={park.entrancePasses.length}
+                />
+                <ParkEntrancePasses park={park} showEntrancePasses={showEntrancePasses} />
+                <DropdownButton
+                  text="Contact Info"
+                  action={() =>
+                    showContactInfo ? setShowContactInfo(false) : setShowContactInfo(true)
+                  }
+                  title={showContactInfo ? "Hide Contact Info" : "Hide Contact Info"}
+                  showItems={showContactInfo}
+                  numberOfItems={Object.keys(park.contacts).length}
+                />
+                <ParkContacts park={park} showContactInfo={showContactInfo} />
+              </div>
             </div>
-            <div className="park-basic-info-container">
-              <header>Description</header>
-              <p>{park.description}</p>
-              <header>General Weather Info</header>
-              <p>{park.weatherInfo}</p>
-            </div>
-          </div>
-          <div className="park-page-bottom-section">
-            {areAlerts && (
-              <ParkAlerts
-                didFetchAlerts={didFetchAlerts}
-                alertsAreLoading={alertsAreLoading}
-                showAlerts={showAlerts}
-                setShowAlerts={setShowAlerts}
-                parkAlerts={parkAlerts}
-              />
-            )}
-            <DropdownButton
-              text="Activities"
-              action={() =>
-                showActivities ? setShowActivities(false) : setShowActivities(true)
-              }
-              title={showActivities ? "Hide Activities" : "Show Activities"}
-              showItems={showActivities}
-              numberOfItems={park.activities.length}
-            />
-            <ParkActivities showActivities={showActivities} park={park} />
-            <DropdownButton
-              action={() =>
-                showEntranceFees ? setShowEntranceFees(false) : setShowEntranceFees(true)
-              }
-              text="Entrance Fees"
-              title={showEntranceFees ? "Hide Entrance Fees" : "Show Entrance Fees"}
-              showItems={showEntranceFees}
-              numberOfItems={park.entranceFees.length}
-            />
-            <ParkEntranceFees park={park} showEntranceFees={showEntranceFees} />
-            <DropdownButton
-              text="Available Passes"
-              action={() =>
-                showEntrancePasses
-                  ? setShowEntrancePasses(false)
-                  : setShowEntrancePasses(true)
-              }
-              title={
-                showEntrancePasses ? "Hide Available Passes" : "Show Available Passes"
-              }
-              showItems={showEntrancePasses}
-              numberOfItems={park.entrancePasses.length}
-            />
-            <ParkEntrancePasses park={park} showEntrancePasses={showEntrancePasses} />
-            <DropdownButton
-              text="Contact Info"
-              action={() =>
-                showContactInfo ? setShowContactInfo(false) : setShowContactInfo(true)
-              }
-              title={showContactInfo ? "Hide Contact Info" : "Hide Contact Info"}
-              showItems={showContactInfo}
-              numberOfItems={Object.keys(park.contacts).length}
-            />
-            <ParkContacts park={park} showContactInfo={showContactInfo} />
-          </div>
-        </div>
+          )}
+        </>
       )}
+      {!isLoading && !successfulFetch && <FailInitFetchMessage />}
     </>
   );
 };

@@ -1,8 +1,8 @@
 // Remember, this file contains MainContentContext, which will need to be consumed in hook file
 // Also contains provider that should wrap App inside main.tsx. this provider shares necessary state values, etc.
 import { createContext, ReactNode, useEffect, useState } from "react";
-import { TPark, TMainContentContext } from "../types";
-import { getParks } from "../api";
+import { TPark, TMainContentContext, TParkAlert } from "../types";
+import { getParks, getAllNPAlerts } from "../api";
 import { getObjectArraySortedAlphabeticallyByProperty } from "../methods";
 
 export const MainContentContext = createContext<TMainContentContext | null>(null);
@@ -13,6 +13,12 @@ export const MainContentContextProvider = ({ children }: { children: ReactNode }
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const [allNationalParks, setAllNationalParks] = useState<TPark[]>([]);
+
+  const [allNPAlerts, setAllNPAlerts] = useState<TParkAlert[]>([]);
+
+  const [didFetchAlerts, setDidFetchAlerts] = useState(false);
+
+  const [alertsAreLoading, setAlertsAreLoading] = useState(true);
 
   const [displayedParks, setDisplayedParks] = useState<TPark[]>([]);
 
@@ -112,6 +118,24 @@ export const MainContentContextProvider = ({ children }: { children: ReactNode }
     }
   }, [allNationalParks, limit, stateOrTerritoryFilter, searchQuery]);
 
+  // Set allNPAlerts:
+  useEffect(() => {
+    getAllNPAlerts()
+      .then((response) => response.text())
+      .then((result) => {
+        setDidFetchAlerts(true);
+        const allNPParkCodes: string[] = allNationalParks.map((park) => park.parkCode);
+        const allParkAlerts: TParkAlert[] = JSON.parse(result).data;
+        setAllNPAlerts(
+          allParkAlerts.filter((alert) => allNPParkCodes.includes(alert.parkCode))
+        );
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+      .finally(() => setAlertsAreLoading(false));
+  }, [allNationalParks]);
+
   const handleStateFilter = (value: string): void => {
     if (searchQuery !== "") {
       setSearchQuery("");
@@ -142,6 +166,9 @@ export const MainContentContextProvider = ({ children }: { children: ReactNode }
     setSearchQuery,
     handleStateFilter,
     handleSearchQuery,
+    allNPAlerts,
+    didFetchAlerts,
+    alertsAreLoading,
   };
 
   return (
