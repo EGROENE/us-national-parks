@@ -24,6 +24,7 @@ export const ParkPage = () => {
   const [showEntranceFees, setShowEntranceFees] = useState<boolean>(false);
   const [showEntrancePasses, setShowEntrancePasses] = useState<boolean>(false);
   const [showContactInfo, setShowContactInfo] = useState<boolean>(false);
+  const [showAlerts, setShowAlerts] = useState<boolean>(false);
 
   document.title = "U.S. National Parks";
 
@@ -95,9 +96,11 @@ export const ParkPage = () => {
                   <p>{park.description}</p>
                   <header>General Weather Info</header>
                   <p>{park.weatherInfo}</p>
+                  <button onClick={() => setShowAlerts(true)}>Show Alerts</button>
                 </div>
               </div>
               <div className="park-page-bottom-section">
+                {showAlerts && <ParkAlerts parkCode={parkCode} />}
                 <DropdownButton
                   text="Activities"
                   action={() =>
@@ -144,7 +147,6 @@ export const ParkPage = () => {
                   numberOfItems={Object.keys(park.contacts).length}
                 />
                 <ParkContacts park={park} showContactInfo={showContactInfo} />
-                <ParkAlerts park={park} />
               </div>
             </div>
           )}

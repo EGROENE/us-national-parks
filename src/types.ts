@@ -81,6 +81,9 @@ export type TMainContentContext = {
   setSearchQuery: Dispatch<SetStateAction<string>>;
   handleStateFilter: (value: string) => void;
   handleSearchQuery: (value: string) => void;
+  allParkAlerts: TParkAlert[];
+  didFetchAlerts: boolean;
+  alertsAreLoading: boolean;
 };
 
 export type TStateAbbreviations = keyof typeof stateFilterOptions;
