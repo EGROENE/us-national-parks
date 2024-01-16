@@ -1,10 +1,18 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { NavBar } from "../NavBar/NavBar";
+
+// API methods(s):
 import { getParkByCode } from "../../api";
+
+// Type(s):
 import { TPark } from "../../types";
-import { ImageSlideshow } from "../ImageSlideshow/ImageSlideshow";
+
+// Constants:
 import { stateFilterOptions, territoryFilterOptions } from "../../constants";
+
+// Components:
+import { NavBar } from "../NavBar/NavBar";
+import { ImageSlideshow } from "../ImageSlideshow/ImageSlideshow";
 import { DropdownButton } from "../DropdownButton/DropdownButton";
 import { ParkActivities } from "../ParkPageItems/ParkActivities/ParkActivities";
 import { ParkEntranceFees } from "../ParkPageItems/ParkEntranceFees/ParkEntranceFees";

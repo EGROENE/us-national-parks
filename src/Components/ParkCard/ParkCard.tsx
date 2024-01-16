@@ -1,6 +1,12 @@
-import { TPark } from "../../types";
-import { stateFilterOptions, territoryFilterOptions } from "../../constants";
 import { Link } from "react-router-dom";
+
+// Type(s):
+import { TPark } from "../../types";
+
+// Constants:
+import { stateFilterOptions, territoryFilterOptions } from "../../constants";
+
+// Component(s):
 import { ImageSlideshow } from "../ImageSlideshow/ImageSlideshow";
 
 export const ParkCard = ({ park }: { park: TPark }) => {
