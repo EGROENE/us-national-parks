@@ -1,5 +1,3 @@
-// Remember, this file contains MainContentContext, which will need to be consumed in hook file
-// Also contains provider that should wrap App inside main.tsx. this provider shares necessary state values, etc.
 import { createContext, ReactNode, useEffect, useState } from "react";
 import { TPark, TMainContentContext, TParkAlert } from "../types";
 import { getParks, getAllNPAlerts } from "../api";
@@ -8,28 +6,24 @@ import { getObjectArraySortedAlphabeticallyByProperty } from "../methods";
 export const MainContentContext = createContext<TMainContentContext | null>(null);
 
 export const MainContentContextProvider = ({ children }: { children: ReactNode }) => {
+  // Values relating to data displayed on homepage:
   const [successfulInitFetch, setSuccessfulInitFetch] = useState<boolean>(false);
-
   const [isLoading, setIsLoading] = useState<boolean>(true);
-
   const [allNationalParks, setAllNationalParks] = useState<TPark[]>([]);
-
-  const [allNPAlerts, setAllNPAlerts] = useState<TParkAlert[]>([]);
-
-  const [didFetchAlerts, setDidFetchAlerts] = useState(false);
-
-  const [alertsAreLoading, setAlertsAreLoading] = useState(true);
-
   const [displayedParks, setDisplayedParks] = useState<TPark[]>([]);
-
   const [limit, setLimit] = useState<number>(6);
 
+  // Values relating to search & filter functionalities on homepage:
   const [stateOrTerritoryFilter, setStateOrTerritoryFilter] = useState<string>("");
-
   const [searchQuery, setSearchQuery] = useState<string>("");
 
+  // Values relating to national park alerts:
+  const [allNPAlerts, setAllNPAlerts] = useState<TParkAlert[]>([]);
+  const [didFetchAlerts, setDidFetchAlerts] = useState(false);
+  const [alertsAreLoading, setAlertsAreLoading] = useState(true);
+
   // This useEffect is to handle initial data request. If it is successful, allNationalParks is set once and for all.
-  // Is called only on loading of page in order to minimize amount of requests made to API.
+  // Is called only on loading of app in order to minimize amount of requests made to API.
   useEffect(() => {
     getParks()
       .then((response) => response.text())
@@ -58,7 +52,6 @@ export const MainContentContextProvider = ({ children }: { children: ReactNode }
 
   // This useEffect is to set displayedParks anew every time a pertinent state value changes.
   // displayedParks must be dependent on allNationalParks, which is set once & for all upon page load, in order to minimize API requests.
-  // All this functionality is put into useEffect in order to prevent to many renders.
   useEffect(() => {
     if (searchQuery === "" && stateOrTerritoryFilter !== "") {
       setDisplayedParks(
@@ -119,6 +112,7 @@ export const MainContentContextProvider = ({ children }: { children: ReactNode }
   }, [allNationalParks, limit, stateOrTerritoryFilter, searchQuery]);
 
   // Set allNPAlerts:
+  /* Necessary to do it here "behind the scenes" & not in ParkPage or a child of it so that 429 error (too many requests) doesn't occur when rendering ParkPage */
   useEffect(() => {
     getAllNPAlerts()
       .then((response) => response.text())
@@ -150,7 +144,6 @@ export const MainContentContextProvider = ({ children }: { children: ReactNode }
     setSearchQuery(value);
   };
 
-  // Eventually check if all these are actually used
   const mainContentContextValues: TMainContentContext = {
     allNationalParks,
     displayedParks,
