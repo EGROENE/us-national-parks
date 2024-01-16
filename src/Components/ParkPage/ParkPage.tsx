@@ -30,7 +30,7 @@ export const ParkPage = () => {
   const [showContactInfo, setShowContactInfo] = useState<boolean>(false);
   const [showAlerts, setShowAlerts] = useState<boolean>(false);
 
-  document.title = "U.S. National Parks";
+  document.title = park ? `${park.fullName}` : "U.S. National Parks";
 
   useEffect(() => {
     getParkByCode(parkCode)
@@ -41,7 +41,7 @@ export const ParkPage = () => {
       })
       .catch((error) => console.log(error))
       .finally(() => setParkIsLoading(false));
-  }, [setParkIsLoading, parkCode, setPark]);
+  }, [setParkIsLoading, parkCode, setPark, park]);
 
   const stateIndices: string[] | undefined = park?.states
     .replace(/,/g, " ")
