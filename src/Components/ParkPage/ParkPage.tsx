@@ -112,20 +112,14 @@ export const ParkPage = () => {
                 {showAlerts && <ParkAlerts parkCode={parkCode} />}
                 <DropdownButton
                   text="Activities"
-                  action={() =>
-                    showActivities ? setShowActivities(false) : setShowActivities(true)
-                  }
+                  action={() => setShowActivities(!showActivities)}
                   title={showActivities ? "Hide Activities" : "Show Activities"}
                   showItems={showActivities}
                   numberOfItems={park.activities.length}
                 />
                 <ParkActivities showActivities={showActivities} park={park} />
                 <DropdownButton
-                  action={() =>
-                    showEntranceFees
-                      ? setShowEntranceFees(false)
-                      : setShowEntranceFees(true)
-                  }
+                  action={() => setShowEntranceFees(!showEntranceFees)}
                   text="Entrance Fees"
                   title={showEntranceFees ? "Hide Entrance Fees" : "Show Entrance Fees"}
                   showItems={showEntranceFees}
@@ -134,11 +128,7 @@ export const ParkPage = () => {
                 <ParkEntranceFees park={park} showEntranceFees={showEntranceFees} />
                 <DropdownButton
                   text="Available Passes"
-                  action={() =>
-                    showEntrancePasses
-                      ? setShowEntrancePasses(false)
-                      : setShowEntrancePasses(true)
-                  }
+                  action={() => setShowEntrancePasses(!showEntrancePasses)}
                   title={
                     showEntrancePasses ? "Hide Available Passes" : "Show Available Passes"
                   }
@@ -148,9 +138,7 @@ export const ParkPage = () => {
                 <ParkEntrancePasses park={park} showEntrancePasses={showEntrancePasses} />
                 <DropdownButton
                   text="Contact Info"
-                  action={() =>
-                    showContactInfo ? setShowContactInfo(false) : setShowContactInfo(true)
-                  }
+                  action={() => setShowContactInfo(!showContactInfo)}
                   title={showContactInfo ? "Hide Contact Info" : "Hide Contact Info"}
                   showItems={showContactInfo}
                   numberOfItems={Object.keys(park.contacts).length}
