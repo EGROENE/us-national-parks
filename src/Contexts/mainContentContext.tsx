@@ -19,7 +19,6 @@ export const MainContentContextProvider = ({ children }: { children: ReactNode }
 
   // Values relating to national park alerts:
   const [allNPAlerts, setAllNPAlerts] = useState<TParkAlert[]>([]);
-  const [didFetchAlerts, setDidFetchAlerts] = useState(false);
   const [alertsAreLoading, setAlertsAreLoading] = useState(true);
 
   // This useEffect is to handle initial data request. If it is successful, allNationalParks is set once and for all.
@@ -117,7 +116,6 @@ export const MainContentContextProvider = ({ children }: { children: ReactNode }
     getAllNPAlerts()
       .then((response) => response.text())
       .then((result) => {
-        setDidFetchAlerts(true);
         const allNPParkCodes: string[] = allNationalParks.map((park) => park.parkCode);
         const allParkAlerts: TParkAlert[] = JSON.parse(result).data;
         setAllNPAlerts(
@@ -160,7 +158,6 @@ export const MainContentContextProvider = ({ children }: { children: ReactNode }
     handleStateFilter,
     handleSearchQuery,
     allNPAlerts,
-    didFetchAlerts,
     alertsAreLoading,
   };
 

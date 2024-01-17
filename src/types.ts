@@ -82,7 +82,6 @@ export type TMainContentContext = {
   handleStateFilter: (value: string) => void;
   handleSearchQuery: (value: string) => void;
   allNPAlerts: TParkAlert[];
-  didFetchAlerts: boolean;
   alertsAreLoading: boolean;
 };
 
