@@ -29,7 +29,7 @@ export const ParkPage = () => {
   // Values relating to park alerts:
   const { allNPAlerts } = useMainContentContext();
   const { parkCode } = useParams();
-  const [park, setPark] = useState<TPark>();
+  const [park, setPark] = useState<TPark | undefined>();
   const [parkIsLoading, setParkIsLoading] = useState<boolean>(true);
   const [didFetchPark, setDidFetchPark] = useState<boolean>(false);
 
