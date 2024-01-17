@@ -19,7 +19,7 @@ export const MainContentContextProvider = ({ children }: { children: ReactNode }
 
   // Values relating to national park alerts:
   const [allNPAlerts, setAllNPAlerts] = useState<TParkAlert[]>([]);
-  const [alertsAreLoading, setAlertsAreLoading] = useState(true);
+  const [alertsAreLoading, setAlertsAreLoading] = useState<boolean>(true);
 
   // This useEffect is to handle initial data request. If it is successful, allNationalParks is set once and for all.
   // Is called only on loading of app in order to minimize amount of requests made to API.
