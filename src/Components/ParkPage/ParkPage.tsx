@@ -31,7 +31,6 @@ export const ParkPage = () => {
   const { parkCode } = useParams();
   const [park, setPark] = useState<TPark | undefined>();
   const [parkIsLoading, setParkIsLoading] = useState<boolean>(true);
-  const [didFetchPark, setDidFetchPark] = useState<boolean>(false);
 
   // State values dictating if certain park info should be shown (changed by user & hidden by default):
   const [showActivities, setShowActivities] = useState<boolean>(false);
@@ -46,7 +45,6 @@ export const ParkPage = () => {
     getParkByCode(parkCode)
       .then((response) => response.text())
       .then((result) => {
-        setDidFetchPark(true);
         setPark(JSON.parse(result).data[0]);
       })
       .catch((error) => console.log(error))
@@ -101,8 +99,8 @@ export const ParkPage = () => {
   return (
     <>
       <NavBar notOnHomepage={true} />
-      {parkIsLoading && !didFetchPark && <LoadingMessage />}
-      {didFetchPark && !parkIsLoading && (
+      {parkIsLoading && !park && <LoadingMessage />}
+      {park && !parkIsLoading && (
         <>
           <h1>{park?.fullName}</h1>
           {/* Add 'and' before last item in list of states/territories */}
@@ -181,7 +179,7 @@ export const ParkPage = () => {
           )}
         </>
       )}
-      {!parkIsLoading && !didFetchPark && <FailInitFetchMessage />}
+      {!parkIsLoading && !park && <FailInitFetchMessage />}
     </>
   );
 };
