@@ -49,7 +49,7 @@ export const ParkPage = () => {
       })
       .catch((error) => console.log(error))
       .finally(() => setParkIsLoading(false));
-  }, [setParkIsLoading, parkCode, setPark, park]);
+  }, [parkCode, park]);
 
   const stateIndices: string[] | undefined = park?.states
     .replace(/,/g, " ")
