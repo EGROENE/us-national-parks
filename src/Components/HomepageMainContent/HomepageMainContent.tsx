@@ -25,11 +25,11 @@ export const HomepageMainContent = () => {
   }, []);
 
   return (
-    <>
+    <div className="homepage-main-content-container">
       <SearchTools />
       <AllParkCards />
       {filterUsed && !displayedParks.length && <NoFilterResultsMessage />}
       <ScrollToTopBtn distanceScrolledFromTop={distanceScrolledFromTop} />
-    </>
+    </div>
   );
 };
