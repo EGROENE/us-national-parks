@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import { getParkByCode } from "../../api";
 
 // Type(s):
-import { TPark } from "../../types";
+import { TPark, TParkAlert } from "../../types";
 
 // Constants:
 import { stateFilterOptions, territoryFilterOptions } from "../../constants";
@@ -93,8 +93,10 @@ export const ParkPage = () => {
     locations.push(lastLocation);
   }
 
-  const parkAlerts = allNPAlerts.filter((alert) => alert.parkCode === parkCode);
-  const areAlerts = parkAlerts.length > 0;
+  const parkAlerts: TParkAlert[] = allNPAlerts.filter(
+    (alert) => alert.parkCode === parkCode
+  );
+  const areAlerts: boolean = parkAlerts.length > 0;
 
   return (
     <>
@@ -147,7 +149,9 @@ export const ParkPage = () => {
                   </div>
                 </div>
                 <div className="park-page-bottom-section">
-                  {showAlerts && <ParkAlerts parkCode={parkCode} />}
+                  {showAlerts && (
+                    <ParkAlerts setShowAlerts={setShowAlerts} parkCode={parkCode} />
+                  )}
                   <DropdownButton
                     text="Activities"
                     action={() => setShowActivities(!showActivities)}
