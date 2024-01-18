@@ -12,6 +12,7 @@ export const MainContentContextProvider = ({ children }: { children: ReactNode }
   const [allNationalParks, setAllNationalParks] = useState<TPark[]>([]);
   const [displayedParks, setDisplayedParks] = useState<TPark[]>([]);
   const [limit, setLimit] = useState<number>(6);
+  const [errorCode, setErrorCode] = useState<string>("");
 
   // Values relating to search & filter functionalities on homepage:
   const [stateOrTerritoryFilter, setStateOrTerritoryFilter] = useState<string>("");
@@ -25,7 +26,12 @@ export const MainContentContextProvider = ({ children }: { children: ReactNode }
   // Is called only on loading of app in order to minimize amount of requests made to API.
   useEffect(() => {
     getParks()
-      .then((response) => response.text())
+      .then((response) => {
+        if (response.status === 429) {
+          setErrorCode("429");
+        }
+        return response.text();
+      })
       .then((result) => {
         setSuccessfulInitFetch(true);
         const parksJSArray: TPark[] = JSON.parse(result).data;
@@ -143,6 +149,7 @@ export const MainContentContextProvider = ({ children }: { children: ReactNode }
   };
 
   const mainContentContextValues: TMainContentContext = {
+    errorCode,
     allNationalParks,
     displayedParks,
     limit,

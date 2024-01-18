@@ -6,7 +6,8 @@ import { NavBar } from "./Components/NavBar/NavBar";
 import { useMainContentContext } from "./Hooks/useMainContentContext";
 
 function App() {
-  const { isLoading, successfulInitFetch, displayedParks } = useMainContentContext();
+  const { isLoading, successfulInitFetch, displayedParks, errorCode } =
+    useMainContentContext();
 
   document.title = "U.S. National Parks";
 
@@ -16,7 +17,9 @@ function App() {
       <NavBar notOnHomepage={false} />
       {isLoading && !displayedParks.length && <LoadingMessage />}
       {!isLoading && successfulInitFetch && <HomepageMainContent />}
-      {!successfulInitFetch && !isLoading && <FailInitFetchMessage />}
+      {!successfulInitFetch && !isLoading && (
+        <FailInitFetchMessage errorCode={errorCode} />
+      )}
     </>
   );
 }
