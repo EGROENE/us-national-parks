@@ -99,87 +99,101 @@ export const ParkPage = () => {
   return (
     <>
       <NavBar notOnHomepage={true} />
-      {parkIsLoading && !park && <LoadingMessage />}
-      {park && !parkIsLoading && (
-        <>
-          <h1>{park?.fullName}</h1>
-          {/* Add 'and' before last item in list of states/territories */}
-          <p>
-            Located in{" "}
-            {locations && locations.length > 2 ? locations.join(", ") : locations}
-          </p>
-          <p className="longitude-latitude">
-            Longitude: {`${park?.longitude}`} | Latitude: {`${park?.latitude}`}
-          </p>
-          <a
-            className="park-google-maps-link"
-            target="_blank"
-            href={`https://www.google.com/maps/search/?api=1&query=${park?.fullName
-              .toLowerCase()
-              .replace(/\s/g, "+")}`}
-          >
-            See on Google Maps
-          </a>
-          {park && (
-            <div className="park-page-main-content-container">
-              <div className="park-page-top-section">
-                <div className="park-page-img-slideshow-container">
-                  <ImageSlideshow park={park} showCaption={true} />
-                </div>
-                <div className="park-basic-info-container">
-                  <header>Description</header>
-                  <p>{park.description}</p>
-                  <header>General Weather Info</header>
-                  <p>{park.weatherInfo}</p>
-                  {areAlerts ? (
-                    <button onClick={() => setShowAlerts(true)}>Show Alerts</button>
-                  ) : (
-                    <p>No current alerts for this park.</p>
-                  )}
-                </div>
-              </div>
-              <div className="park-page-bottom-section">
-                {showAlerts && <ParkAlerts parkCode={parkCode} />}
-                <DropdownButton
-                  text="Activities"
-                  action={() => setShowActivities(!showActivities)}
-                  title={showActivities ? "Hide Activities" : "Show Activities"}
-                  showItems={showActivities}
-                  numberOfItems={park.activities.length}
-                />
-                <ParkActivities showActivities={showActivities} park={park} />
-                <DropdownButton
-                  action={() => setShowEntranceFees(!showEntranceFees)}
-                  text="Entrance Fees"
-                  title={showEntranceFees ? "Hide Entrance Fees" : "Show Entrance Fees"}
-                  showItems={showEntranceFees}
-                  numberOfItems={park.entranceFees.length}
-                />
-                <ParkEntranceFees park={park} showEntranceFees={showEntranceFees} />
-                <DropdownButton
-                  text="Available Passes"
-                  action={() => setShowEntrancePasses(!showEntrancePasses)}
-                  title={
-                    showEntrancePasses ? "Hide Available Passes" : "Show Available Passes"
-                  }
-                  showItems={showEntrancePasses}
-                  numberOfItems={park.entrancePasses.length}
-                />
-                <ParkEntrancePasses park={park} showEntrancePasses={showEntrancePasses} />
-                <DropdownButton
-                  text="Contact Info"
-                  action={() => setShowContactInfo(!showContactInfo)}
-                  title={showContactInfo ? "Hide Contact Info" : "Hide Contact Info"}
-                  showItems={showContactInfo}
-                  numberOfItems={Object.keys(park.contacts).length}
-                />
-                <ParkContacts park={park} showContactInfo={showContactInfo} />
+      <div className="park-page-main-content-container">
+        {parkIsLoading && !park && <LoadingMessage />}
+        {park && !parkIsLoading && (
+          <>
+            <div className="park-page-headers-container">
+              <h1>{park?.fullName}</h1>
+              {/* Add 'and' before last item in list of states/territories */}
+              <p>
+                Located in{" "}
+                {locations && locations.length > 2 ? locations.join(", ") : locations}
+              </p>
+              <p className="longitude-latitude">
+                Longitude: {`${park?.longitude}`} | Latitude: {`${park?.latitude}`}
+              </p>
+              <div className="park-google-maps-current-weather-alerts-container">
+                <p
+                  title={areAlerts ? "Click to see alerts for this park" : undefined}
+                  onClick={areAlerts ? () => setShowAlerts(true) : undefined}
+                  className={areAlerts ? "show-alerts-link" : undefined}
+                >
+                  {areAlerts ? "Show Alerts" : "No Current Alerts"}
+                </p>
+                <p>See Current Weather</p>
+                <a
+                  className="park-google-maps-link"
+                  target="_blank"
+                  href={`https://www.google.com/maps/search/?api=1&query=${park?.fullName
+                    .toLowerCase()
+                    .replace(/\s/g, "+")}`}
+                >
+                  See on Google Maps
+                </a>
               </div>
             </div>
-          )}
-        </>
-      )}
-      {!parkIsLoading && !park && <FailInitFetchMessage />}
+            {park && (
+              <div className="park-page-main-content-container">
+                <div className="park-page-top-section">
+                  <div className="park-page-img-slideshow-container">
+                    <ImageSlideshow park={park} showCaption={true} />
+                  </div>
+                  <div className="park-basic-info-container">
+                    <header>Description</header>
+                    <p>{park.description}</p>
+                    <header>General Weather Info</header>
+                    <p>{park.weatherInfo}</p>
+                  </div>
+                </div>
+                <div className="park-page-bottom-section">
+                  {showAlerts && <ParkAlerts parkCode={parkCode} />}
+                  <DropdownButton
+                    text="Activities"
+                    action={() => setShowActivities(!showActivities)}
+                    title={showActivities ? "Hide Activities" : "Show Activities"}
+                    showItems={showActivities}
+                    numberOfItems={park.activities.length}
+                  />
+                  <ParkActivities showActivities={showActivities} park={park} />
+                  <DropdownButton
+                    action={() => setShowEntranceFees(!showEntranceFees)}
+                    text="Entrance Fees"
+                    title={showEntranceFees ? "Hide Entrance Fees" : "Show Entrance Fees"}
+                    showItems={showEntranceFees}
+                    numberOfItems={park.entranceFees.length}
+                  />
+                  <ParkEntranceFees park={park} showEntranceFees={showEntranceFees} />
+                  <DropdownButton
+                    text="Available Passes"
+                    action={() => setShowEntrancePasses(!showEntrancePasses)}
+                    title={
+                      showEntrancePasses
+                        ? "Hide Available Passes"
+                        : "Show Available Passes"
+                    }
+                    showItems={showEntrancePasses}
+                    numberOfItems={park.entrancePasses.length}
+                  />
+                  <ParkEntrancePasses
+                    park={park}
+                    showEntrancePasses={showEntrancePasses}
+                  />
+                  <DropdownButton
+                    text="Contact Info"
+                    action={() => setShowContactInfo(!showContactInfo)}
+                    title={showContactInfo ? "Hide Contact Info" : "Hide Contact Info"}
+                    showItems={showContactInfo}
+                    numberOfItems={Object.keys(park.contacts).length}
+                  />
+                  <ParkContacts park={park} showContactInfo={showContactInfo} />
+                </div>
+              </div>
+            )}
+          </>
+        )}
+        {!parkIsLoading && !park && <FailInitFetchMessage />}
+      </div>
     </>
   );
 };
