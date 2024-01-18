@@ -24,8 +24,6 @@ export const getObjectArraySortedAlphabeticallyByProperty = (
 
 export const formatPhoneNumber = (phoneNumber: string) => {
   const cleaned = ("" + phoneNumber).replace(/\D/g, "");
-  console.log(cleaned.length);
-  console.log(cleaned);
   const match =
     cleaned.length === 11
       ? cleaned.match(/^(\d{1})(\d{3})(\d{3})(\d{4})$/)
