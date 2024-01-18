@@ -21,7 +21,9 @@ export const ParkContacts = ({
     <>
       {showContactInfo && Object.keys(park.contacts).length > 0 && (
         <div className="contact-infos-container">
-          <header>Phone Numbers:</header>
+          <header>
+            {park.contacts.phoneNumbers.length > 1 ? "Phone Numbers:" : "Phone Number:"}
+          </header>
           <div className="phone-numbers-container">
             {park.contacts.phoneNumbers.map((numberInfo) => (
               <p key={numberInfo.phoneNumber}>
