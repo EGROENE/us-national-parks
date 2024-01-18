@@ -118,16 +118,19 @@ export const ParkPage = () => {
                 <p
                   title={areAlerts ? "Click to see alerts for this park" : undefined}
                   onClick={areAlerts ? () => setShowAlerts(true) : undefined}
-                  className={areAlerts ? "show-alerts-link" : undefined}
+                  className={areAlerts ? "show-modal-open-google-maps" : undefined}
                 >
                   {areAlerts ? "See Current Alerts" : "No Current Alerts"}
                 </p>
-                <p title="Click to see this park's current weather">
+                <p
+                  className="show-modal-open-google-maps"
+                  title="Click to see this park's current weather"
+                >
                   See Current Weather
                 </p>
                 <a
                   title="Click to open this park's Google Maps page in a new tab"
-                  className="park-google-maps-link"
+                  className="show-modal-open-google-maps"
                   target="_blank"
                   href={`https://www.google.com/maps/search/?api=1&query=${park?.fullName
                     .toLowerCase()
