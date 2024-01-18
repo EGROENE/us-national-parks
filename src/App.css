@@ -214,9 +214,16 @@ li {
   justify-content: space-around;
 }
 
-.show-alerts-link {}
+.park-google-maps-current-weather-alerts-container p,
+.park-google-maps-current-weather-alerts-container a {
+  color: var(--theme-cream);
+  text-decoration: none;
+}
 
-.show-alerts-link:hover {
+.park-google-maps-current-weather-alerts-container p:hover,
+.park-google-maps-current-weather-alerts-container a:hover {
+  color: var(--theme-cream);
+  text-decoration: underline;
   cursor: pointer;
 }
 
@@ -225,7 +232,7 @@ li {
   position: fixed;
   top: 0;
   width: 102vw;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.8);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -265,10 +272,7 @@ li {
 
 .park-alert header {
   color: var(--theme-cream);
-}
-
-.park-google-maps-link {
-  color: var(--theme-cream);
+  font-size: 1.25rem;
 }
 
 .park-google-maps-link:hover {
