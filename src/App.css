@@ -9,6 +9,11 @@ li {
   list-style: none;
 }
 
+.init-loading-or-error-message {
+  margin: 15rem 0 0 0;
+  text-align: center;
+}
+
 .fail-fetch-message-container {
   text-align: center;
 }
@@ -199,6 +204,7 @@ li {
   flex-direction: column;
   margin-top: 1rem;
   width: 98%;
+  justify-content: center;
 }
 
 .park-google-maps-current-weather-alerts-container {
@@ -208,9 +214,7 @@ li {
   justify-content: space-around;
 }
 
-.show-alerts-link {
-  
-}
+.show-alerts-link {}
 
 .show-alerts-link:hover {
   cursor: pointer;
@@ -218,15 +222,15 @@ li {
 
 .park-alerts-modal {
   height: 100vh;
-    position: fixed;
-    top: 0;
-    width: 102vw;
-    background-color: rgba(0,0,0,0.6);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 200;
-    margin-left: -3rem;
+  position: fixed;
+  top: 0;
+  width: 102vw;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+  margin-left: -3rem;
 }
 
 .park-alerts-container {
@@ -241,10 +245,10 @@ li {
 
 .park-alerts-container i {
   position: absolute;
-    top: 5%;
-    right: 4%;
-    font-size: 2rem;
-    color: black;
+  top: 5%;
+  right: 4%;
+  font-size: 2rem;
+  color: black;
 }
 
 .park-alerts-container i:hover {
