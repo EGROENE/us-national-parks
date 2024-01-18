@@ -1,17 +1,24 @@
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
   display: flex;
   align-items: center;
   flex-direction: column;
+  width: 100vw;
 }
 
 li {
   list-style: none;
 }
 
-.init-loading-or-error-message {
+.fail-fetch-message-container {
+  text-align: center;
+}
+
+.fail-fetch-message-container p {
   margin-top: 10rem;
+}
+
+.homepage-main-content-container {
+  width: 96%;
 }
 
 .navbar {
@@ -174,10 +181,74 @@ li {
   cursor: pointer;
 }
 
+.park-page-container {
+  padding: 0 3rem;
+}
+
+.park-page-headers-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .park-page-main-content-container {
   display: flex;
   flex-direction: column;
   margin-top: 1rem;
+}
+
+.park-google-maps-current-weather-alerts-container {
+  display: flex;
+  align-items: center;
+  width: 80%;
+  justify-content: space-around;
+}
+
+.park-alerts-modal {
+  height: 100vh;
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    background-color: rgba(0,0,0,0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 200;
+    margin-left: -3rem;
+}
+
+.park-alerts-container {
+  background-color: var(--theme-cream);
+  padding: 3rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 75%;
+  position: relative;
+}
+
+.park-alerts-container i {
+  position: absolute;
+    top: 5%;
+    right: 4%;
+    font-size: 2rem;
+    color: black;
+}
+
+.park-alerts-container i:hover {
+  cursor: pointer;
+}
+
+.park-alert {
+  background-color: var(--theme-blue-light);
+  width: 20rem;
+  margin: 2rem 0.5rem;
+  text-align: center;
+  padding: 1rem;
+}
+
+.park-alert header {
+  color: var(--theme-cream);
 }
 
 .park-google-maps-link {
