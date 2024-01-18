@@ -107,7 +107,6 @@ export const ParkPage = () => {
           <>
             <div className="park-page-headers-container">
               <h1>{park?.fullName}</h1>
-              {/* Add 'and' before last item in list of states/territories */}
               <p>
                 Located in{" "}
                 {locations && locations.length > 2 ? locations.join(", ") : locations}
@@ -121,10 +120,13 @@ export const ParkPage = () => {
                   onClick={areAlerts ? () => setShowAlerts(true) : undefined}
                   className={areAlerts ? "show-alerts-link" : undefined}
                 >
-                  {areAlerts ? "Show Alerts" : "No Current Alerts"}
+                  {areAlerts ? "See Current Alerts" : "No Current Alerts"}
                 </p>
-                <p>See Current Weather</p>
+                <p title="Click to see this park's current weather">
+                  See Current Weather
+                </p>
                 <a
+                  title="Click to open this park's Google Maps page in a new tab"
                   className="park-google-maps-link"
                   target="_blank"
                   href={`https://www.google.com/maps/search/?api=1&query=${park?.fullName
