@@ -7,7 +7,6 @@ export const MainContentContext = createContext<TMainContentContext | null>(null
 
 export const MainContentContextProvider = ({ children }: { children: ReactNode }) => {
   // Values relating to data displayed on homepage:
-  const [successfulInitFetch, setSuccessfulInitFetch] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [allNationalParks, setAllNationalParks] = useState<TPark[]>([]);
   const [displayedParks, setDisplayedParks] = useState<TPark[]>([]);
@@ -33,7 +32,6 @@ export const MainContentContextProvider = ({ children }: { children: ReactNode }
         return response.text();
       })
       .then((result) => {
-        setSuccessfulInitFetch(true);
         const parksJSArray: TPark[] = JSON.parse(result).data;
         const nationalParksArray = getObjectArraySortedAlphabeticallyByProperty(
           parksJSArray
@@ -49,7 +47,6 @@ export const MainContentContextProvider = ({ children }: { children: ReactNode }
         setAllNationalParks(nationalParksArray);
       })
       .catch((error) => {
-        setSuccessfulInitFetch(false);
         console.log(error);
       })
       .finally(() => setIsLoading(false));
@@ -134,6 +131,8 @@ export const MainContentContextProvider = ({ children }: { children: ReactNode }
       .finally(() => setAlertsAreLoading(false));
   }, [allNationalParks]);
 
+  const successfulInitFetch = allNationalParks.length > 0;
+
   const handleStateFilter = (value: string): void => {
     if (searchQuery !== "") {
       setSearchQuery("");
@@ -149,6 +148,7 @@ export const MainContentContextProvider = ({ children }: { children: ReactNode }
   };
 
   const mainContentContextValues: TMainContentContext = {
+    successfulInitFetch,
     errorCode,
     allNationalParks,
     displayedParks,
@@ -156,8 +156,6 @@ export const MainContentContextProvider = ({ children }: { children: ReactNode }
     setLimit,
     isLoading,
     setIsLoading,
-    successfulInitFetch,
-    setSuccessfulInitFetch,
     stateOrTerritoryFilter,
     setStateOrTerritoryFilter,
     searchQuery,
