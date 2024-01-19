@@ -26,6 +26,8 @@ import { FailInitFetchMessage } from "../FailInitFetchMessage/FailInitFetchMessa
 import { useMainContentContext } from "../../Hooks/useMainContentContext";
 
 export const ParkPage = () => {
+  const [errorCode, setErrorCode] = useState<string>("");
+
   // Values relating to park alerts:
   const { allNPAlerts } = useMainContentContext();
   const { parkCode } = useParams();
@@ -43,7 +45,12 @@ export const ParkPage = () => {
 
   useEffect(() => {
     getParkByCode(parkCode)
-      .then((response) => response.text())
+      .then((response) => {
+        if (response.status === 429) {
+          setErrorCode("429");
+        }
+        return response.text();
+      })
       .then((result) => {
         setPark(JSON.parse(result).data[0]);
       })
@@ -201,7 +208,7 @@ export const ParkPage = () => {
             )}
           </>
         )}
-        {!parkIsLoading && !park && <FailInitFetchMessage />}
+        {!parkIsLoading && !park && <FailInitFetchMessage errorCode={errorCode} />}
       </div>
     </>
   );
