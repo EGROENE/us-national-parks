@@ -1,7 +1,7 @@
 import { npsKey } from "./strengGeheim";
 const npsBaseURL = `https://developer.nps.gov/api/v1`;
 
-// http://api.weatherapi.com/v1/current.json?key=e8bca6fdc7034fd3ac853950241901&q=London
+// http://api.weatherapi.com/v1/current.json?key=e8bca6fdc7034fd3ac853950241901&q=47.80392754,
 import { weatherAPIKey } from "./strengGeheim";
 const weatherBaseURL = "http://api.weatherapi.com/v1/current.json?";
 
@@ -39,13 +39,10 @@ export const getAllNPAlerts = (): Promise<Response> => {
   });
 };
 
-export const getParkCurrentWeather = ({
-  latitude,
-  longitude,
-}: {
-  latitude: string;
-  longitude: string;
-}): Promise<Response> => {
+export const getParkCurrentWeather = (
+  latitude: string,
+  longitude: string
+): Promise<Response> => {
   const myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
 
