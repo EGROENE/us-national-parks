@@ -24,6 +24,7 @@ import { FailInitFetchMessage } from "../FailInitFetchMessage/FailInitFetchMessa
 
 // Hook(s):
 import { useMainContentContext } from "../../Hooks/useMainContentContext";
+import { ParkCurrentWeather } from "../ParkPageItems/ParkCurrentWeather/ParkCurrentWeather";
 
 export const ParkPage = () => {
   const [errorCode, setErrorCode] = useState<string>("");
@@ -40,6 +41,7 @@ export const ParkPage = () => {
   const [showEntrancePasses, setShowEntrancePasses] = useState<boolean>(false);
   const [showContactInfo, setShowContactInfo] = useState<boolean>(false);
   const [showAlerts, setShowAlerts] = useState<boolean>(false);
+  const [showCurrentWeather, setShowCurrentWeather] = useState<boolean>(false);
 
   document.title = park ? `${park.fullName}` : "U.S. National Parks";
 
@@ -132,6 +134,7 @@ export const ParkPage = () => {
                 <p
                   className="show-modal-open-google-maps"
                   title="Click to see this park's current weather"
+                  onClick={() => setShowCurrentWeather(true)}
                 >
                   See Current Weather
                 </p>
@@ -163,6 +166,13 @@ export const ParkPage = () => {
                 <div className="park-page-bottom-section">
                   {showAlerts && (
                     <ParkAlerts setShowAlerts={setShowAlerts} parkCode={parkCode} />
+                  )}
+                  {showCurrentWeather && (
+                    <ParkCurrentWeather
+                      setShowCurrentWeather={setShowCurrentWeather}
+                      latitude={park.latitude}
+                      longitude={park.longitude}
+                    />
                   )}
                   <DropdownButton
                     text="Activities"
