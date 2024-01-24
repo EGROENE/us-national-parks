@@ -18,6 +18,7 @@ export const ParkCurrentWeather = ({
   const [parkWeather, setParkWeather] = useState<TCurrentWeather | undefined>();
   const [displayCelsius, setDisplayCelsius] = useState<boolean>(false);
   const [visibilityInKM, setVisibilityKM] = useState<boolean>(false);
+  const [gustInKM, setGustInKM] = useState<boolean>(false);
   const [precipitationInMetric, setPrecipitationInMetric] = useState<boolean>(false);
   const [pressureInMetric, setPressureInMetric] = useState<boolean>(false);
 
@@ -62,8 +63,8 @@ export const ParkCurrentWeather = ({
             />
             <WeatherDatapoint
               dataLabel="Gust: "
-              dataIsDisplayed={visibilityInKM}
-              setDataIsDisplayed={setVisibilityKM}
+              dataIsDisplayed={gustInKM}
+              setDataIsDisplayed={setGustInKM}
               data={{
                 datumOne: parkWeather?.current.gust_mph,
                 datumTwo: parkWeather?.current.gust_kph,
