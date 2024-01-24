@@ -116,6 +116,7 @@ export const ParkCurrentWeather = ({
                 separator=" | "
                 stylingClass="selected-unit"
               />
+              <p>{parkWeather?.current.condition.text}</p>
               <WeatherDatapoint
                 dataLabel="Feels like: "
                 dataIsDisplayed={displayCelsius}
@@ -129,7 +130,6 @@ export const ParkCurrentWeather = ({
                 separator=" | "
                 stylingClass="selected-unit"
               />
-              <p>{parkWeather?.current.condition.text}</p>
             </div>
           </div>
         </div>
