@@ -18,7 +18,7 @@ export const ParkCurrentWeather = ({
   const [parkWeather, setParkWeather] = useState<TCurrentWeather | undefined>();
   const [displayCelsius, setDisplayCelsius] = useState<boolean>(false);
   const [visibilityInKM, setVisibilityKM] = useState<boolean>(false);
-  const [gustInKM, setGustInKM] = useState<boolean>(false);
+  const [windInKM, setWindInKM] = useState<boolean>(false);
   const [precipitationInMetric, setPrecipitationInMetric] = useState<boolean>(false);
   const [pressureInMetric, setPressureInMetric] = useState<boolean>(false);
 
@@ -63,8 +63,8 @@ export const ParkCurrentWeather = ({
             />
             <WeatherDatapoint
               dataLabel="Gust: "
-              dataIsDisplayed={gustInKM}
-              setDataIsDisplayed={setGustInKM}
+              dataIsDisplayed={windInKM}
+              setDataIsDisplayed={setWindInKM}
               data={{
                 datumOne: parkWeather?.current.gust_mph,
                 datumTwo: parkWeather?.current.gust_kph,
@@ -127,6 +127,18 @@ export const ParkCurrentWeather = ({
                 }}
                 units={{ unitOne: "F", unitTwo: "C" }}
                 dataMetric="°"
+                separator=" | "
+                stylingClass="selected-unit"
+              />
+              <WeatherDatapoint
+                dataLabel="Wind: "
+                dataIsDisplayed={windInKM}
+                setDataIsDisplayed={setWindInKM}
+                data={{
+                  datumOne: parkWeather?.current.wind_mph,
+                  datumTwo: parkWeather?.current.wind_kph,
+                }}
+                units={{ unitOne: "mph", unitTwo: "km/h" }}
                 separator=" | "
                 stylingClass="selected-unit"
               />
