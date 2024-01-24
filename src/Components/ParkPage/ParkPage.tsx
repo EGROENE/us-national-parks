@@ -20,7 +20,7 @@ import { ParkEntrancePasses } from "../ParkPageItems/ParkEntrancePasses/ParkEntr
 import { ParkContacts } from "../ParkPageItems/ParkContacts/ParkContacts";
 import { ParkAlerts } from "../ParkPageItems/ParkAlerts/ParkAlerts";
 import { LoadingMessage } from "../LoadingMessage/LoadingMessage";
-import { FailInitFetchMessage } from "../FailInitFetchMessage/FailInitFetchMessage";
+import { FailFetchMessage } from "../FailFetchMessage/FailFetchMessage";
 
 // Hook(s):
 import { useMainContentContext } from "../../Hooks/useMainContentContext";
@@ -233,7 +233,7 @@ export const ParkPage = () => {
             )}
           </>
         )}
-        {!parkIsLoading && !park && <FailInitFetchMessage errorCode={errorCode} />}
+        {!parkIsLoading && !park && <FailFetchMessage errorCode={errorCode} />}
       </div>
     </>
   );

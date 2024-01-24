@@ -1,4 +1,4 @@
-export const FailInitFetchMessage = ({
+export const FailFetchMessage = ({
   errorCode,
   margin,
   buttonColor,

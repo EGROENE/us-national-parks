@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { TCurrentWeather } from "../../../types";
 import { WeatherDatapoint } from "../WeatherDatapoint/WeatherDatapoint";
-import { FailInitFetchMessage } from "../../FailInitFetchMessage/FailInitFetchMessage";
+import { FailFetchMessage } from "../../FailFetchMessage/FailFetchMessage";
 
 export const ParkCurrentWeather = ({
   parkWeather,
@@ -37,7 +37,7 @@ export const ParkCurrentWeather = ({
         ></i>
         <header>{parkName}</header>
         {wasErrorFetchingWeather ? (
-          <FailInitFetchMessage margin="1rem 0" buttonColor="var(--theme-blue-dark)" />
+          <FailFetchMessage margin="1rem 0" buttonColor="var(--theme-blue-dark)" />
         ) : (
           <>
             {" "}

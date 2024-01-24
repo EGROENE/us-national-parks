@@ -1,5 +1,5 @@
 import "./App.css";
-import { FailInitFetchMessage } from "./Components/FailInitFetchMessage/FailInitFetchMessage";
+import { FailFetchMessage } from "./Components/FailFetchMessage/FailFetchMessage";
 import { HomepageMainContent } from "./Components/HomepageMainContent/HomepageMainContent";
 import { LoadingMessage } from "./Components/LoadingMessage/LoadingMessage";
 import { NavBar } from "./Components/NavBar/NavBar";
@@ -18,7 +18,7 @@ function App() {
       {isLoading && !displayedParks.length && <LoadingMessage />}
       {!isLoading && successfulInitFetch && <HomepageMainContent />}
       {!successfulInitFetch && !isLoading && (
-        <FailInitFetchMessage errorCode={errorCode} />
+        <FailFetchMessage errorCode={errorCode} />
       )}
     </>
   );
