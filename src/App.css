@@ -230,7 +230,8 @@ li {
   cursor: pointer;
 }
 
-.park-alerts-modal {
+.park-alerts-modal,
+.current-weather-modal-hero {
   height: 100vh;
   position: fixed;
   top: 0;
@@ -253,7 +254,8 @@ li {
   position: relative;
 }
 
-.park-alerts-container i {
+.park-alerts-container i,
+.current-weather-container i {
   position: absolute;
   top: 5%;
   right: 4%;
@@ -261,7 +263,8 @@ li {
   color: black;
 }
 
-.park-alerts-container i:hover {
+.park-alerts-container i:hover,
+.current-weather-container i:hover {
   cursor: pointer;
 }
 
@@ -276,6 +279,94 @@ li {
 .park-alert header {
   color: var(--theme-cream);
   font-size: 1.25rem;
+}
+
+.current-weather-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 69%;
+  background-color: var(--theme-brown);
+}
+
+.current-weather-container header {
+  font-size: 2rem;
+  margin-top: 1rem;
+}
+
+.extended-weather-info-container {
+  position: relative;
+  background-color: var(--theme-brown);
+  color: black;
+  width: 80%;
+  padding: 2rem 0;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.temperature-container {
+  display: flex;
+  align-items: center;
+}
+
+.weather-img-container img {
+  height: 9rem;
+}
+
+.current-temp {
+  font-size: 3rem;
+}
+
+.current-temp-units-container {
+  font-size: 1.5rem;
+  display: inline-flex;
+  width: 4rem;
+  justify-content: space-evenly;
+  margin-left: 1rem;
+}
+
+.extended-weather-info p,
+.datapoint-container {
+  color: white;
+  margin: 1rem 0;
+  font-size: 1.5rem;
+}
+
+.datapoint-units-container {
+  margin-left: 0.5rem;
+}
+
+.weather-unit {
+  opacity: 0.4;
+}
+
+.weather-unit:hover {
+  cursor: pointer;
+}
+
+.selected-unit.weather-unit {
+  opacity: 1;
+}
+
+.basic-weather-info-container {
+  background-color: var(--theme-blue-dark);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  width: 42%;
+}
+
+.basic-weather-info-text-container {
+  text-align: left;
+}
+
+.basic-weather-info-text-container p {
+  color: white;
+  font-size: 1.5rem;
 }
 
 .park-google-maps-link:hover {
