@@ -48,6 +48,7 @@ export const ParkPage = () => {
   document.title = park ? `${park.fullName}` : "U.S. National Parks";
 
   // Retrieve current park:
+  /* Make separate request here, instead of getting park from initial request when app loads, in order to get the most up-to-date weather info */
   useEffect(() => {
     getParkByCode(parkCode)
       .then((response) => {
