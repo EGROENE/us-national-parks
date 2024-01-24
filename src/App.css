@@ -358,15 +358,30 @@ li {
   align-items: center;
   color: white;
   width: 42%;
+  padding: 1rem 0;
 }
 
 .basic-weather-info-text-container {
   text-align: left;
 }
 
+.basic-weather-info-text-container .datapoint-container {
+  margin: 0
+}
+
+.basic-weather-info-text-container .datapoint-container span {
+  font-size: 1rem;
+}
+
 .basic-weather-info-text-container p {
   color: white;
   font-size: 1.5rem;
+  margin: 0.5rem 0;
+}
+
+.current-temp-container p {
+  font-size: 2rem;
+  margin: 0
 }
 
 .park-google-maps-link:hover {
