@@ -172,6 +172,7 @@ export const ParkPage = () => {
                       setShowCurrentWeather={setShowCurrentWeather}
                       latitude={park.latitude}
                       longitude={park.longitude}
+                      parkName={park.fullName}
                     />
                   )}
                   <DropdownButton
