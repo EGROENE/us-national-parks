@@ -1,33 +1,22 @@
-import { useEffect, useState } from "react";
-import { getParkCurrentWeather } from "../../../api";
+import { useState } from "react";
 import { TCurrentWeather } from "../../../types";
 import { WeatherDatapoint } from "../WeatherDatapoint/WeatherDatapoint";
 
 export const ParkCurrentWeather = ({
-  latitude,
-  longitude,
+  parkWeather,
   setShowCurrentWeather,
   parkName,
 }: {
-  latitude: string;
-  longitude: string;
+  parkWeather: TCurrentWeather | undefined;
   setShowCurrentWeather: React.Dispatch<React.SetStateAction<boolean>>;
   parkName: string;
 }) => {
   // Get park's long/lat as prop from ParkPage:
-  const [parkWeather, setParkWeather] = useState<TCurrentWeather | undefined>();
   const [displayCelsius, setDisplayCelsius] = useState<boolean>(false);
   const [visibilityInKM, setVisibilityKM] = useState<boolean>(false);
   const [windInKM, setWindInKM] = useState<boolean>(false);
   const [precipitationInMetric, setPrecipitationInMetric] = useState<boolean>(false);
   const [pressureInMetric, setPressureInMetric] = useState<boolean>(false);
-
-  useEffect(() => {
-    getParkCurrentWeather(latitude, longitude)
-      .then((response) => response.text())
-      .then((result) => setParkWeather(JSON.parse(result)))
-      .catch((error) => console.log(error));
-  }, [latitude, longitude]);
 
   let lastUpdatedTime: Date | string | undefined;
   if (parkWeather) {

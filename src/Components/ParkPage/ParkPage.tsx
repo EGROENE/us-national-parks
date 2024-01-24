@@ -2,10 +2,10 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 // API methods(s):
-import { getParkByCode } from "../../api";
+import { getParkByCode, getParkCurrentWeather } from "../../api";
 
 // Type(s):
-import { TPark, TParkAlert } from "../../types";
+import { TPark, TParkAlert, TCurrentWeather } from "../../types";
 
 // Constants:
 import { stateFilterOptions, territoryFilterOptions } from "../../constants";
@@ -29,11 +29,12 @@ import { ParkCurrentWeather } from "../ParkPageItems/ParkCurrentWeather/ParkCurr
 export const ParkPage = () => {
   const [errorCode, setErrorCode] = useState<string>("");
 
-  // Values relating to park alerts:
+  // Values relating to park info (alerts, current weather, etc.):
   const { allNPAlerts } = useMainContentContext();
   const { parkCode } = useParams();
   const [park, setPark] = useState<TPark | undefined>();
   const [parkIsLoading, setParkIsLoading] = useState<boolean>(true);
+  const [parkWeather, setParkWeather] = useState<TCurrentWeather | undefined>();
 
   // State values dictating if certain park info should be shown (changed by user & hidden by default):
   const [showActivities, setShowActivities] = useState<boolean>(false);
@@ -45,6 +46,7 @@ export const ParkPage = () => {
 
   document.title = park ? `${park.fullName}` : "U.S. National Parks";
 
+  // Retrieve current park:
   useEffect(() => {
     getParkByCode(parkCode)
       .then((response) => {
@@ -59,6 +61,14 @@ export const ParkPage = () => {
       .catch((error) => console.log(error))
       .finally(() => setParkIsLoading(false));
   }, [parkCode, park]);
+
+  // Retrieve park's current weather:
+  useEffect(() => {
+    getParkCurrentWeather(park?.latitude, park?.longitude)
+      .then((response) => response.text())
+      .then((result) => setParkWeather(JSON.parse(result)))
+      .catch((error) => console.log(error));
+  }, [park]);
 
   const stateIndices: string[] | undefined = park?.states
     .replace(/,/g, " ")
@@ -170,8 +180,7 @@ export const ParkPage = () => {
                   {showCurrentWeather && (
                     <ParkCurrentWeather
                       setShowCurrentWeather={setShowCurrentWeather}
-                      latitude={park.latitude}
-                      longitude={park.longitude}
+                      parkWeather={parkWeather}
                       parkName={park.fullName}
                     />
                   )}
