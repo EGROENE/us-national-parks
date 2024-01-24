@@ -56,8 +56,6 @@ button {
   color: white;
 }
 button:hover {
-  color:var(--theme-brown);
-  background-color: white;
   transition: 200ms;
 }
 
