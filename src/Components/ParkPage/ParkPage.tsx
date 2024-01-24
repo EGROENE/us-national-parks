@@ -28,6 +28,7 @@ import { ParkCurrentWeather } from "../ParkPageItems/ParkCurrentWeather/ParkCurr
 
 export const ParkPage = () => {
   const [errorCode, setErrorCode] = useState<string>("");
+  const [wasErrorFetchingWeather, setWasErrorFetchingWeather] = useState<boolean>(false);
 
   // Values relating to park info (alerts, current weather, etc.):
   const { allNPAlerts } = useMainContentContext();
@@ -67,7 +68,10 @@ export const ParkPage = () => {
     getParkCurrentWeather(park?.latitude, park?.longitude)
       .then((response) => response.text())
       .then((result) => setParkWeather(JSON.parse(result)))
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        console.log(error);
+        setWasErrorFetchingWeather(true);
+      });
   }, [park]);
 
   const stateIndices: string[] | undefined = park?.states
@@ -173,17 +177,18 @@ export const ParkPage = () => {
                     <p>{park.weatherInfo}</p>
                   </div>
                 </div>
+                {showAlerts && (
+                  <ParkAlerts setShowAlerts={setShowAlerts} parkCode={parkCode} />
+                )}
+                {showCurrentWeather && (
+                  <ParkCurrentWeather
+                    setShowCurrentWeather={setShowCurrentWeather}
+                    parkWeather={parkWeather}
+                    parkName={park.fullName}
+                    wasErrorFetchingWeather={wasErrorFetchingWeather}
+                  />
+                )}
                 <div className="park-page-bottom-section">
-                  {showAlerts && (
-                    <ParkAlerts setShowAlerts={setShowAlerts} parkCode={parkCode} />
-                  )}
-                  {showCurrentWeather && (
-                    <ParkCurrentWeather
-                      setShowCurrentWeather={setShowCurrentWeather}
-                      parkWeather={parkWeather}
-                      parkName={park.fullName}
-                    />
-                  )}
                   <DropdownButton
                     text="Activities"
                     action={() => setShowActivities(!showActivities)}
