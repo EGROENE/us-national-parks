@@ -54,9 +54,7 @@ export const ParkCard = ({ park }: { park: TPark }) => {
       <div className="homepage-park-slideshow-container">
         <ImageSlideshow park={park} showCaption={false} />
       </div>
-      <Link to={`parks/${park.parkCode}`}>
-        <header>{park.fullName}</header>
-      </Link>
+      <header>{park.fullName}</header>
       <div className="state-list">
         {isInOneTerritoryAndOneState && <p>State: {parkStates.join(", ")}</p> && (
           <p>Territory: {parkTerritories.join(", ")}</p>
@@ -75,6 +73,9 @@ export const ParkCard = ({ park }: { park: TPark }) => {
         {isInSeveralStatesAndNoTerritories && <p>States: {parkStates.join(", ")}</p>}
       </div>
       <p className="park-description">{park.description}</p>
+      <Link to={`parks/${park.parkCode}`}>
+        <button className="learn-more-btn">Learn More</button>
+      </Link>
     </div>
   );
 };
