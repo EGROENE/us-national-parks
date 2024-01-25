@@ -74,7 +74,9 @@ export const ParkCard = ({ park }: { park: TPark }) => {
       </div>
       <p className="park-description">{park.description}</p>
       <Link to={`parks/${park.parkCode}`}>
-        <button className="learn-more-btn">Learn More</button>
+        <button title={`Learn more about ${park.fullName}`} className="learn-more-btn">
+          Learn More
+        </button>
       </Link>
     </div>
   );
