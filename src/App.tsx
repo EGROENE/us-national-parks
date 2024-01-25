@@ -3,6 +3,7 @@ import { FailFetchMessage } from "./Components/FailFetchMessage/FailFetchMessage
 import { HomepageMainContent } from "./Components/HomepageMainContent/HomepageMainContent";
 import { LoadingMessage } from "./Components/LoadingMessage/LoadingMessage";
 import { NavBar } from "./Components/NavBar/NavBar";
+import { UniversalFooter } from "./Components/UniversalFooter/UniversalFooter";
 import { useMainContentContext } from "./Hooks/useMainContentContext";
 
 function App() {
@@ -17,9 +18,8 @@ function App() {
       <NavBar notOnHomepage={false} />
       {isLoading && !displayedParks.length && <LoadingMessage />}
       {!isLoading && successfulInitFetch && <HomepageMainContent />}
-      {!successfulInitFetch && !isLoading && (
-        <FailFetchMessage errorCode={errorCode} />
-      )}
+      {!successfulInitFetch && !isLoading && <FailFetchMessage errorCode={errorCode} />}
+      <UniversalFooter />
     </>
   );
 }

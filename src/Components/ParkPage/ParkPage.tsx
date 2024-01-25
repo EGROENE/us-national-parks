@@ -25,6 +25,7 @@ import { FailFetchMessage } from "../FailFetchMessage/FailFetchMessage";
 // Hook(s):
 import { useMainContentContext } from "../../Hooks/useMainContentContext";
 import { ParkCurrentWeather } from "../ParkPageItems/ParkCurrentWeather/ParkCurrentWeather";
+import { UniversalFooter } from "../UniversalFooter/UniversalFooter";
 
 export const ParkPage = () => {
   const [errorCode, setErrorCode] = useState<string>("");
@@ -236,6 +237,7 @@ export const ParkPage = () => {
         )}
         {!parkIsLoading && !park && <FailFetchMessage errorCode={errorCode} />}
       </div>
+      <UniversalFooter />
     </>
   );
 };
