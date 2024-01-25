@@ -57,6 +57,7 @@ button {
 }
 button:hover {
   transition: 200ms;
+  opacity: 0.8;
 }
 
 select {
