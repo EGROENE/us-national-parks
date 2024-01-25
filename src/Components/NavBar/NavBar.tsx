@@ -4,7 +4,7 @@ export const NavBar = ({ notOnHomepage }: { notOnHomepage: boolean }) => {
   return (
     <div className="navbar">
       {notOnHomepage ? (
-        <Link to="/">
+        <Link title="To Homepage" to="/">
           <h1>U.S. National Parks</h1>
         </Link>
       ) : (

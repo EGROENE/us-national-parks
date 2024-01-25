@@ -52,6 +52,15 @@ li {
   z-index: 100;
 }
 
+.navbar a {
+  text-decoration: none;
+  color: white;
+}
+
+.navbar a:hover {
+  opacity: 0.8;
+}
+
 .search-tools {
   display: flex;
   width: 100%;
@@ -216,6 +225,10 @@ li {
   margin-top: 1rem;
   width: 98%;
   justify-content: center;
+}
+
+.learn-more-btn {
+  margin: 1rem 0;
 }
 
 .universal-footer {
