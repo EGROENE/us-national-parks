@@ -237,7 +237,7 @@ export const ParkPage = () => {
         )}
         {!parkIsLoading && !park && <FailFetchMessage errorCode={errorCode} />}
       </div>
-      <UniversalFooter />
+      {!parkIsLoading && park && <UniversalFooter />}
     </>
   );
 };
