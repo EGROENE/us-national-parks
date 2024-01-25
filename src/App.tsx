@@ -19,7 +19,7 @@ function App() {
       {isLoading && !displayedParks.length && <LoadingMessage />}
       {!isLoading && successfulInitFetch && <HomepageMainContent />}
       {!successfulInitFetch && !isLoading && <FailFetchMessage errorCode={errorCode} />}
-      <UniversalFooter />
+      {!isLoading && successfulInitFetch && <UniversalFooter />}
     </>
   );
 }
