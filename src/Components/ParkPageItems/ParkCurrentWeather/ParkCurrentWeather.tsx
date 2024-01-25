@@ -35,7 +35,12 @@ export const ParkCurrentWeather = ({
           title="Close Current Weather"
           className="fas fa-times"
         ></i>
-        <header>{parkName}</header>
+        <header className="park-modal-intro-header" style={{ color: "white" }}>
+          Weather in
+        </header>
+        <header className="park-modal-header" style={{ color: "white" }}>
+          {parkName}
+        </header>
         {wasErrorFetchingWeather ? (
           <FailFetchMessage margin="1rem 0" buttonColor="var(--theme-blue-dark)" />
         ) : (

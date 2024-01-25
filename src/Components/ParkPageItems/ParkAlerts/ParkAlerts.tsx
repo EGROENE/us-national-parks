@@ -4,9 +4,11 @@ import { TParkAlert } from "../../../types";
 export const ParkAlerts = ({
   parkCode,
   setShowAlerts,
+  parkName,
 }: {
   parkCode: string | undefined;
   setShowAlerts: React.Dispatch<React.SetStateAction<boolean>>;
+  parkName: string | undefined;
 }) => {
   const { allNPAlerts, alertsAreLoading } = useMainContentContext();
   const parkAlerts: TParkAlert[] = allNPAlerts.filter(
@@ -22,6 +24,8 @@ export const ParkAlerts = ({
           title="Close Alerts"
           className="fas fa-times"
         ></i>
+        <header className="park-modal-intro-header">Alerts for</header>
+        <header className="park-modal-header">{parkName}</header>
         {parkAlerts.map((alert) => (
           <div key={alert.id} className="park-alert">
             <header>{alert.title}</header>

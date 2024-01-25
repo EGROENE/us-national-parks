@@ -180,7 +180,11 @@ export const ParkPage = () => {
                   </div>
                 </div>
                 {showAlerts && (
-                  <ParkAlerts setShowAlerts={setShowAlerts} parkCode={parkCode} />
+                  <ParkAlerts
+                    parkName={park.fullName}
+                    setShowAlerts={setShowAlerts}
+                    parkCode={parkCode}
+                  />
                 )}
                 {showCurrentWeather && (
                   <ParkCurrentWeather
