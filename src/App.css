@@ -15,11 +15,21 @@ li {
 }
 
 .fail-fetch-message-container {
-  text-align: center;
-}
+  display: flex;
+  flex-direction: column;
+  align-items: center;}
 
 .fail-fetch-message-container p {
   margin-top: 10rem;
+}
+
+.reload-btn {
+  padding: 0.6em 1.2em;
+  margin: 1rem 0;
+}
+
+.reload-btn:hover {
+  opacity: 0.8;
 }
 
 .homepage-main-content-container {
@@ -290,14 +300,17 @@ li {
   background-color: var(--theme-brown);
 }
 
+.current-weather-container i {
+  color: white;
+}
+
 .current-weather-container header {
   font-size: 2rem;
   margin-top: 1rem;
 }
 
-.extended-weather-info-container {
+.weather-info-container {
   position: relative;
-  background-color: var(--theme-brown);
   color: black;
   width: 80%;
   padding: 2rem 0;
@@ -352,13 +365,13 @@ li {
 }
 
 .basic-weather-info-container {
-  background-color: var(--theme-blue-dark);
   display: flex;
   flex-direction: column;
   align-items: center;
   color: white;
   width: 42%;
-  padding: 1rem 0;
+  padding: 0.5rem 0;
+  background-color: var(--theme-blue-dark);
 }
 
 .basic-weather-info-text-container {
