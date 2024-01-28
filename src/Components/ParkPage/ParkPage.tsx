@@ -30,11 +30,11 @@ export const ParkPage = () => {
 
   // Values relating to park info (alerts, current weather, etc.):
   const { allNPAlerts, allNationalParks } = useMainContentContext();
+  const { parkCode } = useParams();
   const parkAlerts: TParkAlert[] = allNPAlerts.filter(
     (alert) => alert.parkCode === parkCode
   );
   const areAlerts: boolean = parkAlerts.length > 0;
-  const { parkCode } = useParams();
   const [parkWeather, setParkWeather] = useState<TCurrentWeather | undefined>();
 
   // State values dictating if certain park info should be shown (changed by user & hidden by default):
