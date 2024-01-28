@@ -1,16 +1,16 @@
 export const FailFetchMessage = ({
-  errorCode,
+  isError429,
   margin,
   buttonColor,
 }: {
-  errorCode?: string;
+  isError429?: boolean;
   margin?: string;
   buttonColor?: string;
 }) => {
   return (
     <div className="fail-fetch-message-container">
       <p style={{ margin: margin }} className="init-loading-or-error-message">
-        {errorCode === "429"
+        {isError429
           ? "Too many requests have been made to the server. Please try again later."
           : "Sorry, there was an error in fetching the data. Please reload the page."}
       </p>

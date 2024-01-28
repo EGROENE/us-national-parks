@@ -11,7 +11,7 @@ export const MainContentContextProvider = ({ children }: { children: ReactNode }
   const [allNationalParks, setAllNationalParks] = useState<TPark[]>([]);
   const [displayedParks, setDisplayedParks] = useState<TPark[]>([]);
   const [limit, setLimit] = useState<number>(6);
-  const [errorCode, setErrorCode] = useState<string>("");
+  const [isError429, setIsError429] = useState<boolean>(false);
 
   // Values relating to search & filter functionalities on homepage:
   const [stateOrTerritoryFilter, setStateOrTerritoryFilter] = useState<string>("");
@@ -27,7 +27,7 @@ export const MainContentContextProvider = ({ children }: { children: ReactNode }
     getParks()
       .then((response) => {
         if (response.status === 429) {
-          setErrorCode("429");
+          setIsError429(true);
         }
         return response.text();
       })
@@ -149,7 +149,7 @@ export const MainContentContextProvider = ({ children }: { children: ReactNode }
 
   const mainContentContextValues: TMainContentContext = {
     successfulInitFetch,
-    errorCode,
+    isError429,
     allNationalParks,
     displayedParks,
     limit,

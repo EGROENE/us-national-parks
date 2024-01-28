@@ -7,7 +7,7 @@ import { UniversalFooter } from "./Components/UniversalFooter/UniversalFooter";
 import { useMainContentContext } from "./Hooks/useMainContentContext";
 
 function App() {
-  const { isLoading, successfulInitFetch, displayedParks, errorCode } =
+  const { isLoading, successfulInitFetch, displayedParks, isError429 } =
     useMainContentContext();
 
   document.title = "U.S. National Parks";
@@ -18,7 +18,7 @@ function App() {
       <NavBar notOnHomepage={false} />
       {isLoading && !displayedParks.length && <LoadingMessage />}
       {!isLoading && successfulInitFetch && <HomepageMainContent />}
-      {!successfulInitFetch && !isLoading && <FailFetchMessage errorCode={errorCode} />}
+      {!successfulInitFetch && !isLoading && <FailFetchMessage isError429={isError429} />}
       {!isLoading && successfulInitFetch && <UniversalFooter />}
     </>
   );

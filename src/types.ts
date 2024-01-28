@@ -67,7 +67,7 @@ export interface TPark {
 //export type TParkDisplayLimit = 18 | 36 | 54 | 60;
 
 export type TMainContentContext = {
-  errorCode: string;
+  isError429: boolean;
   allNationalParks: TPark[];
   displayedParks: TPark[];
   limit: number;
