@@ -276,18 +276,17 @@ li {
   margin-left: -3rem;
 }
 
-.park-alerts-container {
+.park-alerts-body {
   background-color: var(--theme-cream);
   padding: 3rem;
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
   align-items: center;
   width: 75%;
   position: relative;
 }
 
-.park-alerts-container i,
+.park-alerts-body i,
 .current-weather-container i {
   position: absolute;
   top: 5%;
@@ -296,9 +295,14 @@ li {
   color: black;
 }
 
-.park-alerts-container i:hover,
+.park-alerts-body i:hover,
 .current-weather-container i:hover {
   cursor: pointer;
+}
+
+.park-alerts-container {
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .park-modal-header {
