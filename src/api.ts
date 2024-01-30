@@ -15,6 +15,17 @@ export const getParks = (): Promise<Response> => {
   });
 };
 
+export const getParkByCode = (code: string | undefined): Promise<Response> => {
+  const myHeaders = new Headers();
+  myHeaders.append("X-Api-Key", npsKey);
+
+  return fetch(`${npsBaseURL}/parks?parkCode=${code}`, {
+    method: "GET",
+    headers: myHeaders,
+    redirect: "follow",
+  });
+};
+
 export const getAllNPAlerts = (): Promise<Response> => {
   const myHeaders = new Headers();
   myHeaders.append("Content-type", "application/json");
