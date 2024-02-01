@@ -72,14 +72,16 @@ export const ParkPage = () => {
 
   // Get park's current weather:
   useEffect(() => {
-    getParkCurrentWeather(park?.latitude, park?.longitude)
-      .then((response) => response.text())
-      .then((result) => setParkWeather(JSON.parse(result)))
-      .catch((error) => {
-        console.log(error);
-        setWasErrorFetchingWeather(true);
-      });
-  }, [park?.latitude, park?.longitude]);
+    if (park) {
+      getParkCurrentWeather(park.latitude, park.longitude)
+        .then((response) => response.text())
+        .then((result) => setParkWeather(JSON.parse(result)))
+        .catch((error) => {
+          console.log(error);
+          setWasErrorFetchingWeather(true);
+        });
+    }
+  }, [park]);
 
   const stateIndices: string[] | undefined = park?.states
     .replace(/,/g, " ")
