@@ -62,7 +62,9 @@ export const MainContentContextProvider = ({ children }: { children: ReactNode }
         )
       );
     } else if (searchQuery !== "" && stateOrTerritoryFilter === "") {
-      const searchQueryCI = searchQuery.toLowerCase();
+      // make search queary case-insensitive & replace any multiple spaces w/ single space:
+      const searchQueryCI = searchQuery.toLowerCase().replace(/ +/g, " ");
+      console.log(searchQueryCI);
       const newDisplayedParks = [];
 
       const queryIsTopicOrActivity = (park: TPark): boolean => {
