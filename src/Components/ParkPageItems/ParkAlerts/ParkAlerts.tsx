@@ -14,44 +14,53 @@ export const ParkAlerts = ({
   const parkAlerts: TParkAlert[] = allNPAlerts.filter(
     (alert) => alert.parkCode === parkCode
   );
-  const areAlerts = parkAlerts.length > 0;
+  const areAlerts: boolean = parkAlerts.length > 0;
 
-  const currentMoment = new Date();
+  const currentMoment: Date = new Date();
 
-  // method to convert time to UTC:
-  const timeUTCEpoch = (time: Date) => {
-    const offset = time.getTimezoneOffset() * 60000; // could be negative or positive
+  // method to convert time to UTC in epoch form:
+  const timeUTCEpoch = (time: Date): number => {
+    const offset = time.getTimezoneOffset() * 60000; // could be negative or positive. returns in mins, so multiply by 60k to convert to epoch
     return time.getTime() + offset;
   };
 
-  const currentMomentUTCEpoch = timeUTCEpoch(currentMoment);
+  const currentMomentUTCEpoch: number = timeUTCEpoch(currentMoment);
 
-  const daysAgo = (lastIndexed: string) => {
+  const daysAgo = (lastIndexed: string): number => {
     const lastIndexedDate = new Date(Date.parse(lastIndexed));
     const lastIndexedUTCEpoch = timeUTCEpoch(lastIndexedDate);
-    return Math.floor((currentMomentUTCEpoch - lastIndexedUTCEpoch) / 86400000);
+    const exactDaysPassed = (currentMomentUTCEpoch - lastIndexedUTCEpoch) / 86400000;
+    // return full days passed:
+    return Math.floor(exactDaysPassed);
   };
 
-  const hoursAgo = (lastIndexed: string) => {
+  const hoursAgo = (lastIndexed: string): number => {
     const lastIndexedDate = new Date(Date.parse(lastIndexed));
     const lastIndexedUTCEpoch = timeUTCEpoch(lastIndexedDate);
-    const fullDaysPassedEpoch = daysAgo(lastIndexed) * 86400000;
-    return Math.floor(
-      (currentMomentUTCEpoch - (lastIndexedUTCEpoch - fullDaysPassedEpoch)) / 3600000
-    );
+
+    const exactDaysPassed = (currentMomentUTCEpoch - lastIndexedUTCEpoch) / 86400000;
+    const fullDaysPassed = daysAgo(lastIndexed);
+    // leftoverHoursEpoch is equal to hours left over in epoch form after subtracting full days from exact days passed since last indexed:
+    const leftoverHoursEpoch = (exactDaysPassed - fullDaysPassed) * 86400000;
+
+    // return full hours passed, accounting for full days passed:
+    return Math.floor(leftoverHoursEpoch / 3600000);
   };
 
-  const minutesAgo = (lastIndexed: string) => {
+  const minutesAgo = (lastIndexed: string): number => {
     const lastIndexedDate = new Date(Date.parse(lastIndexed));
     const lastIndexedUTCEpoch = timeUTCEpoch(lastIndexedDate);
-    const fullDaysPassedEpoch = daysAgo(lastIndexed) * 86400000;
-    // leftoverMinsEpoch is equal to remaining mins after & full hours have been deducted from currentMomentUTCEpoch
-    const leftoverMinsEpoch =
-      (currentMomentUTCEpoch - (lastIndexedUTCEpoch - fullDaysPassedEpoch)) / 3600000 -
-      Math.floor(
-        (currentMomentUTCEpoch - (lastIndexedUTCEpoch - fullDaysPassedEpoch)) / 3600000
-      );
-    return Math.floor((leftoverMinsEpoch * 3600000) / 60000);
+
+    const exactDaysPassed = (currentMomentUTCEpoch - lastIndexedUTCEpoch) / 86400000;
+    const leftoverHoursEpoch = (exactDaysPassed - daysAgo(lastIndexed)) * 86400000;
+
+    const exactHoursPassed = leftoverHoursEpoch / 3600000;
+    const fullHoursPassed = hoursAgo(lastIndexed);
+    // leftoverMinsEpoch is equal to hours left over in epoch form after subtracting full hours from exact hours passed since last indexed:
+    const leftoverMinsEpoch = (exactHoursPassed - fullHoursPassed) * 3600000;
+
+    // return full minutes passed, accounting for full days & full hours passed:
+    return Math.floor(leftoverMinsEpoch / 60000);
   };
 
   return (
