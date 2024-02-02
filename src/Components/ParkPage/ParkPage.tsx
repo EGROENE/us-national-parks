@@ -26,6 +26,7 @@ import { LoadingMessage } from "../LoadingMessage/LoadingMessage";
 
 // Hook(s):
 import { useMainContentContext } from "../../Hooks/useMainContentContext";
+import { ParkCard } from "../ParkCard/ParkCard";
 
 export const ParkPage = () => {
   const [wasErrorFetchingWeather, setWasErrorFetchingWeather] = useState<boolean>(false);
@@ -49,6 +50,7 @@ export const ParkPage = () => {
   const [showContactInfo, setShowContactInfo] = useState<boolean>(false);
   const [showAlerts, setShowAlerts] = useState<boolean>(false);
   const [showCurrentWeather, setShowCurrentWeather] = useState<boolean>(false);
+  const [showNearbyParks, setShowNearbyParks] = useState<boolean>(false);
 
   document.title = park ? `${park.fullName}` : "U.S. National Parks";
 
@@ -126,6 +128,45 @@ export const ParkPage = () => {
     // Add lastLocation to end of locations array:
     locations.push(lastLocation);
   }
+
+  // combine state & territory indices for current park into one array (exist in API as strings, not string[]):
+  let stateTerritoryIndices: string[] = [];
+  if (stateIndices && territoryIndices) {
+    stateTerritoryIndices = stateIndices.concat(territoryIndices);
+  }
+
+  // Get array of parks in same state/territory as current park, if any:
+  const nearbyParks: TPark[] = [];
+  if (stateTerritoryIndices) {
+    /* Check if array of state/territory indices of each other park includes any state/territory index of current park: */
+    for (const index of stateTerritoryIndices) {
+      for (const otherPark of allNationalParks) {
+        const otherParkStateIndices: string[] | undefined = otherPark?.states
+          .replace(/,/g, " ")
+          .split(" ")
+          .filter((otherParkStateIndex) =>
+            Object.keys(stateFilterOptions).includes(otherParkStateIndex)
+          );
+        const otherParkTerritoryIndices: string[] | undefined = otherPark?.states
+          .replace(/,/g, " ")
+          .split(" ")
+          .filter((otherParkTerritoryIndex) =>
+            Object.keys(territoryFilterOptions).includes(otherParkTerritoryIndex)
+          );
+        const otherParkAllIndices = otherParkStateIndices?.concat(
+          otherParkTerritoryIndices
+        );
+        /* If any index in state/territory array of current park is included in array of state/territory indices of any other park, add this other park to nearbyParks array: */
+        if (
+          otherParkAllIndices?.includes(index) &&
+          otherPark.parkCode !== park?.parkCode
+        ) {
+          nearbyParks.push(otherPark);
+        }
+      }
+    }
+  }
+  console.log(nearbyParks);
 
   return (
     <>
@@ -227,11 +268,27 @@ export const ParkPage = () => {
                 <DropdownButton
                   text="Contact Info"
                   action={() => setShowContactInfo(!showContactInfo)}
-                  title={showContactInfo ? "Hide Contact Info" : "Hide Contact Info"}
+                  title={showContactInfo ? "Hide Contact Info" : "Show Contact Info"}
                   showItems={showContactInfo}
                   numberOfItems={Object.keys(park.contacts).length}
                 />
                 <ParkContacts park={park} showContactInfo={showContactInfo} />
+                {nearbyParks.length > 0 && (
+                  <DropdownButton
+                    text={nearbyParks.length === 1 ? "Nearby Park" : "Nearby Parks"}
+                    action={() => setShowNearbyParks(!showNearbyParks)}
+                    title={showNearbyParks ? "Hide Nearby Parks" : "Show Nearby Parks"}
+                    showItems={showNearbyParks}
+                    numberOfItems={nearbyParks.length}
+                  />
+                )}
+                {nearbyParks.length > 0 && showNearbyParks && (
+                  <div className="nearby-parks-container">
+                    {nearbyParks.map((park: TPark) => (
+                      <ParkCard key={park.id} park={park} />
+                    ))}
+                  </div>
+                )}
               </div>
             </div>
           </>
