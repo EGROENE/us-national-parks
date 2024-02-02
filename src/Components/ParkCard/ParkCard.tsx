@@ -9,7 +9,13 @@ import { stateFilterOptions, territoryFilterOptions } from "../../constants";
 // Component(s):
 import { ImageSlideshow } from "../ImageSlideshow/ImageSlideshow";
 
-export const ParkCard = ({ park }: { park: TPark }) => {
+export const ParkCard = ({
+  park,
+  showDescription,
+}: {
+  park: TPark;
+  showDescription?: boolean;
+}) => {
   const stateIndices: string[] = park.states
     .replace(/,/g, " ")
     .split(" ")
@@ -72,8 +78,8 @@ export const ParkCard = ({ park }: { park: TPark }) => {
         {isInOneStateAndNoTerritories && <p>State: {parkStates.join(", ")}</p>}
         {isInSeveralStatesAndNoTerritories && <p>States: {parkStates.join(", ")}</p>}
       </div>
-      <p className="park-description">{park.description}</p>
-      <Link to={`parks/${park.parkCode}`}>
+      {showDescription && <p className="park-description">{park.description}</p>}
+      <Link to={`/parks/${park.parkCode}`}>
         <button title={`Learn more about ${park.fullName}`} className="learn-more-btn">
           Learn More
         </button>
