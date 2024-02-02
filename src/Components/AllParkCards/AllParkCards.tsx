@@ -18,7 +18,7 @@ export const AllParkCards = () => {
     <>
       <div className="card-container">
         {displayedParks.map((park: TPark) => (
-          <ParkCard key={park.id} park={park} />
+          <ParkCard key={park.id} park={park} showDescription={true} />
         ))}
       </div>
       {displayShowMoreBtn && <ShowMoreBtn />}
