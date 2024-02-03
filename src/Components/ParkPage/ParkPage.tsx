@@ -74,6 +74,7 @@ export const ParkPage = () => {
 
   // Get park's current weather:
   useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
     if (park) {
       getParkCurrentWeather(park.latitude, park.longitude)
         .then((response) => response.text())
