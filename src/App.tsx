@@ -1,4 +1,5 @@
 import "./App.css";
+import "./responsive.css";
 import { FailFetchMessage } from "./Components/FailFetchMessage/FailFetchMessage";
 import { HomepageMainContent } from "./Components/HomepageMainContent/HomepageMainContent";
 import { LoadingMessage } from "./Components/LoadingMessage/LoadingMessage";
