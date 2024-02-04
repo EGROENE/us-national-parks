@@ -621,6 +621,25 @@ a {
   flex-wrap: wrap;
 }
 
+.nearby-parks-container .park-card {
+  width: 42%;
+}
+
+.nearby-parks-container .park-card img {
+  width: 13rem;
+  height: 7rem;
+}
+
+.nearby-parks-container .park-card button {
+  padding: 0.3em 0.6em;
+  margin: 0.5rem;
+}
+
+.nearby-parks-container .homepage-park-slideshow-container i {
+  font-size: 3rem;
+  margin: auto 1.5rem;
+}
+
 .park-card button {
   border-radius: 8px;
   border: 1px solid transparent;
