@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "./App.tsx";
 import { ParkPage } from "./Components/ParkPage/ParkPage.tsx";
+import { QuizMain } from "./Components/QuizComponents/QuizMain/QuizMain.tsx";
 import "./index.css";
 import { MainContentContextProvider } from "./Contexts/mainContentContext.tsx";
 
@@ -14,6 +15,10 @@ const router = createBrowserRouter([
   {
     path: "parks/:parkCode",
     element: <ParkPage />,
+  },
+  {
+    path: "quiz",
+    element: <QuizMain />,
   },
 ]);
 

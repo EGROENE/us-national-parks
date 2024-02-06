@@ -12,7 +12,9 @@ export const NavBar = ({ notOnHomepage }: { notOnHomepage: boolean }) => {
       )}
       <nav>
         <ul>
-          <li>Quiz</li>
+          <Link to="/quiz" title="Take the Quiz">
+            <li>Quiz</li>
+          </Link>
           <li>Photo Gallery</li>
         </ul>
       </nav>
