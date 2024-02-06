@@ -43,8 +43,8 @@ export const ImageSlideshow = ({
           ></i>
         )}
         <img
-          src={park.images[`${imgIndex}`].url && park.images[`${imgIndex}`].url}
-          alt={park.images[`${imgIndex}`].altText && park.images[`${imgIndex}`].altText}
+          src={park.images[`${imgIndex}`] && park.images[`${imgIndex}`].url}
+          alt={park.images[`${imgIndex}`] && park.images[`${imgIndex}`].altText}
         />
         {park?.images.length > 1 && (
           <i
