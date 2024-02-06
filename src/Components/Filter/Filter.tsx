@@ -97,9 +97,6 @@ export const Filter = () => {
         <option selected={stateOrTerritoryFilter === "NE"} value="NE">
           Nebraska
         </option>
-        <option selected={stateOrTerritoryFilter === "MP"} value="MP">
-          Northern Mariana Islands
-        </option>
         <option selected={stateOrTerritoryFilter === "NV"} value="NV">
           Nevada
         </option>
@@ -120,6 +117,9 @@ export const Filter = () => {
         </option>
         <option selected={stateOrTerritoryFilter === "ND"} value="ND">
           North Dakota
+        </option>
+        <option selected={stateOrTerritoryFilter === "MP"} value="MP">
+          Northern Mariana Islands
         </option>
         <option selected={stateOrTerritoryFilter === "OH"} value="OH">
           Ohio
