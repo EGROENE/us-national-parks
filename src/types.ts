@@ -142,3 +142,14 @@ export interface TCurrentWeather {
     gust_kph: number;
   };
 }
+
+export interface TQuizQuestion {
+  question: string;
+  answers: {
+    rightAnswer: string;
+    wrongAnswerOne: string;
+    wrongAnswerTwo?: string;
+    wrongAnswerThree?: string;
+  };
+  comment?: string;
+}
