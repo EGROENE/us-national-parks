@@ -167,7 +167,6 @@ export const ParkPage = () => {
       }
     }
   }
-  console.log(nearbyParks);
 
   return (
     <>
