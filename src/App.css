@@ -56,12 +56,8 @@
   margin-bottom: 3rem;
 }
 
-li {
-  list-style: none;
-}
-
-a {
-  text-decoration: none;
+.active-link {
+  cursor: pointer;
 }
 
 .fail-fetch-message-container {
@@ -100,15 +96,6 @@ a {
   background-color: var(--theme-brown);
   padding: 1rem;
   z-index: 100;
-}
-
-.navbar a {
-  text-decoration: none;
-  color: white;
-}
-
-.navbar a:hover {
-  opacity: 0.8;
 }
 
 .search-tools {
