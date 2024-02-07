@@ -7,9 +7,9 @@ import { TPark } from "../../types";
 import { stateFilterOptions, territoryFilterOptions } from "../../constants";
 
 // Component(s):
-import { ImageSlideshow } from "../ImageSlideshow/ImageSlideshow";
+import ImageSlideshow from "../ImageSlideshow/ImageSlideshow";
 
-export const ParkCard = ({
+const ParkCard = ({
   park,
   showDescription,
 }: {
@@ -87,3 +87,4 @@ export const ParkCard = ({
     </div>
   );
 };
+export default ParkCard;

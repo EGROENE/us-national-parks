@@ -1,7 +1,7 @@
 import { useMainContentContext } from "../../Hooks/useMainContentContext";
 import { stateFilterOptions, territoryFilterOptions } from "../../constants";
 
-export const NoFilterResultsMessage = () => {
+const NoFilterResultsMessage = () => {
   const { stateOrTerritoryFilter } = useMainContentContext();
   return Object.keys(territoryFilterOptions).indexOf(stateOrTerritoryFilter) !== -1 ? (
     <p>{`No national parks exist in ${
@@ -15,3 +15,4 @@ export const NoFilterResultsMessage = () => {
     }`}</p>
   );
 };
+export default NoFilterResultsMessage;

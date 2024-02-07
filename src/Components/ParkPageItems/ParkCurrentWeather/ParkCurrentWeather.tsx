@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { TCurrentWeather } from "../../../types";
-import { WeatherDatapoint } from "../WeatherDatapoint/WeatherDatapoint";
-import { FailFetchMessage } from "../../FailFetchMessage/FailFetchMessage";
+import WeatherDatapoint from "../WeatherDatapoint/WeatherDatapoint";
+import FailFetchMessage from "../../FailFetchMessage/FailFetchMessage";
 
-export const ParkCurrentWeather = ({
+const ParkCurrentWeather = ({
   parkWeather,
   setShowCurrentWeather,
   parkName,
@@ -153,3 +153,4 @@ export const ParkCurrentWeather = ({
     </div>
   );
 };
+export default ParkCurrentWeather;

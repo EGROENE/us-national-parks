@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-export const NavBar = ({
+const NavBar = ({
   notOnHomepage,
   notOnQuizPage,
 }: {
@@ -31,3 +31,4 @@ export const NavBar = ({
     </div>
   );
 };
+export default NavBar;

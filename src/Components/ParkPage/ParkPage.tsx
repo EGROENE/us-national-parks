@@ -26,9 +26,9 @@ import LoadingMessage from "../LoadingMessage/LoadingMessage";
 
 // Hook(s):
 import { useMainContentContext } from "../../Hooks/useMainContentContext";
-import { ParkCard } from "../ParkCard/ParkCard";
+import ParkCard from "../ParkCard/ParkCard";
 
-export const ParkPage = () => {
+const ParkPage = () => {
   const [wasErrorFetchingWeather, setWasErrorFetchingWeather] = useState<boolean>(false);
 
   // Values relating to park info (alerts, current weather, etc.):
@@ -302,3 +302,4 @@ export const ParkPage = () => {
     </>
   );
 };
+export default ParkPage;

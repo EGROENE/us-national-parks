@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import { AllParkCards } from "../AllParkCards/AllParkCards";
-import { ScrollToTopBtn } from "../ScrollToTopBtn/ScrollToTopBtn";
-import { SearchTools } from "../SearchTools/SearchTools";
+import AllParkCards from "../AllParkCards/AllParkCards";
+import ScrollToTopBtn from "../ScrollToTopBtn/ScrollToTopBtn";
+import SearchTools from "../SearchTools/SearchTools";
 import { useMainContentContext } from "../../Hooks/useMainContentContext";
-import { NoFilterResultsMessage } from "../NoFilterResultsMessage/NoFilterResultsMessage";
+import NoFilterResultsMessage from "../NoFilterResultsMessage/NoFilterResultsMessage";
 
-export const HomepageMainContent = () => {
+const HomepageMainContent = () => {
   const { stateOrTerritoryFilter, searchQuery, displayedParks } = useMainContentContext();
   const [distanceScrolledFromTop, setDistanceScrolledFromTop] = useState<number>(0);
 
@@ -33,3 +33,4 @@ export const HomepageMainContent = () => {
     </div>
   );
 };
+export default HomepageMainContent;

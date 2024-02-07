@@ -3,13 +3,7 @@ import { TPark } from "../../types";
 
 type TDirection = "next" | "prev";
 
-export const ImageSlideshow = ({
-  park,
-  showCaption,
-}: {
-  park: TPark;
-  showCaption: boolean;
-}) => {
+const ImageSlideshow = ({ park, showCaption }: { park: TPark; showCaption: boolean }) => {
   const [imgIndex, setImgIndex] = useState<number>(
     Math.floor(Math.random() * park.images.length)
   );
@@ -58,3 +52,4 @@ export const ImageSlideshow = ({
     </div>
   );
 };
+export default ImageSlideshow;

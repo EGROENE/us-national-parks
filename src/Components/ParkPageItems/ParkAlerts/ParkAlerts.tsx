@@ -1,7 +1,7 @@
 import { useMainContentContext } from "../../../Hooks/useMainContentContext";
 import { TParkAlert } from "../../../types";
 
-export const ParkAlerts = ({
+const ParkAlerts = ({
   parkCode,
   setShowAlerts,
   parkName,
@@ -104,3 +104,4 @@ export const ParkAlerts = ({
     </div>
   );
 };
+export default ParkAlerts;

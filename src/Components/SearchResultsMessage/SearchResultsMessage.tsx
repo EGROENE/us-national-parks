@@ -1,6 +1,6 @@
 import { useMainContentContext } from "../../Hooks/useMainContentContext";
 
-export const SearchResultsMessage = () => {
+const SearchResultsMessage = () => {
   const { displayedParks } = useMainContentContext();
 
   if (displayedParks.length) {
@@ -13,3 +13,4 @@ export const SearchResultsMessage = () => {
   }
   return <p>Your search didn't yield any results</p>;
 };
+export default SearchResultsMessage;

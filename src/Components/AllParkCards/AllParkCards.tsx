@@ -1,10 +1,10 @@
 import { useMainContentContext } from "../../Hooks/useMainContentContext";
 import { TPark } from "../../types";
-import { ParkCard } from "../ParkCard/ParkCard";
-import { ShowMoreBtn } from "../ShowMoreBtn/ShowMoreBtn";
+import ParkCard from "../ParkCard/ParkCard";
+import ShowMoreBtn from "../ShowMoreBtn/ShowMoreBtn";
 
 // map inside this comp to create ParkCard for every park currently in displayedParks
-export const AllParkCards = () => {
+const AllParkCards = () => {
   const { displayedParks, stateOrTerritoryFilter, searchQuery, allNationalParks } =
     useMainContentContext();
 
@@ -25,3 +25,4 @@ export const AllParkCards = () => {
     </>
   );
 };
+export default AllParkCards;

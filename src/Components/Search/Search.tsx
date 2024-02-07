@@ -1,7 +1,7 @@
 import { useMainContentContext } from "../../Hooks/useMainContentContext";
-import { SearchResultsMessage } from "../SearchResultsMessage/SearchResultsMessage";
+import SearchResultsMessage from "../SearchResultsMessage/SearchResultsMessage";
 
-export const Search = () => {
+const Search = () => {
   const { searchQuery, setSearchQuery, stateOrTerritoryFilter, handleSearchQuery } =
     useMainContentContext();
   const searchBarUsed = stateOrTerritoryFilter === "" && searchQuery !== "";
@@ -26,3 +26,4 @@ export const Search = () => {
     </div>
   );
 };
+export default Search;

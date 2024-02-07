@@ -1,7 +1,7 @@
 import { TPark } from "../../../types";
 import { formatPhoneNumber } from "../../../methods";
 
-export const ParkContacts = ({
+const ParkContacts = ({
   park,
   showContactInfo,
 }: {
@@ -43,3 +43,4 @@ export const ParkContacts = ({
     </>
   );
 };
+export default ParkContacts;

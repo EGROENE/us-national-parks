@@ -1,6 +1,6 @@
 // Components:
 import { useState } from "react";
-import { NavBar } from "../../NavBar/NavBar";
+import NavBar from "../../NavBar/NavBar";
 import QuizStart from "../QuizStart/QuizStart";
 
 // Constants:
@@ -14,7 +14,7 @@ import { TQuizQuestion } from "../../../types";
 import QuizQuestion from "../QuizQuestion/QuizQuestion";
 import QuizEnding from "../QuizEnding/QuizEnding";
 
-export const QuizMain = () => {
+const QuizMain = () => {
   const [totalQuestions, setTotalQuestions] = useState<number | undefined>();
   const [questionIndex, setQuestionIndex] = useState<number>(0);
   const [score, setScore] = useState<number>(0);
@@ -48,3 +48,4 @@ export const QuizMain = () => {
     </>
   );
 };
+export default QuizMain;

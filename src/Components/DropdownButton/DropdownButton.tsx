@@ -5,7 +5,7 @@ interface DropdownButtonProps {
   showItems: boolean;
   numberOfItems: number;
 }
-export const DropdownButton = ({
+const DropdownButton = ({
   text,
   action,
   title,
@@ -24,3 +24,4 @@ export const DropdownButton = ({
     </button>
   );
 };
+export default DropdownButton;

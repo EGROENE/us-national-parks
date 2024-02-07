@@ -1,4 +1,4 @@
-export const ScrollToTopBtn = ({
+const ScrollToTopBtn = ({
   distanceScrolledFromTop,
 }: {
   distanceScrolledFromTop: number;
@@ -16,3 +16,4 @@ export const ScrollToTopBtn = ({
     ></i>
   );
 };
+export default ScrollToTopBtn;

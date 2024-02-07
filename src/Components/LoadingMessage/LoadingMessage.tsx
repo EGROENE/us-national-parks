@@ -1,5 +1,5 @@
 // Should return message & loading animation
-export const LoadingMessage = () => {
+const LoadingMessage = () => {
   return (
     <div className="loader-container">
       <div className="loader">
@@ -13,3 +13,4 @@ export const LoadingMessage = () => {
     </div>
   );
 };
+export default LoadingMessage;

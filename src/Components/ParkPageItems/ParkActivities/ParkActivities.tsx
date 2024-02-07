@@ -1,7 +1,7 @@
 import { getObjectArraySortedAlphabeticallyByProperty } from "../../../methods";
 import { TPark } from "../../../types";
 
-export const ParkActivities = ({
+const ParkActivities = ({
   park,
   showActivities,
 }: {
@@ -27,3 +27,4 @@ export const ParkActivities = ({
     </>
   );
 };
+export default ParkActivities;

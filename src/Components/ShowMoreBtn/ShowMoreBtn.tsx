@@ -1,6 +1,6 @@
 import { useMainContentContext } from "../../Hooks/useMainContentContext";
 
-export const ShowMoreBtn = () => {
+const ShowMoreBtn = () => {
   const { limit, setLimit, allNationalParks } = useMainContentContext();
   return (
     <button
@@ -14,3 +14,4 @@ export const ShowMoreBtn = () => {
     </button>
   );
 };
+export default ShowMoreBtn;

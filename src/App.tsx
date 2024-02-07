@@ -1,10 +1,10 @@
 import "./App.css";
 import "./responsive.css";
-import { FailFetchMessage } from "./Components/FailFetchMessage/FailFetchMessage";
-import { HomepageMainContent } from "./Components/HomepageMainContent/HomepageMainContent";
-import { LoadingMessage } from "./Components/LoadingMessage/LoadingMessage";
-import { NavBar } from "./Components/NavBar/NavBar";
-import { UniversalFooter } from "./Components/UniversalFooter/UniversalFooter";
+import FailFetchMessage from "./Components/FailFetchMessage/FailFetchMessage";
+import HomepageMainContent from "./Components/HomepageMainContent/HomepageMainContent";
+import LoadingMessage from "./Components/LoadingMessage/LoadingMessage";
+import NavBar from "./Components/NavBar/NavBar";
+import UniversalFooter from "./Components/UniversalFooter/UniversalFooter";
 import { useMainContentContext } from "./Hooks/useMainContentContext";
 
 function App() {

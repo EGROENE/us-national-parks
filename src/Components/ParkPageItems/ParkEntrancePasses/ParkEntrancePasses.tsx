@@ -1,6 +1,6 @@
 import { TPark } from "../../../types";
 
-export const ParkEntrancePasses = ({
+const ParkEntrancePasses = ({
   park,
   showEntrancePasses,
 }: {
@@ -27,3 +27,4 @@ export const ParkEntrancePasses = ({
     </>
   );
 };
+export default ParkEntrancePasses;

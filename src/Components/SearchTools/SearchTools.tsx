@@ -1,8 +1,8 @@
 // Child comps: FilterFunctionality, SearchFunctionality
-import { Filter } from "../Filter/Filter";
-import { Search } from "../Search/Search";
+import Filter from "../Filter/Filter";
+import Search from "../Search/Search";
 
-export const SearchTools = () => {
+const SearchTools = () => {
   return (
     <div className="search-tools">
       <Filter />
@@ -10,3 +10,4 @@ export const SearchTools = () => {
     </div>
   );
 };
+export default SearchTools;

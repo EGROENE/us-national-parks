@@ -1,6 +1,6 @@
 import { TPark } from "../../../types";
 
-export const ParkEntranceFees = ({
+const ParkEntranceFees = ({
   park,
   showEntranceFees,
 }: {
@@ -27,3 +27,4 @@ export const ParkEntranceFees = ({
     </>
   );
 };
+export default ParkEntranceFees;

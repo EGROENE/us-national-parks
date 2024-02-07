@@ -10,7 +10,7 @@ interface WeatherDatapointProps {
   stylingClass: string;
 }
 
-export const WeatherDatapoint = ({
+const WeatherDatapoint = ({
   datapoint,
   dataLabel,
   dataIsDisplayed,
@@ -53,3 +53,4 @@ export const WeatherDatapoint = ({
     </div>
   );
 };
+export default WeatherDatapoint;

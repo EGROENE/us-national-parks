@@ -1,4 +1,4 @@
-export const FailFetchMessage = ({
+const FailFetchMessage = ({
   isError429,
   margin,
   buttonColor,
@@ -24,3 +24,4 @@ export const FailFetchMessage = ({
     </div>
   );
 };
+export default FailFetchMessage;
