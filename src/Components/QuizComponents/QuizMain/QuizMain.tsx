@@ -26,7 +26,7 @@ export const QuizMain = () => {
 
   // Variables pertaining to logic that determines parts of quiz that should render (done to simplify return statement below):
   const quizNotStarted: boolean = !quizLength;
-  const quizIsOver: boolean = questionIndex >= currentQuestions.length - 1;
+  const quizIsOver: boolean = questionIndex > currentQuestions.length - 1;
   const quizBegunAndNotFinished: boolean = quizLength !== undefined && !quizIsOver;
 
   return (
