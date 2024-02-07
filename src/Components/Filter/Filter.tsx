@@ -1,6 +1,6 @@
 import { useMainContentContext } from "../../Hooks/useMainContentContext";
 
-export const Filter = () => {
+const Filter = () => {
   const { handleStateFilter, stateOrTerritoryFilter } = useMainContentContext();
 
   return (
@@ -16,14 +16,14 @@ export const Filter = () => {
         <option selected={stateOrTerritoryFilter === "AK"} value="AK">
           Alaska
         </option>
-        <option selected={stateOrTerritoryFilter === "AR"} value="AR">
-          Arkansas
-        </option>
         <option selected={stateOrTerritoryFilter === "AS"} value="AS">
           American Samoa
         </option>
         <option selected={stateOrTerritoryFilter === "AZ"} value="AZ">
           Arizona
+        </option>
+        <option selected={stateOrTerritoryFilter === "AR"} value="AR">
+          Arkansas
         </option>
         <option selected={stateOrTerritoryFilter === "CA"} value="CA">
           California
@@ -179,3 +179,4 @@ export const Filter = () => {
     </div>
   );
 };
+export default Filter;
