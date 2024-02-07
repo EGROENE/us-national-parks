@@ -36,7 +36,15 @@ export const formatPhoneNumber = (phoneNumber: string) => {
   return undefined;
 };
 
-export const shuffleArray = (array: TQuizQuestion[]): TQuizQuestion[] => {
+export const shuffleQuestionsArray = (array: TQuizQuestion[]): TQuizQuestion[] => {
+  for (let i = 1; i < array.length; i++) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+};
+
+export const shuffleAnswersArray = (array: [string, string][]): [string, string][] => {
   for (let i = 1; i < array.length; i++) {
     const j = Math.floor(Math.random() * (i + 1));
     [array[i], array[j]] = [array[j], array[i]];
