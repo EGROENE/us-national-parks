@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const QuizEnding = ({ finalScore }: { finalScore: number }) => {
   let feedback: string = "";
   switch (true) {
@@ -21,6 +23,10 @@ const QuizEnding = ({ finalScore }: { finalScore: number }) => {
       <h1>Thanks for playing the quiz! Your final score is:</h1>
       <h2>{`${(finalScore * 100).toFixed(2)}%`}</h2>
       <p>{feedback}</p>
+      <button onClick={() => window.location.reload()}>Play Again!</button>
+      <Link to="/">
+        <button>Back to Homepage</button>
+      </Link>
     </>
   );
 };
