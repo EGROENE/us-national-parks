@@ -9,16 +9,17 @@ const QuizQuestion = ({
   score,
   setScore,
 }: {
-  question: TQuizQuestion;
+  question: TQuizQuestion | undefined;
   questionIndex: number;
   setQuestionIndex: React.Dispatch<React.SetStateAction<number>>;
   score: number;
   setScore: React.Dispatch<React.SetStateAction<number>>;
 }) => {
   // randomize order of question's answers:
-  const randomizedAnswers: [string, string][] = shuffleQuizAnswersArray(
-    Object.entries(question.answers)
-  );
+  let randomizedAnswers: [string, string][] | undefined;
+  if (question) {
+    randomizedAnswers = shuffleQuizAnswersArray(Object.entries(question.answers));
+  }
 
   const handleAnswer = (answer: [string, string]): void => {
     setQuestionIndex(questionIndex + 1);
@@ -29,9 +30,9 @@ const QuizQuestion = ({
 
   return (
     <>
-      <h1>{question.question}</h1>
+      <h1>{question?.question}</h1>
       <div className="quiz-questions-container">
-        {randomizedAnswers.map((answer: [string, string]) => (
+        {randomizedAnswers?.map((answer: [string, string]) => (
           <button key={answer[0]} onClick={() => handleAnswer(answer)}>
             {answer[1]}
           </button>
