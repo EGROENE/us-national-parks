@@ -202,7 +202,7 @@ export const quizQuestions = [
       wrongAnswerTwo: "Glacier",
       wrongAnswerThree: "Kenai Fjords",
     },
-    comment: "California has 9, Alaska has 8, Utah has 5, & Colorado has 4.",
+    comment: "Katmai measures 6,395.43 sq mi (16,564.09 sq km)",
   },
   {
     question: "Which of these national parks is not accessible by car?",
