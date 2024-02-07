@@ -13,6 +13,8 @@ function App() {
 
   document.title = "U.S. National Parks";
 
+  document.body.style.backgroundImage = "none";
+
   return (
     <>
       {/* HomepageMainContent = SearchTools + AllParksCards OR ErrorOnInitialFetch w/ 'failed to retrieve data' & reloadbtn*/}
