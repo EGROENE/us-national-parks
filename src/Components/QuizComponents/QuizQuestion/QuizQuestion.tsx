@@ -1,6 +1,6 @@
 import { TQuizQuestion } from "../../../types";
 
-import { shuffleAnswersArray } from "../../../methods";
+import { shuffleQuizAnswersArray } from "../../../methods";
 
 const QuizQuestion = ({
   question,
@@ -16,7 +16,7 @@ const QuizQuestion = ({
   setScore: React.Dispatch<React.SetStateAction<number>>;
 }) => {
   // randomize order of question's answers:
-  const randomizedAnswers: [string, string][] = shuffleAnswersArray(
+  const randomizedAnswers: [string, string][] = shuffleQuizAnswersArray(
     Object.entries(question.answers)
   );
 

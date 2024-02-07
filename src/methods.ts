@@ -44,7 +44,9 @@ export const shuffleQuestionsArray = (array: TQuizQuestion[]): TQuizQuestion[] =
   return array;
 };
 
-export const shuffleAnswersArray = (array: [string, string][]): [string, string][] => {
+export const shuffleQuizAnswersArray = (
+  array: [string, string][]
+): [string, string][] => {
   for (let i = 1; i < array.length; i++) {
     const j = Math.floor(Math.random() * (i + 1));
     [array[i], array[j]] = [array[j], array[i]];
