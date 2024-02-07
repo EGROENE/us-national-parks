@@ -1,5 +1,7 @@
-// Components:
 import { useEffect, useState } from "react";
+import "../quiz.css";
+
+// Components:
 import NavBar from "../../NavBar/NavBar";
 import QuizStart from "../QuizStart/QuizStart";
 
@@ -15,7 +17,9 @@ import QuizQuestion from "../QuizQuestion/QuizQuestion";
 import QuizEnding from "../QuizEnding/QuizEnding";
 
 const QuizMain = () => {
-  const [totalQuestions, setTotalQuestions] = useState<number | undefined>();
+  const [totalQuestionsSelected, setTotalQuestionsSelected] = useState<
+    number | undefined
+  >();
   const [currentQuestions, setCurrentQuestions] = useState<TQuizQuestion[] | undefined>();
   const [questionIndex, setQuestionIndex] = useState<number>(0);
   const [score, setScore] = useState<number>(0);
@@ -25,10 +29,11 @@ const QuizMain = () => {
     setCurrentQuestions(
       randomizedQuestions.filter(
         (question) =>
-          totalQuestions && randomizedQuestions.indexOf(question) < totalQuestions
+          totalQuestionsSelected &&
+          randomizedQuestions.indexOf(question) < totalQuestionsSelected
       )
     );
-  }, [totalQuestions]);
+  }, [totalQuestionsSelected]);
   const quizLength = currentQuestions?.length;
 
   // Variables pertaining to logic that determines parts of quiz that should render (done to make return statement more readable):
@@ -43,7 +48,9 @@ const QuizMain = () => {
   return (
     <>
       <NavBar notOnHomepage={true} notOnQuizPage={false} />
-      {quizNotStarted && <QuizStart setTotalQuestions={setTotalQuestions} />}
+      {quizNotStarted && (
+        <QuizStart setTotalQuestionsSelected={setTotalQuestionsSelected} />
+      )}
       {quizBegunAndNotFinished && (
         <QuizQuestion
           question={currentQuestions && currentQuestions[questionIndex]}
@@ -51,6 +58,7 @@ const QuizMain = () => {
           setQuestionIndex={setQuestionIndex}
           score={score}
           setScore={setScore}
+          quizLength={quizLength}
         />
       )}
       {quizIsOver && <QuizEnding finalScore={quizLength && score / quizLength} />}
