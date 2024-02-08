@@ -1,4 +1,16 @@
-.quiz-question {
+.quiz-start {
+    margin-top: 6rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.quiz-start-btns-container button {
+    padding: 1rem 2rem;
+}
+
+.quiz-question,
+.quiz-ending {
     background-color: rgba(0,0,0,0.8);
     display: flex;
     flex-direction: column;
@@ -41,12 +53,15 @@
     cursor: not-allowed;
 }
 
-.quiz-nav-btns-container {
+.quiz-start-btns-container,
+.quiz-nav-btns-container,
+.quiz-end-btns-container {
     width: 71%;
     display: flex;
     justify-content: space-evenly;
 }
 
-.quiz-nav-btns-container button {
+.quiz-nav-btns-container button,
+.quiz-end-btns-container button {
     margin: 1rem;
 }

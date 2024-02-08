@@ -7,6 +7,9 @@ const QuizEnding = ({ finalScore }: { finalScore: number | undefined }) => {
       case finalScore === 1:
         feedback = "Perfect score! You must be really smart.";
         break;
+      case finalScore < 1 && finalScore >= 0.9:
+        feedback = "Pretty good!";
+        break;
       case finalScore < 0.9 && finalScore >= 0.75:
         feedback = "Not bad!";
         break;
@@ -21,15 +24,17 @@ const QuizEnding = ({ finalScore }: { finalScore: number | undefined }) => {
     }
   }
   return (
-    <>
+    <div className="quiz-ending">
       <h1>Thanks for playing the quiz! Your final score is:</h1>
       <h2>{finalScore && `${(finalScore * 100).toFixed(2)}%`}</h2>
       <p>{feedback}</p>
-      <button onClick={() => window.location.reload()}>Play Again!</button>
-      <Link to="/">
-        <button>Back to Homepage</button>
-      </Link>
-    </>
+      <div className="quiz-end-btns-container">
+        <Link to="/">
+          <button>Back to Homepage</button>
+        </Link>
+        <button onClick={() => window.location.reload()}>Play Again!</button>
+      </div>
+    </div>
   );
 };
 export default QuizEnding;
