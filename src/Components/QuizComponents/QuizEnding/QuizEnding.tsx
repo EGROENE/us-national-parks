@@ -1,8 +1,15 @@
 import { Link } from "react-router-dom";
 
-const QuizEnding = ({ finalScore }: { finalScore: number | undefined }) => {
+const QuizEnding = ({
+  score,
+  totalQuestions,
+}: {
+  score: number | undefined;
+  totalQuestions: number | undefined;
+}) => {
   let feedback: string = "";
-  if (finalScore) {
+  if (score && totalQuestions) {
+    const finalScore = score / totalQuestions;
     switch (true) {
       case finalScore === 1:
         feedback = "Perfect score! You must be really smart.";
@@ -26,7 +33,7 @@ const QuizEnding = ({ finalScore }: { finalScore: number | undefined }) => {
   return (
     <div className="quiz-ending">
       <h1>Thanks for playing the quiz! Your final score is:</h1>
-      <h2>{finalScore && `${(finalScore * 100).toFixed(2)}%`}</h2>
+      <h2>{`${score} / ${totalQuestions}`}</h2>
       <p>{feedback}</p>
       <div className="quiz-end-btns-container">
         <Link to="/">

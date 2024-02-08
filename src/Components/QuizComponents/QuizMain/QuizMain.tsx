@@ -61,7 +61,7 @@ const QuizMain = () => {
           quizLength={quizLength}
         />
       )}
-      {quizIsOver && <QuizEnding finalScore={quizLength && score / quizLength} />}
+      {quizIsOver && <QuizEnding score={score} totalQuestions={quizLength} />}
     </>
   );
 };
