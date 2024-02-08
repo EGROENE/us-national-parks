@@ -61,6 +61,7 @@ const QuizQuestion = ({
 
   return (
     <div className="quiz-question">
+      <header>{`${questionIndex + 1} / ${quizLength}`}</header>
       <header>{question?.question}</header>
       <div className="quiz-questions-container">
         {randomizedAnswers?.map((answer: [string, string]) => (
