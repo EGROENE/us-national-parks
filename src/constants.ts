@@ -66,11 +66,13 @@ export const quizQuestions = [
     question:
       "Which national park is the same size as Yosemite, Yellowstone, & Switzerland combined?",
     answers: {
-      rightAnswer: "Wrangell-St.Elias",
+      rightAnswer: "Wrangell-St. Elias",
       wrongAnswerOne: "Katmai",
       wrongAnswerTwo: "Zion",
       wrongAnswerThree: "Acadia",
     },
+    comment:
+      "Wrangell-St. Elias encompasses an area of 13,005 square miles (33,683 square km)!",
   },
   {
     question: "Which national park is the smallest?",
@@ -141,6 +143,8 @@ export const quizQuestions = [
       wrongAnswerTwo: "Theodore Roosevelt",
       wrongAnswerThree: "Zion",
     },
+    comment:
+      "Yellowstone was established in 1872 after a bill to do so was signed by President Ullyses S. Grant.",
   },
   {
     question:
@@ -152,7 +156,7 @@ export const quizQuestions = [
       wrongAnswerThree: "Grand Canyon",
     },
     comment:
-      "A temperature of 201° F (94° C) was recorded in Death Valley at Furnace Creek in 1972.",
+      "A temperature of 201°F (94°C) was recorded in Death Valley at Furnace Creek in 1972.",
   },
   {
     question: "Which state is Mesa Verde N.P. in?",
@@ -208,9 +212,9 @@ export const quizQuestions = [
     question: "Which of these national parks is not accessible by car?",
     answers: {
       rightAnswer: "Katmai",
-      wrongAnswerOne: "Gates of the Arctic",
-      wrongAnswerTwo: "Glacier Bay",
-      wrongAnswerThree: "Kobuk Valley",
+      wrongAnswerOne: "Dry Tortugas",
+      wrongAnswerTwo: "Hawai'i Volcanoes",
+      wrongAnswerThree: "Virgin Islands",
     },
     comment:
       "Due to its disconnection from the Alaskan road network, nearly all visitors to Katmai N.P. arrive by bush plane, landing on water & taxiing to the shore, or by boat.",
@@ -244,15 +248,17 @@ export const quizQuestions = [
       rightAnswer: "Great Sand Dunes",
       wrongAnswerOne: "Indiana Dunes",
       wrongAnswerTwo: "White Sands",
-      wrongAnswerThree: "Dry Tortugas",
+      wrongAnswerThree: "Badlands",
     },
   },
   {
     question: "True or False: Michigan has two national parks.",
     answers: {
-      rightAnswer: "True",
-      wrongAnswerOne: "False",
+      rightAnswer: "False",
+      wrongAnswerOne: "True",
     },
+    comment:
+      "At one point, this was true, as Mackinac Island, now a state park, used to be a national park.",
   },
   {
     question: "Which of these national parks is located in Montana?",
@@ -282,6 +288,15 @@ export const quizQuestions = [
     },
   },
   {
+    question: "Which state does Theodore Roosevelt N.P. find itself in?",
+    answers: {
+      rightAnswer: "North Dakota",
+      wrongAnswerOne: "New York",
+      wrongAnswerTwo: "Wyoming",
+      wrongAnswerThree: "Missouri",
+    },
+  },
+  {
     question:
       "Which of these national parks contains 3 of the world's tallest waterfalls?",
     answers: {
@@ -301,7 +316,7 @@ export const quizQuestions = [
       wrongAnswerThree: "California",
     },
     comment:
-      "Despite its name, this park is, indeed, in one of the driest states in the country, Utah.",
+      "Despite its name, this park is, indeed, located in one of the driest states in the country, Utah.",
   },
   {
     question:
@@ -322,6 +337,29 @@ export const quizQuestions = [
     },
     comment:
       "Established in 1875, Mackinac Island N.P. of Michigan was the 2nd N.P. established; since 1895, it has been a state park.",
+  },
+  {
+    question: "True or False: Every state has at least one national park.",
+    answers: {
+      rightAnswer: "False",
+      wrongAnswerOne: "True",
+    },
+  },
+  {
+    question: "True or False: Corn Stalks is a real national park, located in Iowa.",
+    answers: {
+      rightAnswer: "False",
+      wrongAnswerOne: "True",
+    },
+  },
+  {
+    question: "True or False: One national park is actually a baseball stadium.",
+    answers: {
+      rightAnswer: "False",
+      wrongAnswerOne: "True",
+    },
+    comment:
+      "Although this is false, Gateway Arch N.P. is very close to Busch Stadium, home of MLB's St. Louis Cardinals.",
   },
   {
     question:
@@ -347,7 +385,7 @@ export const quizQuestions = [
       wrongAnswerOne: "False",
     },
     comment:
-      'Although the state is referred to as the "armpit of America" by some, it is home to Cuyahoga Valley National Park.',
+      'Although the state is referred to as the "armpit of America" by some, it is home to Cuyahoga Valley National Park, perhaps the only beautiful place in Ohio.',
   },
   {
     question: "True or False: All national parks are located in states.",
@@ -357,6 +395,7 @@ export const quizQuestions = [
     },
   },
 ];
+
 export const quizBackgroundImages = [
   "/quiz-backgrounds/arch.jpg",
   "/quiz-backgrounds/az.jpg",
