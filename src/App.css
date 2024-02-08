@@ -58,6 +58,17 @@
 
 .active-link {
   cursor: pointer;
+  color: var(--theme-brown);
+}
+
+.navbar-homepage-link-container {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-homepage-link-container img {
+  height: 3rem;
+  margin-right: 1rem;
 }
 
 .fail-fetch-message-container {
@@ -93,9 +104,10 @@
   align-items: center;
   justify-content: space-between;
   margin-top: 1rem;
-  background-color: var(--theme-brown);
+  background-color: var(--theme-cream);
   padding: 1rem;
   z-index: 100;
+  color: var(--theme-brown);
 }
 
 .search-tools {
