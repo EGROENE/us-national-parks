@@ -257,8 +257,6 @@ export const quizQuestions = [
       rightAnswer: "False",
       wrongAnswerOne: "True",
     },
-    comment:
-      "At one point, this was true, as Mackinac Island, now a state park, used to be a national park.",
   },
   {
     question: "Which of these national parks is located in Montana?",
