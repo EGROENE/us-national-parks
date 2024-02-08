@@ -45,10 +45,15 @@ nav ul {
 
 li {
   list-style: none;
+  font-weight: 700;
 }
 
 a {
   text-decoration: none;
+}
+
+.navbar h1 {
+  color: var(--theme-brown);
 }
 
 .navbar a {
