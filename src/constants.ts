@@ -363,7 +363,7 @@ export const quizQuestions = [
   },
   {
     question:
-      "All national parks are have free admission on the Fourth of July (Independence Day).",
+      "All national parks have free admission on the Fourth of July (Independence Day).",
     answers: {
       rightAnswer: "False",
       wrongAnswerOne: "True",
