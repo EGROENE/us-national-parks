@@ -11,10 +11,16 @@ const NavBar = ({
     <div className="navbar">
       {notOnHomepage ? (
         <Link title="To Homepage" to="/">
-          <h1 className="active-link">U.S. National Parks</h1>
+          <div className="navbar-homepage-link-container">
+            <img src="../../bear-favicon.png" />
+            <h1>U.S. National Parks</h1>
+          </div>
         </Link>
       ) : (
-        <h1>U.S. National Parks</h1>
+        <div className="navbar-homepage-link-container">
+          <img src="../../bear-favicon.png" />
+          <h1>U.S. National Parks</h1>
+        </div>
       )}
       <nav>
         <ul>
