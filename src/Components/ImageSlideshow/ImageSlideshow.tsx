@@ -5,7 +5,7 @@ type TDirection = "next" | "prev";
 
 const ImageSlideshow = ({ park, showCaption }: { park: TPark; showCaption: boolean }) => {
   const [imgIndex, setImgIndex] = useState<number>(
-    Math.floor(Math.random() * park.images.length - 1)
+    Math.floor(Math.random() * (park.images.length - 1))
   );
 
   const changeImage = (
@@ -37,8 +37,8 @@ const ImageSlideshow = ({ park, showCaption }: { park: TPark; showCaption: boole
           ></i>
         )}
         <img
-          src={park.images[`${imgIndex}`] && park.images[`${imgIndex}`].url}
-          alt={park.images[`${imgIndex}`] && park.images[`${imgIndex}`].altText}
+          src={park.images[`${imgIndex}`].url}
+          alt={park.images[`${imgIndex}`].altText}
         />
         {park?.images.length > 1 && (
           <i
