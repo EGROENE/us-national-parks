@@ -621,7 +621,7 @@
 }
 
 .nearby-parks-container .park-card {
-  width: 42%;
+  width: 25%;
 }
 
 .nearby-parks-container .park-card img {
@@ -635,7 +635,7 @@
 }
 
 .nearby-parks-container .homepage-park-slideshow-container i {
-  font-size: 3rem;
+  font-size: 2rem;
   margin: auto 1.5rem;
 }
 
