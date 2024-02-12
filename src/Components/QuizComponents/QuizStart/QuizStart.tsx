@@ -1,8 +1,8 @@
-const QuizStart = ({
-  setTotalQuestionsSelected,
-}: {
-  setTotalQuestionsSelected: React.Dispatch<React.SetStateAction<number | undefined>>;
-}) => {
+import { useQuizContext } from "../../../Hooks/useQuizContext";
+
+const QuizStart = () => {
+  const { setTotalQuestionsSelected } = useQuizContext();
+
   return (
     <div className="quiz-start">
       <h1>Ready to test your knowledge on U.S. National Parks?</h1>

@@ -6,6 +6,7 @@ import ParkPage from "./Components/ParkPageComponents/ParkPage/ParkPage.tsx";
 import QuizMain from "./Components/QuizComponents/QuizMain/QuizMain.tsx";
 import "./index.css";
 import { MainContentContextProvider } from "./Contexts/mainContentContext.tsx";
+import { QuizContextProvider } from "./Contexts/quizContext.tsx";
 
 const router = createBrowserRouter([
   {
@@ -25,7 +26,9 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <MainContentContextProvider>
-      <RouterProvider router={router} />
+      <QuizContextProvider>
+        <RouterProvider router={router} />
+      </QuizContextProvider>
     </MainContentContextProvider>
   </React.StrictMode>
 );

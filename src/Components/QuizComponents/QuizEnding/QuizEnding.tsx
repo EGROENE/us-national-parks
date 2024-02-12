@@ -1,12 +1,9 @@
 import { Link } from "react-router-dom";
+import { useQuizContext } from "../../../Hooks/useQuizContext";
 
-const QuizEnding = ({
-  score,
-  totalQuestions,
-}: {
-  score: number | undefined;
-  totalQuestions: number | undefined;
-}) => {
+const QuizEnding = ({ totalQuestions }: { totalQuestions: number | undefined }) => {
+  const { score } = useQuizContext();
+
   let feedback: string = "";
   if (score && totalQuestions) {
     const finalScore = score / totalQuestions;
@@ -30,6 +27,9 @@ const QuizEnding = ({
         feedback = "Abysmal.";
     }
   }
+
+  // add method that restarts quiz w/o causing a page reload:
+
   return (
     <div className="quiz-ending">
       <h1>Thanks for playing the quiz! Your final score is:</h1>

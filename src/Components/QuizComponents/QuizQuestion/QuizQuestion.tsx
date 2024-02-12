@@ -1,28 +1,28 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { TQuizQuestion } from "../../../types";
 import { shuffleQuizAnswersArray } from "../../../methods";
 import { quizBackgroundImages } from "../../../constants";
+import { useQuizContext } from "../../../Hooks/useQuizContext";
 
 const QuizQuestion = ({
   question,
-  questionIndex,
-  setQuestionIndex,
-  score,
-  setScore,
   quizLength,
 }: {
   question: TQuizQuestion | undefined;
-  questionIndex: number;
-  setQuestionIndex: React.Dispatch<React.SetStateAction<number>>;
-  score: number;
-  setScore: React.Dispatch<React.SetStateAction<number>>;
   quizLength: number | undefined;
 }) => {
-  const [questionAnswered, setQuestionAnswered] = useState<boolean>(false);
-  const [randomizedAnswers, setRandomizedAnswers] = useState<
-    [string, string][] | undefined
-  >();
-  const [selectedAnswer, setSelectedAnswer] = useState<[string, string]>(["", ""]);
+  const {
+    setQuestionAnswered,
+    setSelectedAnswer,
+    setRandomizedAnswers,
+    setScore,
+    score,
+    questionAnswered,
+    selectedAnswer,
+    questionIndex,
+    randomizedAnswers,
+    setQuestionIndex,
+  } = useQuizContext();
 
   const setBackgroundImage = () => {
     const randNum = Math.floor(Math.random() * quizBackgroundImages.length);
@@ -36,7 +36,7 @@ const QuizQuestion = ({
     if (question) {
       setRandomizedAnswers(shuffleQuizAnswersArray(Object.entries(question.answers)));
     }
-  }, [question]);
+  }, [question, setQuestionAnswered, setRandomizedAnswers, setSelectedAnswer]);
 
   const handleAnswer = (answer: [string, string]): void => {
     setQuestionAnswered(true);
