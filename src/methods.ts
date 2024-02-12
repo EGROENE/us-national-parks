@@ -54,7 +54,7 @@ export const shuffleQuizAnswersArray = (
   return array;
 };
 
-export const formatTitleCapitalization = (title: string) => {
+export const formatTitleCapitalization = (title: string): string => {
   const nonCapitalizedWords = ["of", "the", "to", "and"];
   const titleWordsArr = title.split(" ");
   const newTitle = titleWordsArr.map((word) =>
