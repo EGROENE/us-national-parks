@@ -57,10 +57,12 @@ export const shuffleQuizAnswersArray = (
 export const formatTitleCapitalization = (title: string): string => {
   const nonCapitalizedWords = ["of", "the", "to", "and"];
   const titleWordsArr = title.split(" ");
-  const newTitle = titleWordsArr.map((word) =>
-    nonCapitalizedWords.includes(word.toLowerCase())
-      ? word.toLowerCase()
-      : word.toUpperCase()
-  );
-  return newTitle.join(" ");
+  // return joined array of title words once they have been capitalized or uncapitalized:
+  return titleWordsArr
+    .map((word) =>
+      nonCapitalizedWords.includes(word.toLowerCase())
+        ? word.toLowerCase()
+        : word.toUpperCase()
+    )
+    .join(" ");
 };
