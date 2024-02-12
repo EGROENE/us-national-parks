@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import "../quiz.css";
 
 // Components:
-import NavBar from "../../NavBar/NavBar";
+import NavBar from "../../VersatileComponents/NavBar/NavBar";
 import QuizStart from "../QuizStart/QuizStart";
 
 // Constants:
