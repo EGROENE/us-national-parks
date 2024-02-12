@@ -62,7 +62,7 @@ export const formatTitleCapitalization = (title: string): string => {
     .map((word) =>
       nonCapitalizedWords.includes(word.toLowerCase())
         ? word.toLowerCase()
-        : word.toUpperCase()
+        : word.replace(/^\w/, (c) => c.toUpperCase())
     )
     .join(" ");
 };
