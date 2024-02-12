@@ -25,10 +25,7 @@ const QuizMain = () => {
       <NavBar notOnHomepage={true} notOnQuizPage={false} />
       {quizNotStarted && <QuizStart />}
       {quizBegunAndNotFinished && (
-        <QuizQuestion
-          question={currentQuestions && currentQuestions[questionIndex]}
-          quizLength={quizLength}
-        />
+        <QuizQuestion question={currentQuestions && currentQuestions[questionIndex]} />
       )}
       {quizIsOver && <QuizEnding totalQuestions={quizLength} />}
     </>

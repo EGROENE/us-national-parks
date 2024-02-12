@@ -4,13 +4,7 @@ import { shuffleQuizAnswersArray } from "../../../methods";
 import { quizBackgroundImages } from "../../../constants";
 import { useQuizContext } from "../../../Hooks/useQuizContext";
 
-const QuizQuestion = ({
-  question,
-  quizLength,
-}: {
-  question: TQuizQuestion | undefined;
-  quizLength: number | undefined;
-}) => {
+const QuizQuestion = ({ question }: { question: TQuizQuestion | undefined }) => {
   const {
     setQuestionAnswered,
     setSelectedAnswer,
@@ -22,6 +16,7 @@ const QuizQuestion = ({
     questionIndex,
     randomizedAnswers,
     setQuestionIndex,
+    quizLength,
   } = useQuizContext();
 
   const setBackgroundImage = () => {
