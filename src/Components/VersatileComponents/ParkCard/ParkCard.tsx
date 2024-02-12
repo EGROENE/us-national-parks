@@ -1,5 +1,8 @@
 import { Link } from "react-router-dom";
 
+// Method(s):
+import { formatTitleCapitalization } from "../../../methods";
+
 // Type(s):
 import { TPark } from "../../../types";
 
@@ -60,7 +63,7 @@ const ParkCard = ({
       <div className="homepage-park-slideshow-container">
         <ImageSlideshow park={park} showCaption={false} />
       </div>
-      <header>{park.fullName}</header>
+      <header>{`${formatTitleCapitalization(park.fullName)}`}</header>
       <div className="state-list">
         {isInOneTerritoryAndOneState && <p>State: {parkStates.join(", ")}</p> && (
           <p>Territory: {parkTerritories.join(", ")}</p>
@@ -80,7 +83,10 @@ const ParkCard = ({
       </div>
       {showDescription && <p className="park-description">{park.description}</p>}
       <Link to={`/parks/${park.parkCode}`}>
-        <button title={`Learn more about ${park.fullName}`} className="learn-more-btn">
+        <button
+          title={`Learn more about ${formatTitleCapitalization(park.fullName)}`}
+          className="learn-more-btn"
+        >
           Learn More
         </button>
       </Link>
