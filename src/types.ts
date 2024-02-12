@@ -85,6 +85,26 @@ export type TMainContentContext = {
   alertsAreLoading: boolean;
 };
 
+export type TQuizContext = {
+  totalQuestionsSelected: number | undefined;
+  setTotalQuestionsSelected: React.Dispatch<React.SetStateAction<number | undefined>>;
+  currentQuestions: TQuizQuestion[] | undefined;
+  setCurrentQuestions: React.Dispatch<React.SetStateAction<TQuizQuestion[] | undefined>>;
+  questionIndex: number;
+  setQuestionIndex: React.Dispatch<React.SetStateAction<number>>;
+  score: number;
+  setScore: React.Dispatch<React.SetStateAction<number>>;
+  questionAnswered: boolean;
+  setQuestionAnswered: React.Dispatch<React.SetStateAction<boolean>>;
+  randomizedAnswers: [string, string][] | undefined;
+  setRandomizedAnswers: React.Dispatch<
+    React.SetStateAction<[string, string][] | undefined>
+  >;
+  selectedAnswer: [string, string];
+  setSelectedAnswer: React.Dispatch<React.SetStateAction<[string, string]>>;
+  quizLength: number | undefined;
+};
+
 export type TStateAbbreviations = keyof typeof stateFilterOptions;
 
 export interface TParkAlert {
