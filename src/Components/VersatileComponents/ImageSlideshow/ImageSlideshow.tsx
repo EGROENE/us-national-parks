@@ -37,8 +37,16 @@ const ImageSlideshow = ({ park, showCaption }: { park: TPark; showCaption: boole
           ></i>
         )}
         <img
-          src={park.images[`${imgIndex}`].url}
-          alt={park.images[`${imgIndex}`].altText}
+          src={
+            park.images[`${imgIndex}`] !== undefined
+              ? park.images[`${imgIndex}`].url
+              : park.images[0].url
+          }
+          alt={
+            park.images[`${imgIndex}`] !== undefined
+              ? park.images[`${imgIndex}`].altText
+              : park.images[0].altText
+          }
         />
         {park?.images.length > 1 && (
           <i
