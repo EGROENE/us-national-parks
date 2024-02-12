@@ -58,7 +58,9 @@ export const formatTitleCapitalization = (title: string) => {
   const nonCapitalizedWords = ["of", "the", "to", "and"];
   const titleWordsArr = title.split(" ");
   const newTitle = titleWordsArr.map((word) =>
-    nonCapitalizedWords.includes(word.toLowerCase()) ? word.toLowerCase() : word
+    nonCapitalizedWords.includes(word.toLowerCase())
+      ? word.toLowerCase()
+      : word.toUpperCase()
   );
   return newTitle.join(" ");
 };
