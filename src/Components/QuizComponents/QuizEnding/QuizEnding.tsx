@@ -34,7 +34,7 @@ const QuizEnding = () => {
       <p>{feedback}</p>
       <div className="quiz-end-btns-container">
         <Link to="/">
-          <button>Back to Homepage</button>
+          <button onClick={() => resetQuiz()}>Back to Homepage</button>
         </Link>
         <button onClick={() => resetQuiz()}>Play Again!</button>
       </div>
