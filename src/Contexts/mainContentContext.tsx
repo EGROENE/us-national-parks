@@ -2,6 +2,7 @@ import { createContext, ReactNode, useEffect, useState } from "react";
 import { TPark, TMainContentContext, TParkAlert } from "../types";
 import { getParks, getAllNPAlerts } from "../api";
 import { getObjectArraySortedAlphabeticallyByProperty } from "../methods";
+import { stateFilterOptions, territoryFilterOptions } from "../constants";
 
 export const MainContentContext = createContext<TMainContentContext | null>(null);
 
@@ -16,6 +17,7 @@ export const MainContentContextProvider = ({ children }: { children: ReactNode }
   // Values relating to search & filter functionalities on homepage:
   const [stateOrTerritoryFilter, setStateOrTerritoryFilter] = useState<string>("");
   const [searchQuery, setSearchQuery] = useState<string>("");
+  const searchQueryCI = searchQuery.toLowerCase().replace(/ +/g, " ");
 
   // Values relating to national park alerts:
   const [allNPAlerts, setAllNPAlerts] = useState<TParkAlert[]>([]);
@@ -62,8 +64,7 @@ export const MainContentContextProvider = ({ children }: { children: ReactNode }
         )
       );
     } else if (searchQuery !== "" && stateOrTerritoryFilter === "") {
-      // make search queary case-insensitive & replace any multiple spaces w/ single space:
-      const searchQueryCI = searchQuery.toLowerCase().replace(/ +/g, " ");
+      // make search query case-insensitive & replace any multiple spaces w/ single space:
       const newDisplayedParks = [];
 
       const queryIsTopicOrActivity = (park: TPark): boolean => {
@@ -93,15 +94,40 @@ export const MainContentContextProvider = ({ children }: { children: ReactNode }
         return isTopic || isActivity ? true : false;
       };
 
+      const queryMatchesStateOrTerritory = (park: TPark): boolean => {
+        const allStateAndTerritoryKeyValuePairs = Object.entries(
+          stateFilterOptions
+        ).concat(Object.entries(territoryFilterOptions));
+        const parkStateTerritoryAbbreviations = park.states.replace(/,/g, " ").split(" ");
+        let stateAndTerritoryKeyValuePairsOfPark: [string, string][] = [];
+        for (const abbreviation of parkStateTerritoryAbbreviations) {
+          stateAndTerritoryKeyValuePairsOfPark = allStateAndTerritoryKeyValuePairs.filter(
+            (pair) => pair[0] === abbreviation
+          );
+        }
+        for (const pair of stateAndTerritoryKeyValuePairsOfPark) {
+          for (const elem of pair) {
+            if (
+              elem.toLowerCase() === searchQueryCI.trim() ||
+              elem.toLowerCase().includes(searchQueryCI.trim())
+            ) {
+              return true;
+            }
+          }
+        }
+        return false;
+      };
+
       for (const park of allNationalParks) {
         if (
-          park.fullName.toLowerCase().includes(searchQueryCI) ||
-          park.description.toLowerCase().includes(searchQueryCI) ||
-          park.latitude.includes(searchQuery) ||
-          park.longitude.includes(searchQuery) ||
-          park.parkCode.toLowerCase().includes(searchQueryCI) ||
-          park.weatherInfo.toLowerCase().includes(searchQueryCI) ||
-          queryIsTopicOrActivity(park)
+          park.fullName.toLowerCase().includes(searchQueryCI.trim()) ||
+          park.description.toLowerCase().includes(searchQueryCI.trim()) ||
+          park.latitude.includes(searchQuery.trim()) ||
+          park.longitude.includes(searchQuery.trim()) ||
+          park.parkCode.toLowerCase().includes(searchQueryCI.trim()) ||
+          park.weatherInfo.toLowerCase().includes(searchQueryCI.trim()) ||
+          queryIsTopicOrActivity(park) ||
+          queryMatchesStateOrTerritory(park)
         ) {
           newDisplayedParks.push(park);
         }
@@ -112,7 +138,7 @@ export const MainContentContextProvider = ({ children }: { children: ReactNode }
         allNationalParks.filter((park) => allNationalParks.indexOf(park) < limit)
       );
     }
-  }, [allNationalParks, limit, stateOrTerritoryFilter, searchQuery]);
+  }, [allNationalParks, limit, stateOrTerritoryFilter, searchQuery, searchQueryCI]);
 
   // Set allNPAlerts:
   /* Necessary to do it here "behind the scenes" & not in ParkPage or a child of it so that 429 error (too many requests) doesn't occur when rendering ParkPage */
