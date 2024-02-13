@@ -57,7 +57,7 @@ const ImageSlideshow = ({ park, showCaption }: { park: TPark; showCaption: boole
         )}
       </div>
       {showCaption &&
-        (park.images[`${imgIndex}`] ? (
+        (park.images[`${imgIndex}`] !== undefined ? (
           <p>{park?.images[`${imgIndex}`].caption}</p>
         ) : (
           <p>{park?.images[0].caption}</p>
