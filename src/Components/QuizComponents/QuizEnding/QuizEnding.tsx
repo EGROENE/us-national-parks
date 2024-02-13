@@ -2,9 +2,9 @@ import { Link } from "react-router-dom";
 import { useQuizContext } from "../../../Hooks/useQuizContext";
 
 const QuizEnding = ({ totalQuestions }: { totalQuestions: number | undefined }) => {
-  const { score } = useQuizContext();
+  const { score, resetQuiz } = useQuizContext();
 
-  let feedback: string = "";
+  let feedback: string = "Abysmal.";
   if (score && totalQuestions) {
     const finalScore = score / totalQuestions;
     switch (true) {
@@ -23,12 +23,9 @@ const QuizEnding = ({ totalQuestions }: { totalQuestions: number | undefined }) 
       case finalScore < 0.5 && finalScore >= 0.2:
         feedback = "You have some studying to do.";
         break;
-      default:
-        feedback = "Abysmal.";
+      // no default needed, as feedback is already initialized to a default before this 'switch' statement
     }
   }
-
-  // add method that restarts quiz w/o causing a page reload:
 
   return (
     <div className="quiz-ending">
@@ -39,7 +36,7 @@ const QuizEnding = ({ totalQuestions }: { totalQuestions: number | undefined }) 
         <Link to="/">
           <button>Back to Homepage</button>
         </Link>
-        <button onClick={() => window.location.reload()}>Play Again!</button>
+        <button onClick={() => resetQuiz()}>Play Again!</button>
       </div>
     </div>
   );
