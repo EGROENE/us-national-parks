@@ -103,6 +103,7 @@ export type TQuizContext = {
   selectedAnswer: [string, string];
   setSelectedAnswer: React.Dispatch<React.SetStateAction<[string, string]>>;
   quizLength: number | undefined;
+  resetQuiz: () => void;
 };
 
 export type TStateAbbreviations = keyof typeof stateFilterOptions;
