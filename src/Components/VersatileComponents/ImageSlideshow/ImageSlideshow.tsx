@@ -56,7 +56,12 @@ const ImageSlideshow = ({ park, showCaption }: { park: TPark; showCaption: boole
           ></i>
         )}
       </div>
-      {showCaption && <p>{park?.images[`${imgIndex}`].caption}</p>}
+      {showCaption &&
+        (park.images[`${imgIndex}`] ? (
+          <p>{park?.images[`${imgIndex}`].caption}</p>
+        ) : (
+          <p>{park?.images[0].caption}</p>
+        ))}
     </div>
   );
 };
