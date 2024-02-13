@@ -22,6 +22,17 @@ export const QuizContextProvider = ({ children }: { children: ReactNode }) => {
   >();
   const [selectedAnswer, setSelectedAnswer] = useState<[string, string]>(["", ""]);
 
+  const resetQuiz = (): void => {
+    document.body.style.backgroundImage = "none";
+    setTotalQuestionsSelected(undefined);
+    setCurrentQuestions(undefined);
+    setQuestionIndex(0);
+    setQuestionAnswered(false);
+    setRandomizedAnswers(undefined);
+    setSelectedAnswer(["", ""]);
+    setScore(0);
+  };
+
   useEffect(() => {
     const randomizedQuestions = shuffleQuestionsArray(quizQuestions);
     setCurrentQuestions(
@@ -50,6 +61,7 @@ export const QuizContextProvider = ({ children }: { children: ReactNode }) => {
     selectedAnswer,
     setSelectedAnswer,
     quizLength,
+    resetQuiz,
   };
 
   return (
