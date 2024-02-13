@@ -17,6 +17,7 @@ const QuizQuestion = ({ question }: { question: TQuizQuestion | undefined }) => 
     randomizedAnswers,
     setQuestionIndex,
     quizLength,
+    resetQuiz,
   } = useQuizContext();
 
   const setBackgroundImage = () => {
@@ -72,7 +73,7 @@ const QuizQuestion = ({ question }: { question: TQuizQuestion | undefined }) => 
       </div>
       {questionAnswered && question?.comment}
       <div className="quiz-nav-btns-container">
-        <button onClick={() => window.location.reload()}>Restart Quiz</button>
+        <button onClick={() => resetQuiz()}>Restart Quiz</button>
         <button
           disabled={!questionAnswered}
           onClick={() => setQuestionIndex(questionIndex + 1)}
