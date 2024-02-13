@@ -27,7 +27,7 @@ const QuizMain = () => {
       {quizBegunAndNotFinished && (
         <QuizQuestion question={currentQuestions && currentQuestions[questionIndex]} />
       )}
-      {quizIsOver && <QuizEnding totalQuestions={quizLength} />}
+      {quizIsOver && <QuizEnding />}
     </>
   );
 };

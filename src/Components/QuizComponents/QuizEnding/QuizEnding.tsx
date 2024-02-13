@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
 import { useQuizContext } from "../../../Hooks/useQuizContext";
 
-const QuizEnding = ({ totalQuestions }: { totalQuestions: number | undefined }) => {
-  const { score, resetQuiz } = useQuizContext();
+const QuizEnding = () => {
+  const { score, resetQuiz, quizLength } = useQuizContext();
 
   let feedback: string = "Abysmal.";
-  if (score && totalQuestions) {
-    const finalScore = score / totalQuestions;
+  if (score && quizLength) {
+    const finalScore = score / quizLength;
     switch (true) {
       case finalScore === 1:
         feedback = "Perfect score! You must be really smart.";
@@ -30,7 +30,7 @@ const QuizEnding = ({ totalQuestions }: { totalQuestions: number | undefined }) 
   return (
     <div className="quiz-ending">
       <h1>Thanks for playing the quiz! Your final score is:</h1>
-      <h2>{`${score} / ${totalQuestions}`}</h2>
+      <h2>{`${score} / ${quizLength}`}</h2>
       <p>{feedback}</p>
       <div className="quiz-end-btns-container">
         <Link to="/">
