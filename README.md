@@ -15,6 +15,6 @@ I learned a lot in this project about different things that can be done to limit
 
 I learned the value of working with React Router in helping reduce renders by using the <Link> component in the react-router-dom library, instead of <a> tags. Using <Link> also eliminates the need to figure out file paths relative to the file in which <Link> is used, which can save some time. One thing I had to learn the hard way was that any paths in Router that begin with "/" are absolute, & any that don't, are relative. <br/>
 
-Finally, various JavaScript principles, as well as ability to set up contexts with React Context API, the ability to write efficient (yet readable) code, & the ability to provide a good-looking UI/UX via CSS (and a bit of JS ;) ), were enforced. <br/>
+Finally, various JavaScript principles, as well as ability to set up contexts with React Context API, the ability to write efficient (yet readable) code, & the ability to provide a good-looking UI/UX via CSS (and a bit of JS ;), including applying principles & practices to make the site display well on desktop, tablet, & phone screens, were enforced. <br/>
 
 If you are kind enough to check out the project in action or read through my code, I'd love to hear you roast it or praise it. I'm always open to feedback on what I am doing well & on things I can improve on.
