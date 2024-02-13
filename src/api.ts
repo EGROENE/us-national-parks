@@ -2,7 +2,7 @@ import { npsKey } from "./strengGeheim";
 const npsBaseURL = `https://developer.nps.gov/api/v1`;
 
 import { weatherAPIKey } from "./strengGeheim";
-const weatherBaseURL = "http://api.weatherapi.com/v1/current.json?";
+const weatherBaseURL = "https://api.weatherapi.com/v1/current.json?";
 
 export const getParks = (): Promise<Response> => {
   const myHeaders = new Headers();
