@@ -17,7 +17,7 @@ export const MainContentContextProvider = ({ children }: { children: ReactNode }
   // Values relating to search & filter functionalities on homepage:
   const [stateOrTerritoryFilter, setStateOrTerritoryFilter] = useState<string>("");
   const [searchQuery, setSearchQuery] = useState<string>("");
-  const searchQueryCI = searchQuery.toLowerCase().replace(/ +/g, " ");
+  const searchQueryCINoExtraWhitespace = searchQuery.toLowerCase().replace(/ +/g, " ");
 
   // Values relating to national park alerts:
   const [allNPAlerts, setAllNPAlerts] = useState<TParkAlert[]>([]);
@@ -75,8 +75,8 @@ export const MainContentContextProvider = ({ children }: { children: ReactNode }
         let isActivity = false;
         for (const activity of activities) {
           if (
-            activity.includes(searchQueryCI) ||
-            activity.includes(searchQueryCI.trim())
+            activity.includes(searchQueryCINoExtraWhitespace) ||
+            activity.includes(searchQueryCINoExtraWhitespace.trim())
           ) {
             isActivity = true;
           }
@@ -86,7 +86,10 @@ export const MainContentContextProvider = ({ children }: { children: ReactNode }
 
         let isTopic = false;
         for (const topic of topics) {
-          if (topic.includes(searchQueryCI) || topic.includes(searchQueryCI.trim())) {
+          if (
+            topic.includes(searchQueryCINoExtraWhitespace) ||
+            topic.includes(searchQueryCINoExtraWhitespace.trim())
+          ) {
             isTopic = true;
           }
         }
@@ -108,8 +111,8 @@ export const MainContentContextProvider = ({ children }: { children: ReactNode }
         for (const pair of stateAndTerritoryKeyValuePairsOfPark) {
           for (const elem of pair) {
             if (
-              elem.toLowerCase() === searchQueryCI.trim() ||
-              elem.toLowerCase().includes(searchQueryCI.trim())
+              elem.toLowerCase() === searchQueryCINoExtraWhitespace.trim() ||
+              elem.toLowerCase().includes(searchQueryCINoExtraWhitespace.trim())
             ) {
               return true;
             }
@@ -120,12 +123,16 @@ export const MainContentContextProvider = ({ children }: { children: ReactNode }
 
       for (const park of allNationalParks) {
         if (
-          park.fullName.toLowerCase().includes(searchQueryCI.trim()) ||
-          park.description.toLowerCase().includes(searchQueryCI.trim()) ||
+          park.fullName.toLowerCase().includes(searchQueryCINoExtraWhitespace.trim()) ||
+          park.description
+            .toLowerCase()
+            .includes(searchQueryCINoExtraWhitespace.trim()) ||
           park.latitude.includes(searchQuery.trim()) ||
           park.longitude.includes(searchQuery.trim()) ||
-          park.parkCode.toLowerCase().includes(searchQueryCI.trim()) ||
-          park.weatherInfo.toLowerCase().includes(searchQueryCI.trim()) ||
+          park.parkCode.toLowerCase().includes(searchQueryCINoExtraWhitespace.trim()) ||
+          park.weatherInfo
+            .toLowerCase()
+            .includes(searchQueryCINoExtraWhitespace.trim()) ||
           queryIsTopicOrActivity(park) ||
           queryMatchesStateOrTerritory(park)
         ) {
@@ -138,7 +145,13 @@ export const MainContentContextProvider = ({ children }: { children: ReactNode }
         allNationalParks.filter((park) => allNationalParks.indexOf(park) < limit)
       );
     }
-  }, [allNationalParks, limit, stateOrTerritoryFilter, searchQuery, searchQueryCI]);
+  }, [
+    allNationalParks,
+    limit,
+    stateOrTerritoryFilter,
+    searchQuery,
+    searchQueryCINoExtraWhitespace,
+  ]);
 
   // Set allNPAlerts:
   /* Necessary to do it here "behind the scenes" & not in ParkPage or a child of it so that 429 error (too many requests) doesn't occur when rendering ParkPage */
