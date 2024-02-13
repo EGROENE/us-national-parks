@@ -8,7 +8,9 @@ const NavBar = ({
   notOnQuizPage: boolean;
 }) => {
   return (
-    <div className="navbar">
+    <div
+      className={notOnHomepage && !notOnQuizPage ? "navbar only-homepage-link" : "navbar"}
+    >
       {notOnHomepage ? (
         <Link title="To Homepage" to="/">
           <div className="navbar-homepage-link-container">
@@ -22,18 +24,11 @@ const NavBar = ({
           <h1>U.S. National Parks</h1>
         </div>
       )}
-      <nav>
-        <ul>
-          {notOnQuizPage ? (
-            <Link to="/quiz" title="Take the Quiz">
-              <li className="active-link">Quiz</li>
-            </Link>
-          ) : (
-            <li>Quiz</li>
-          )}
-          <li>Photo Gallery</li>
-        </ul>
-      </nav>
+      {notOnQuizPage && (
+        <Link to="/quiz">
+          <button className="take-quiz-btn">Take the Quiz!</button>
+        </Link>
+      )}
     </div>
   );
 };
