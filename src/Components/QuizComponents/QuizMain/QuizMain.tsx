@@ -21,14 +21,16 @@ const QuizMain = () => {
   }
 
   return (
-    <>
+    <div className="quiz-container">
       <NavBar notOnHomepage={true} notOnQuizPage={false} />
-      {quizNotStarted && <QuizStart />}
-      {quizBegunAndNotFinished && (
-        <QuizQuestion question={currentQuestions && currentQuestions[questionIndex]} />
-      )}
-      {quizIsOver && <QuizEnding />}
-    </>
+      <div className="quiz-content-container">
+        {quizNotStarted && <QuizStart />}
+        {quizBegunAndNotFinished && (
+          <QuizQuestion question={currentQuestions && currentQuestions[questionIndex]} />
+        )}
+        {quizIsOver && <QuizEnding />}
+      </div>
+    </div>
   );
 };
 export default QuizMain;
