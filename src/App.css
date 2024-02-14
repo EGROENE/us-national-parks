@@ -192,7 +192,7 @@
   flex-direction: column;
   align-items: center;
   border: 1px solid var(--theme-cream);
-  padding: 0.75rem;
+  padding: 0.75rem 0.75rem 0 0.75rem;
   width: 29%;
   margin: 0.5rem 0.75rem;
 }
@@ -201,31 +201,50 @@
   display: flex;
 }
 
-.slideshow-container {
+.homepage-park-slideshow-container {
+  width: 100%;
+}
+
+.homepage-park-slideshow-container .img-arrows-container {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  text-align: center;
+  width: 86%;
+  justify-content: space-evenly;
+}
+
+.slideshow-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.img-arrows-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-evenly;
+}
+
+.img-arrows-container i:first-child {
+  rotate: 180deg;
 }
 
 .slideshow-img-container {
   display: flex;
   align-items: center;
-}
-
-.slideshow-img-container i:first-child {
-  rotate: 180deg;
+  justify-content: center;
+  width: 75%;
 }
 
 .slideshow-container p {
   max-width: 80%;
   margin: 0;
   text-wrap: wrap;
+  text-align: center;
 }
 
 .homepage-park-slideshow-container i {
   font-size: 2rem;
-  margin: auto 0.5rem;
 }
 
 .homepage-park-slideshow-container i:hover,
@@ -235,8 +254,8 @@
 
 .park-card img {
   float: left;
-  width: 18rem;
-  height: 10rem;
+  width: 13rem;
+  height: 7rem;
   object-fit: cover;
   border: 2px solid var(--theme-brown);
 }
@@ -271,6 +290,19 @@
   cursor: pointer;
 }
 
+.learn-more-btn {
+  margin: 1rem 0;
+}
+
+.universal-footer {
+  position: relative;
+  width: 95%;
+  text-align: center;
+  margin: 3rem 0 1rem 0;
+  font-weight: 700;
+  background-color: black;
+}
+
 .park-page-container {
   padding: 0 3rem;
 }
@@ -287,19 +319,6 @@
   margin-top: 1rem;
   width: 98%;
   justify-content: center;
-}
-
-.learn-more-btn {
-  margin: 1rem 0;
-}
-
-.universal-footer {
-  position: relative;
-  width: 95%;
-  text-align: center;
-  margin: 3rem 0 1rem 0;
-  font-weight: 700;
-  background-color: black;
 }
 
 .park-google-maps-current-weather-alerts-container {
@@ -509,9 +528,24 @@
   align-items: center;
 }
 
+.park-page-img-slideshow-container {
+  width: 100%;
+}
+
+.park-page-img-slideshow-container .slideshow-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.park-page-img-slideshow-container .slideshow-container .slideshow-img-container  {
+  width: 77%;
+}
+
 .park-page-img-slideshow-container i {
   font-size: 3rem;
-  margin: auto 1.5rem;
 }
 
 .park-page-img-slideshow-container img {
@@ -640,6 +674,8 @@
 
 .nearby-parks-container .park-card {
   width: 25%;
+  padding: 0.75rem 0.75rem 0.75rem 0.75rem;
+  justify-content: center;
 }
 
 .nearby-parks-container .park-card img {
@@ -650,16 +686,15 @@
 .nearby-parks-container .park-card button {
   padding: 0.3em 0.6em;
   margin: 0.5rem;
+  height: 2.25rem;
 }
 
 .nearby-parks-container .homepage-park-slideshow-container i {
   font-size: 2rem;
-  margin: auto 1.5rem;
 }
 
 .park-card button {
   border-radius: 8px;
-  border: 1px solid transparent;
   padding: 0.6em 1.2em;
   font-size: 1em;
   font-weight: 500;

@@ -32,7 +32,7 @@ const ImageSlideshow = ({ park, showCaption }: { park: TPark; showCaption: boole
 
   return (
     <div className="slideshow-container">
-      <div className="slideshow-img-container">
+      <div className="img-arrows-container">
         {park?.images.length > 1 && (
           <i
             onClick={() => changeImage("prev", imgIndex, park?.images)}
@@ -40,10 +40,12 @@ const ImageSlideshow = ({ park, showCaption }: { park: TPark; showCaption: boole
             title="Previous Image"
           ></i>
         )}
-        <img
-          src={park.images[`${imgIndex}`].url}
-          alt={park.images[`${imgIndex}`].altText}
-        />
+        <div className="slideshow-img-container">
+          <img
+            src={park.images[`${imgIndex}`].url}
+            alt={park.images[`${imgIndex}`].altText}
+          />
+        </div>
         {park?.images.length > 1 && (
           <i
             onClick={() => changeImage("next", imgIndex, park?.images)}
