@@ -14,7 +14,7 @@ const Search = () => {
           onChange={(e) => handleSearchQuery(e.target.value)}
           value={searchQuery}
           placeholder="Search parks"
-          title="Search parks by name, description, weather info, activities, topics, longitude/latitude, or park code"
+          title="Search parks by name, description, weather info, activities, topics, longitude/latitude, state/territory, or park code"
         ></input>
         <i
           title="Clear Search"
