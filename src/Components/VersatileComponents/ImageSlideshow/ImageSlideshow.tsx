@@ -8,6 +8,10 @@ const ImageSlideshow = ({ park, showCaption }: { park: TPark; showCaption: boole
     Math.floor(Math.random() * (park.images.length - 1))
   );
 
+  if (park.images[`${imgIndex}`] === undefined) {
+    setImgIndex(0);
+  }
+
   const changeImage = (
     direction: TDirection,
     imgIndex: number,
@@ -37,16 +41,8 @@ const ImageSlideshow = ({ park, showCaption }: { park: TPark; showCaption: boole
           ></i>
         )}
         <img
-          src={
-            park.images[`${imgIndex}`] !== undefined
-              ? park.images[`${imgIndex}`].url
-              : park.images[0].url
-          }
-          alt={
-            park.images[`${imgIndex}`] !== undefined
-              ? park.images[`${imgIndex}`].altText
-              : park.images[0].altText
-          }
+          src={park.images[`${imgIndex}`].url}
+          alt={park.images[`${imgIndex}`].altText}
         />
         {park?.images.length > 1 && (
           <i
@@ -56,12 +52,7 @@ const ImageSlideshow = ({ park, showCaption }: { park: TPark; showCaption: boole
           ></i>
         )}
       </div>
-      {showCaption &&
-        (park.images[`${imgIndex}`] !== undefined ? (
-          <p>{park?.images[`${imgIndex}`].caption}</p>
-        ) : (
-          <p>{park?.images[0].caption}</p>
-        ))}
+      {showCaption && <p>{park?.images[`${imgIndex}`].caption}</p>}
     </div>
   );
 };
