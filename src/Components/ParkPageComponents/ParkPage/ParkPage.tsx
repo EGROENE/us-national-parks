@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
-// API method(s):
+// Method(s):
 import { getParkByCode, getParkCurrentWeather } from "../../../api";
+import { formatTitleCapitalization } from "../../../methods";
 
 // Type(s):
 import { TParkAlert, TCurrentWeather, TPark } from "../../../types";
@@ -176,7 +177,7 @@ const ParkPage = () => {
         {park && !parkIsLoading && (
           <>
             <div className="park-page-headers-container">
-              <h1>{park?.fullName}</h1>
+              <h1>{formatTitleCapitalization(park?.fullName)}</h1>
               <p>
                 Located in{" "}
                 {locations && locations.length > 2 ? locations.join(", ") : locations}
