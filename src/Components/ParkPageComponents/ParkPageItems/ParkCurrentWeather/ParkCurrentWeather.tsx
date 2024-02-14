@@ -147,6 +147,7 @@ const ParkCurrentWeather = ({
                 </div>
               </div>
             </div>
+            <p className="weather-source">Data provided by weatherapi.com</p>
           </>
         )}
       </div>

@@ -405,6 +405,12 @@
   color: white;
 }
 
+.weather-source {
+  font-style: italic;
+  font-size: 0.75rem;
+  margin: 0 0 0.5rem 0;
+}
+
 .weather-info-container {
   position: relative;
   color: black;
