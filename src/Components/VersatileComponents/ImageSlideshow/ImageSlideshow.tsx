@@ -1,14 +1,25 @@
 import { useState } from "react";
-import { TPark } from "../../../types";
 
 type TDirection = "next" | "prev";
 
-const ImageSlideshow = ({ park, showCaption }: { park: TPark; showCaption: boolean }) => {
+const ImageSlideshow = ({
+  images,
+  showCaption,
+}: {
+  images: {
+    credit: string;
+    title: string;
+    altText: string;
+    caption: string;
+    url: string;
+  }[];
+  showCaption: boolean;
+}) => {
   const [imgIndex, setImgIndex] = useState<number>(
-    Math.floor(Math.random() * (park.images.length - 1))
+    Math.floor(Math.random() * images.length - 1)
   );
 
-  if (park.images[`${imgIndex}`] === undefined) {
+  if (images[`${imgIndex}`] === undefined) {
     setImgIndex(0);
   }
 
@@ -33,28 +44,25 @@ const ImageSlideshow = ({ park, showCaption }: { park: TPark; showCaption: boole
   return (
     <div className="slideshow-container">
       <div className="img-arrows-container">
-        {park?.images.length > 1 && (
+        {images.length > 1 && (
           <i
-            onClick={() => changeImage("prev", imgIndex, park?.images)}
+            onClick={() => changeImage("prev", imgIndex, images)}
             className="fas fa-angle-right"
             title="Previous Image"
           ></i>
         )}
         <div className="slideshow-img-container">
-          <img
-            src={park.images[`${imgIndex}`].url}
-            alt={park.images[`${imgIndex}`].altText}
-          />
+          <img src={images[`${imgIndex}`].url} alt={images[`${imgIndex}`].altText} />
         </div>
-        {park?.images.length > 1 && (
+        {images.length > 1 && (
           <i
-            onClick={() => changeImage("next", imgIndex, park?.images)}
+            onClick={() => changeImage("next", imgIndex, images)}
             className="fas fa-angle-right"
             title="Next Image"
           ></i>
         )}
       </div>
-      {showCaption && <p>{park?.images[`${imgIndex}`].caption}</p>}
+      {showCaption && <p>{images[`${imgIndex}`].caption}</p>}
     </div>
   );
 };

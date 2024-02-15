@@ -61,7 +61,7 @@ const ParkCard = ({
   return (
     <div className="park-card">
       <div className="homepage-park-slideshow-container">
-        <ImageSlideshow park={park} showCaption={false} />
+        <ImageSlideshow images={park.images} showCaption={false} />
       </div>
       <header>{`${formatTitleCapitalization(park.fullName)}`}</header>
       <div className="state-list">

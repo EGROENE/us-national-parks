@@ -215,7 +215,7 @@ const ParkPage = () => {
             <div className="park-page-main-content-container">
               <div className="park-page-top-section">
                 <div className="park-page-img-slideshow-container">
-                  <ImageSlideshow park={park} showCaption={true} />
+                  <ImageSlideshow images={park.images} showCaption={true} />
                 </div>
                 <div className="park-basic-info-container">
                   <header>Description</header>
