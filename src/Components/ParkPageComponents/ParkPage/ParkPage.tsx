@@ -43,6 +43,8 @@ const ParkPage = () => {
   const [wasError429, setWasError429] = useState<boolean>(false);
   const [parkIsLoading, setParkIsLoading] = useState<boolean>(true);
   const [parkWeather, setParkWeather] = useState<TCurrentWeather | undefined>();
+  /* imgIndex will be used to determine initial image in ImageSlideshow, as long as this component isn't nested (e.g., present in same component more than once, w/ images corresponding to one or more different parks) */
+  const [imgIndex, setImgIndex] = useState<number>(0); // Set to random number, depending on length of park.images once this component mounts
 
   // State values dictating if certain park info should be shown (changed by user & hidden by default):
   const [showActivities, setShowActivities] = useState<boolean>(false);
@@ -59,6 +61,10 @@ const ParkPage = () => {
     if (allNationalParks.length > 0) {
       setParkIsLoading(false);
       setPark(allNationalParks.filter((park) => park.parkCode === parkCode)[0]);
+      //  set imgIndex to random number (min 0, max one less than current park.images.length)
+      if (park) {
+        setImgIndex(Math.floor(Math.random() * park?.images.length));
+      }
     } else {
       getParkByCode(parkCode)
         .then((response) => {
@@ -67,11 +73,17 @@ const ParkPage = () => {
           }
           return response.text();
         })
-        .then((result) => setPark(JSON.parse(result).data[0]))
+        .then((result) => {
+          setPark(JSON.parse(result).data[0]);
+          // set imgIndex to random number (min 0, max one less than current park.images.length)
+          if (park) {
+            setImgIndex(Math.floor(Math.random() * park?.images.length));
+          }
+        })
         .catch((error) => console.log(error))
         .finally(() => setParkIsLoading(false));
     }
-  }, [allNationalParks, parkCode]);
+  }, [park, allNationalParks, parkCode]);
 
   // Get park's current weather:
   useEffect(() => {
@@ -215,7 +227,12 @@ const ParkPage = () => {
             <div className="park-page-main-content-container">
               <div className="park-page-top-section">
                 <div className="park-page-img-slideshow-container">
-                  <ImageSlideshow images={park.images} showCaption={true} />
+                  <ImageSlideshow
+                    images={park.images}
+                    showCaption={true}
+                    imgIndex={imgIndex}
+                    setImgIndex={setImgIndex}
+                  />
                 </div>
                 <div className="park-basic-info-container">
                   <header>Description</header>
