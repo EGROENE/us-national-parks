@@ -1,7 +1,6 @@
-import { npsKey } from "./strengGeheim";
+import { weatherAPIKey, npsKey, npsKey2 } from "./strengGeheim";
 const npsBaseURL = `https://developer.nps.gov/api/v1`;
 
-import { weatherAPIKey } from "./strengGeheim";
 const weatherBaseURL = "https://api.weatherapi.com/v1/current.json?";
 
 export const getParks = (): Promise<Response> => {
@@ -17,7 +16,7 @@ export const getParks = (): Promise<Response> => {
 
 export const getParkByCode = (code: string | undefined): Promise<Response> => {
   const myHeaders = new Headers();
-  myHeaders.append("X-Api-Key", npsKey);
+  myHeaders.append("X-Api-Key", npsKey2);
 
   return fetch(`${npsBaseURL}/parks?parkCode=${code}`, {
     method: "GET",
