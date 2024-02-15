@@ -43,8 +43,6 @@ const ParkPage = () => {
   const [wasError429, setWasError429] = useState<boolean>(false);
   const [parkIsLoading, setParkIsLoading] = useState<boolean>(true);
   const [parkWeather, setParkWeather] = useState<TCurrentWeather | undefined>();
-  /* originalImgIndex will be used to determine initial image in ImageSlideshow, as long as this component isn't nested (e.g., present in same component more than once, w/ images corresponding to one or more different parks) */
-  const [originalImgIndex, setOriginalImgIndex] = useState<number>(0); // Set to random number, depending on length of park.images once this component mounts
 
   // State values dictating if certain park info should be shown (changed by user & hidden by default):
   const [showActivities, setShowActivities] = useState<boolean>(false);
@@ -61,10 +59,6 @@ const ParkPage = () => {
     if (allNationalParks.length > 0) {
       setParkIsLoading(false);
       setPark(allNationalParks.filter((park) => park.parkCode === parkCode)[0]);
-      //  set originalImgIndex to random number (min 0, max one less than current park.images.length)
-      if (park) {
-        setOriginalImgIndex(Math.floor(Math.random() * park?.images.length));
-      }
     } else {
       getParkByCode(parkCode)
         .then((response) => {
@@ -73,13 +67,7 @@ const ParkPage = () => {
           }
           return response.text();
         })
-        .then((result) => {
-          setPark(JSON.parse(result).data[0]);
-          // set originalImgIndex to random number (min 0, max one less than current park.images.length)
-          if (park) {
-            setOriginalImgIndex(Math.floor(Math.random() * park?.images.length));
-          }
-        })
+        .then((result) => setPark(JSON.parse(result).data[0]))
         .catch((error) => console.log(error))
         .finally(() => setParkIsLoading(false));
     }
@@ -230,8 +218,7 @@ const ParkPage = () => {
                   <ImageSlideshow
                     images={park.images}
                     showCaption={true}
-                    originalImgIndex={originalImgIndex}
-                    setOriginalImgIndex={setOriginalImgIndex}
+                    parkCode={parkCode}
                   />
                 </div>
                 <div className="park-basic-info-container">
@@ -303,7 +290,7 @@ const ParkPage = () => {
                 {nearbyParks.length > 0 && showNearbyParks && (
                   <div className="nearby-parks-container">
                     {nearbyParks.map((park: TPark) => (
-                      <ParkCard key={park.id} park={park} />
+                      <ParkCard key={park.id} park={park} parkCode={parkCode} />
                     ))}
                   </div>
                 )}

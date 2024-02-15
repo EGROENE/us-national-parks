@@ -15,9 +15,11 @@ import ImageSlideshow from "../ImageSlideshow/ImageSlideshow";
 const ParkCard = ({
   park,
   showDescription,
+  parkCode,
 }: {
   park: TPark;
   showDescription?: boolean;
+  parkCode?: string;
 }) => {
   const stateIndices: string[] = park.states
     .replace(/,/g, " ")
@@ -61,7 +63,7 @@ const ParkCard = ({
   return (
     <div className="park-card">
       <div className="homepage-park-slideshow-container">
-        <ImageSlideshow images={park.images} showCaption={false} />
+        <ImageSlideshow images={park.images} showCaption={false} parkCode={parkCode} />
       </div>
       <header>{`${formatTitleCapitalization(park.fullName)}`}</header>
       <div className="state-list">
