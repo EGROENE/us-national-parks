@@ -219,6 +219,7 @@ const ParkPage = () => {
                     images={park.images}
                     showCaption={true}
                     parkCode={parkCode}
+                    onHomepage={false}
                   />
                 </div>
                 <div className="park-basic-info-container">

@@ -18,7 +18,7 @@ const AllParkCards = () => {
     <>
       <div className="card-container">
         {displayedParks.map((park: TPark) => (
-          <ParkCard key={park.id} park={park} showDescription={true} />
+          <ParkCard key={park.id} park={park} onHomepage={true} showDescription={true} />
         ))}
       </div>
       {displayShowMoreBtn && <ShowMoreBtn />}

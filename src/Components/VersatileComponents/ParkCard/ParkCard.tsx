@@ -16,10 +16,12 @@ const ParkCard = ({
   park,
   showDescription,
   parkCode,
+  onHomepage,
 }: {
   park: TPark;
   showDescription?: boolean;
   parkCode?: string;
+  onHomepage?: boolean;
 }) => {
   const stateIndices: string[] = park.states
     .replace(/,/g, " ")
@@ -63,7 +65,12 @@ const ParkCard = ({
   return (
     <div className="park-card">
       <div className="homepage-park-slideshow-container">
-        <ImageSlideshow images={park.images} showCaption={false} parkCode={parkCode} />
+        <ImageSlideshow
+          images={park.images}
+          showCaption={false}
+          parkCode={parkCode}
+          onHomepage={onHomepage}
+        />
       </div>
       <header>{`${formatTitleCapitalization(park.fullName)}`}</header>
       <div className="state-list">
