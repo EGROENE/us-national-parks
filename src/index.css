@@ -15,6 +15,7 @@
   --theme-cream: #bba783;
   --theme-blue-light: #30494a;
   --theme-blue-dark: #273736;
+  --theme-blue-darker: #182524;
   background-color: var(--theme-blue-dark);
 }
 
