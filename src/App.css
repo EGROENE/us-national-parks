@@ -546,6 +546,7 @@
 
 .park-page-img-slideshow-container i {
   font-size: 3rem;
+  margin: 2rem;
 }
 
 .park-page-img-slideshow-container img {
@@ -561,7 +562,7 @@
 }
 
 .park-basic-info-container {
-  margin-left: 4rem;
+  margin-left: 3rem;
 }
 
 .park-basic-info-container header {
