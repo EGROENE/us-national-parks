@@ -67,6 +67,11 @@
         justify-content: space-between;
     }
 
+    .homepage-park-slideshow-container .img-arrows-container.centered {
+        display: flex;
+        justify-content: center;
+      }
+
     .park-card img {
         width: 15rem;
         height: 9rem;

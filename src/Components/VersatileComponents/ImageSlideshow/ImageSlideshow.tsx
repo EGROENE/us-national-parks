@@ -56,7 +56,11 @@ const ImageSlideshow = ({
 
   return (
     <div className="slideshow-container">
-      <div className="img-arrows-container">
+      <div
+        className={
+          images.length > 1 ? "img-arrows-container" : "img-arrows-container centered"
+        }
+      >
         {images.length > 1 && (
           <i
             onClick={() => changeImage("prev", images)}
