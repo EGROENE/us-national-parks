@@ -19,17 +19,15 @@ const ImageSlideshow = ({
   parkCode?: string; // from component where it's possibly undefined, so must be of type 'string | undefined' here
   onHomepage?: boolean;
 }) => {
-  const [backupImgIndex, setBackupImgIndex] = useState<number | undefined>();
+  const [imgIndex, setImgIndex] = useState<number | undefined>();
 
-  /* If ParkCard is on homepage, setBackupImgIndex to random number, depending on length of images array. If not on homepage, setBackupImgIndex to zero to avoid potential 'undefined' errors: */
+  /* If ParkCard is on homepage, setImgIndex to random number, depending on length of images array. If not on homepage, setImgIndex to zero to avoid potential 'undefined' errors: */
   useEffect(() => {
-    onHomepage
-      ? setBackupImgIndex(Math.floor(Math.random() * images.length))
-      : setBackupImgIndex(0);
+    onHomepage ? setImgIndex(Math.floor(Math.random() * images.length)) : setImgIndex(0);
   }, [parkCode, images.length, onHomepage]);
   /* console.log(parkCode);
   console.log(images.length);
-  console.log(backupImgIndex); */
+  console.log(imgIndex); */
 
   const changeImage = (
     direction: TDirection,
@@ -41,15 +39,11 @@ const ImageSlideshow = ({
       url: string;
     }[]
   ): void => {
-    if (backupImgIndex !== undefined) {
+    if (imgIndex !== undefined) {
       if (direction === "next") {
-        backupImgIndex === imgArray.length - 1
-          ? setBackupImgIndex(0)
-          : setBackupImgIndex(backupImgIndex + 1);
+        imgIndex === imgArray.length - 1 ? setImgIndex(0) : setImgIndex(imgIndex + 1);
       } else {
-        backupImgIndex === 0
-          ? setBackupImgIndex(imgArray.length - 1)
-          : setBackupImgIndex(backupImgIndex - 1);
+        imgIndex === 0 ? setImgIndex(imgArray.length - 1) : setImgIndex(imgIndex - 1);
       }
     }
   };
@@ -69,9 +63,9 @@ const ImageSlideshow = ({
           ></i>
         )}
         <div className="slideshow-img-container">
-          {/* If backupImgIndex is specifically not undefined (not just falsy), show image/alt text. backupImgIndex should never be falsy, as its value is set whenever this component renders, though it is initialized as undefined. It's not good practice to initialize it, then change it again as soon as component renders. */}
-          {backupImgIndex !== undefined && (
-            <img src={images[backupImgIndex].url} alt={images[backupImgIndex].altText} />
+          {/* If imgIndex is specifically not undefined (not just falsy), show image/alt text. imgIndex should never be falsy, as its value is set whenever this component renders, though it is initialized as undefined. It's not good practice to initialize it, then change it again as soon as component renders. */}
+          {imgIndex !== undefined && (
+            <img src={images[imgIndex].url} alt={images[imgIndex].altText} />
           )}
         </div>
         {images.length > 1 && (
@@ -82,9 +76,7 @@ const ImageSlideshow = ({
           ></i>
         )}
       </div>
-      {showCaption && backupImgIndex !== undefined && (
-        <p>{images[backupImgIndex].caption}</p>
-      )}
+      {showCaption && imgIndex !== undefined && <p>{images[imgIndex].caption}</p>}
     </div>
   );
 };
