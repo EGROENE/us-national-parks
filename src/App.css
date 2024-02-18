@@ -413,6 +413,10 @@
   font-size: 1.25rem;
 }
 
+.park-modal-header {
+  text-align: center;
+}
+
 .current-weather-container {
   position: relative;
   display: flex;
