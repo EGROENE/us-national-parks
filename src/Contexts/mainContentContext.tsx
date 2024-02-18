@@ -102,11 +102,13 @@ export const MainContentContextProvider = ({ children }: { children: ReactNode }
           stateFilterOptions
         ).concat(Object.entries(territoryFilterOptions));
         const parkStateTerritoryAbbreviations = park.states.replace(/,/g, " ").split(" ");
-        let stateAndTerritoryKeyValuePairsOfPark: [string, string][] = [];
+        const stateAndTerritoryKeyValuePairsOfPark: [string, string][] = [];
         for (const abbreviation of parkStateTerritoryAbbreviations) {
-          stateAndTerritoryKeyValuePairsOfPark = allStateAndTerritoryKeyValuePairs.filter(
-            (pair) => pair[0] === abbreviation
-          );
+          for (const pair of allStateAndTerritoryKeyValuePairs) {
+            if (pair[0] === abbreviation) {
+              stateAndTerritoryKeyValuePairsOfPark.push(pair);
+            }
+          }
         }
         for (const pair of stateAndTerritoryKeyValuePairsOfPark) {
           for (const elem of pair) {
@@ -118,6 +120,7 @@ export const MainContentContextProvider = ({ children }: { children: ReactNode }
             }
           }
         }
+
         return false;
       };
 
