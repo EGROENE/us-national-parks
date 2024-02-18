@@ -531,6 +531,8 @@
 
 .park-page-img-slideshow-container {
   width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .park-page-img-slideshow-container .slideshow-container {
@@ -547,7 +549,6 @@
 
 .park-page-img-slideshow-container i {
   font-size: 3rem;
-  margin: 2rem;
 }
 
 .park-page-img-slideshow-container img {
