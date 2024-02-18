@@ -406,6 +406,10 @@
     .park-alert {
         padding: 0.5rem;
     }
+
+    .weather-img-container img {
+        height: 6rem;
+    }
 }
 
 @media screen and (max-width: 320px) {
@@ -433,6 +437,12 @@
 
     .nearby-parks-container .park-card {
         width: 100%;
+    }
+
+    .park-alerts-body i,
+    .current-weather-container i {
+        top: 2%;
+        font-size: 1.75rem;
     }
 
     .weather-img-container img {
