@@ -89,6 +89,13 @@
     .park-alerts-body {
         width: 61%;
     }
+
+    .park-alerts-body i,
+    .current-weather-container i {
+        position: absolute;
+        top: 3%;
+        right: 3%;
+    }
 }
 
 @media screen and (max-width: 615px) {
@@ -154,6 +161,20 @@
         width: 100%;
     }
 
+    .park-alerts-body i,
+    .current-weather-container i {
+        top: 2%;
+        right: 3%;
+    }
+
+    .weather-info-container {
+        padding: 0;
+    }
+
+    .basic-weather-info-text-container {
+        margin-top: -2rem;
+    }
+
     .park-page-img-slideshow-container img {
         width: 18rem;
         height: 10rem;
@@ -210,12 +231,22 @@
     .park-alerts-body {
         margin-left: 3rem;
     }
+
+    .extended-weather-info p,
+    .datapoint-container {
+        margin: 0.5rem 0;
+        font-size: 1rem;
+    }
 }
 
 @media screen and (max-width: 480px) {
     .current-weather-container, 
     .park-alerts-body {
         margin-left: 3rem;
+    }
+
+    .park-modal-header {
+        font-size: 1.5rem;
     }
 }
 
@@ -277,6 +308,10 @@
     .park-alerts-modal,
     .current-weather-modal-hero {
         width: 115vw;
+    }
+
+    .weather-img-container img {
+        margin-top: -2rem;
     }
 
     .extended-weather-info {
