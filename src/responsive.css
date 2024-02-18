@@ -310,10 +310,6 @@
         width: 115vw;
     }
 
-    .weather-img-container img {
-        margin-top: -2rem;
-    }
-
     .extended-weather-info {
         width: 71%;
     }
