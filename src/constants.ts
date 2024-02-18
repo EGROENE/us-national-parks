@@ -189,16 +189,6 @@ export const quizQuestions = [
     comment: "Around 13M visitors come to Great Smoky Mountains N.P. annually.",
   },
   {
-    question: "Which state has the most national parks?",
-    answers: {
-      rightAnswer: "California",
-      wrongAnswerOne: "Alaska",
-      wrongAnswerTwo: "Utah",
-      wrongAnswerThree: "Colorado",
-    },
-    comment: "California has 9, Alaska has 8, Utah has 5, & Colorado has 4.",
-  },
-  {
     question: "Which national park is roughly the size of Wales?",
     answers: {
       rightAnswer: "Katmai",
