@@ -388,8 +388,6 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  height: 31rem;
-  overflow-y: scroll;
 }
 
 .park-modal-header {
@@ -557,6 +555,7 @@
 
 .park-page-img-slideshow-container i {
   font-size: 3rem;
+  margin: 0 2rem;
 }
 
 .park-page-img-slideshow-container img {

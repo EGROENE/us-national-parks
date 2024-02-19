@@ -91,6 +91,11 @@
         font-size: 2rem;
     }
 
+    .park-alerts-container {
+        height: 31rem;
+        overflow-y: scroll;
+    }
+
     .park-alerts-body {
         width: 61%;
     }
