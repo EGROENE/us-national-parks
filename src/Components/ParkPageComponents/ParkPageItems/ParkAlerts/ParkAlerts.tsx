@@ -71,7 +71,9 @@ const ParkAlerts = ({
           title="Close Alerts"
           className="fas fa-times"
         ></i>
-        <header className="park-modal-intro-header">Alerts for</header>
+        <header className="park-modal-intro-header">
+          {parkAlerts.length === 1 ? "1 alert for" : `${parkAlerts.length} alerts for`}
+        </header>
         <header className="park-modal-header">{parkName}</header>
         <div className="park-alerts-container">
           {parkAlerts.map((alert) => (
