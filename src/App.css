@@ -387,6 +387,9 @@
 .park-alerts-container {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
+  height: 31rem;
+  overflow-y: scroll;
 }
 
 .park-modal-header {

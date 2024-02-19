@@ -130,6 +130,10 @@
     .park-alerts-body {
         margin-left: 2rem;
     }
+
+    .park-alerts-body i {
+        right: 6%;
+    }
 }
 
 @media screen and (max-width: 600px) {
@@ -225,6 +229,14 @@
         display: flex;
         flex-wrap: wrap;
     }
+
+    .park-modal-header {
+        font-size: 1.5rem;
+    }
+
+    .park-alert {
+        margin: 0.5rem;
+    }
 }
 
 @media screen and (max-width: 500px) and (max-height: 853px) {
@@ -252,6 +264,10 @@
 
     .park-modal-header {
         font-size: 1.5rem;
+    }
+
+    .park-alerts-body {
+        padding: 2rem;
     }
 }
 
@@ -290,6 +306,10 @@
 
     .current-weather-container, .park-alerts-body {
         margin-left: 2.5rem;
+    }
+
+    .park-alerts-body {
+        padding: 1rem 2.5rem;
     }
 }
 
@@ -340,6 +360,10 @@
     .datapoint-container {
         font-size: 1rem;
     }
+
+    .park-alerts-container {
+        height: 27rem;
+    }
 }
 
 @media screen and (max-width: 400px) {
@@ -363,6 +387,10 @@
     .current-weather-container i {
         top: 2%;
     }
+
+    .park-alerts-body {
+        padding: 1rem 3rem;
+    }
 }
 
 @media screen and (max-width: 390px) {
@@ -373,6 +401,11 @@
 
     .park-modal-header {
         font-size: 1.5rem;
+    }
+
+    .current-weather-container {
+        height: 77vh;
+        overflow-y: scroll;
     }
 }
 
@@ -390,6 +423,11 @@
     .park-page-img-slideshow-container img {
         width: 16rem;
         height: 10rem;
+    }
+
+    .park-alerts-container {
+        width: 119%;
+        height: 19rem;
     }
 }
 
@@ -410,6 +448,10 @@
 
     .weather-img-container img {
         height: 6rem;
+    }
+
+    .park-alerts-body {
+        padding: 1rem 2rem;
     }
 }
 
