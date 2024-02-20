@@ -242,6 +242,7 @@ const ParkPage = () => {
                   parkWeather={parkWeather}
                   parkName={park.fullName}
                   wasErrorFetchingWeather={wasErrorFetchingWeather}
+                  parkImages={park.images}
                 />
               )}
               <div className="park-page-bottom-section">
