@@ -175,6 +175,11 @@
         width: 100%;
     }
 
+    .current-weather-background {
+        background-repeat: unset;
+        background-size: cover;
+    }
+
     .park-alerts-body i,
     .current-weather-container i {
         top: 2%;
@@ -387,6 +392,10 @@
     .park-page-img-slideshow-container img {
         width: 18rem;
         height: 12rem;
+    }
+
+    .park-page-img-slideshow-container i {
+        margin: 0 1rem;
     }
 
     .park-alerts-body i,
