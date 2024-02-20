@@ -79,7 +79,6 @@ const ParkPage = () => {
       getParkCurrentWeather(park.latitude, park.longitude)
         .then((response) => {
           if (!response.ok) {
-            console.log("Couldn't fetch weather");
             setWasErrorFetchingWeather(true);
           }
           return response.text();
