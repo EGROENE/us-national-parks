@@ -423,12 +423,21 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 69%;
-  background-color: var(--theme-brown);
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
 }
 
 .current-weather-container i {
   color: white;
+}
+
+.current-weather-background {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 69%;
+  background-repeat: round;
 }
 
 .weather-source {
@@ -499,7 +508,6 @@
   color: white;
   width: 42%;
   padding: 0.5rem 0;
-  background-color: var(--theme-blue-dark);
 }
 
 .basic-weather-info-text-container {

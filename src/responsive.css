@@ -52,7 +52,7 @@
         width: 111vw;
     }
 
-    .current-weather-container {
+    .current-weather-background {
         width: 82%;
     }
 }
@@ -131,7 +131,7 @@
         height: 5rem;
     }
 
-    .current-weather-container,
+    .current-weather-background,
     .park-alerts-body {
         margin-left: 2rem;
     }
@@ -249,7 +249,7 @@
         padding: 0;
     }
 
-    .current-weather-container, 
+    .current-weather-background, 
     .park-alerts-body {
         margin-left: 3rem;
     }
@@ -262,7 +262,7 @@
 }
 
 @media screen and (max-width: 480px) {
-    .current-weather-container, 
+    .current-weather-background, 
     .park-alerts-body {
         margin-left: 3rem;
     }
@@ -309,7 +309,8 @@
         font-size: 1.75rem;
     }
 
-    .current-weather-container, .park-alerts-body {
+    .current-weather-background, 
+    .park-alerts-body {
         margin-left: 2.5rem;
     }
 
@@ -348,7 +349,7 @@
         width: 88%;
     }
 
-    .current-weather-container, 
+    .current-weather-background, 
     .park-alerts-body {
         margin-left: 2rem;
     }
@@ -372,7 +373,7 @@
 }
 
 @media screen and (max-width: 400px) {
-    .current-weather-container, 
+    .current-weather-background, 
     .park-alerts-body {
         margin-left: 2.5rem;
     }
@@ -442,7 +443,7 @@
         height: 6rem;
     }
 
-    .current-weather-container, 
+    .current-weather-background, 
     .park-alerts-body {
         margin-left: 2.75rem;
     }
