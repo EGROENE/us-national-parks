@@ -247,6 +247,10 @@
     .park-alert {
         margin: 0.5rem;
     }
+
+    .current-weather-container .fail-fetch-message-container {
+        padding: 0.25rem;
+    }
 }
 
 @media screen and (max-width: 500px) and (max-height: 853px) {
