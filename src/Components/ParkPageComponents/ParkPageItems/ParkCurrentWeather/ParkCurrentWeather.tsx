@@ -67,7 +67,7 @@ const ParkCurrentWeather = ({
             {parkName}
           </header>
           {wasErrorFetchingWeather ? (
-            <FailFetchMessage margin="1rem 0" buttonColor="var(--theme-blue-dark)" />
+            <FailFetchMessage />
           ) : (
             <>
               {" "}
