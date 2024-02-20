@@ -30,8 +30,6 @@ import { useMainContentContext } from "../../../Hooks/useMainContentContext";
 import ParkCard from "../../VersatileComponents/ParkCard/ParkCard";
 
 const ParkPage = () => {
-  const [wasErrorFetchingWeather, setWasErrorFetchingWeather] = useState<boolean>(false);
-
   // Values relating to park info (alerts, current weather, etc.):
   const { allNPAlerts, allNationalParks } = useMainContentContext();
   const { parkCode } = useParams();
@@ -43,6 +41,7 @@ const ParkPage = () => {
   const [wasError429, setWasError429] = useState<boolean>(false);
   const [parkIsLoading, setParkIsLoading] = useState<boolean>(true);
   const [parkWeather, setParkWeather] = useState<TCurrentWeather | undefined>();
+  const [wasErrorFetchingWeather, setWasErrorFetchingWeather] = useState<boolean>(false);
 
   // State values dictating if certain park info should be shown (changed by user & hidden by default):
   const [showActivities, setShowActivities] = useState<boolean>(false);
@@ -78,12 +77,15 @@ const ParkPage = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
     if (park) {
       getParkCurrentWeather(park.latitude, park.longitude)
-        .then((response) => response.text())
+        .then((response) => {
+          if (!response.ok) {
+            console.log("Couldn't fetch weather");
+            setWasErrorFetchingWeather(true);
+          }
+          return response.text();
+        })
         .then((result) => setParkWeather(JSON.parse(result)))
-        .catch((error) => {
-          console.log(error);
-          setWasErrorFetchingWeather(true);
-        });
+        .catch((error) => console.log(error));
     }
   }, [park]);
 
