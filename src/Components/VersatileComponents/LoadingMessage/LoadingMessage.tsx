@@ -7,9 +7,7 @@ const LoadingMessage = () => {
         <i className="fas fa-paw paw-2"></i>
         <i className="fas fa-paw paw-3"></i>
       </div>
-      <p className="init-loading-or-error-message">
-        Wait a sec while we retrieve the data...
-      </p>
+      <p className="loading-error-message">Wait a sec while we retrieve the data...</p>
     </div>
   );
 };
