@@ -22,13 +22,15 @@ const ParkCurrentWeather = ({
     url: string;
   }[];
 }) => {
-  // Get park's long/lat as prop from ParkPage:
   const [displayCelsius, setDisplayCelsius] = useState<boolean>(false);
   const [visibilityInKM, setVisibilityKM] = useState<boolean>(false);
   const [windInKM, setWindInKM] = useState<boolean>(false);
   const [precipitationInMetric, setPrecipitationInMetric] = useState<boolean>(false);
   const [pressureInMetric, setPressureInMetric] = useState<boolean>(false);
   const [backgroundImage, setBackgroundImage] = useState<string>("");
+  const [randomBackgroundImgIndex, setRandomBackgroundImgIndex] = useState(
+    Math.floor(Math.random() * parkImages.length)
+  );
 
   let lastUpdatedTime: Date | string | undefined;
   if (parkWeather) {
@@ -36,34 +38,15 @@ const ParkCurrentWeather = ({
     lastUpdatedTime = `${lastUpdatedTime?.toLocaleDateString()} at ${lastUpdatedTime?.toLocaleTimeString()}`;
   }
 
-  const backgroundImageExists = (img: string): boolean => {
-    let exists: boolean = false;
-    fetch(img)
-      .then(() => (exists = true))
-      .catch(() => (exists = false));
-    return exists;
-  };
-
   useEffect(() => {
-    const randomIndex = Math.floor(Math.random() * parkImages.length);
-    console.log(randomIndex);
-    console.log(randomIndex + 1);
-    console.log(parkImages.length);
-    console.log(backgroundImageExists(parkImages[randomIndex].url));
-    console.log(parkImages[3].url);
-    console.log(parkImages[4].url);
-    if (backgroundImageExists(parkImages[randomIndex].url)) {
-      console.log("exists");
-      setBackgroundImage(parkImages[randomIndex].url);
-    } else {
-      console.log("doesn't exist");
-      if (randomIndex + 1 === parkImages.length) {
-        setBackgroundImage(parkImages[0].url);
+    fetch(parkImages[randomBackgroundImgIndex].url).then((response) => {
+      if (response.ok) {
+        setBackgroundImage(parkImages[randomBackgroundImgIndex].url);
       } else {
-        setBackgroundImage(parkImages[randomIndex + 1].url);
+        setRandomBackgroundImgIndex(Math.floor(Math.random() * parkImages.length));
       }
-    }
-  }, [setBackgroundImage, parkImages]);
+    });
+  }, [parkImages, randomBackgroundImgIndex]);
 
   return (
     <div className="current-weather-modal-hero">
