@@ -33,7 +33,7 @@ const ParkCurrentWeather = ({
   );
 
   let lastUpdatedTime: Date | string | undefined;
-  if (parkWeather) {
+  if (parkWeather && !wasErrorFetchingWeather) {
     lastUpdatedTime = new Date(parkWeather?.current.last_updated_epoch * 1000);
     lastUpdatedTime = `${lastUpdatedTime?.toLocaleDateString()} at ${lastUpdatedTime?.toLocaleTimeString()}`;
   }
