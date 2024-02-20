@@ -65,7 +65,11 @@ const ImageSlideshow = ({
         <div className="slideshow-img-container">
           {/* If imgIndex is specifically not undefined (not just falsy), show image/alt text. imgIndex should never be falsy, as its value is set whenever this component renders, though it is initialized as undefined. It's not good practice to initialize it, then change it again as soon as component renders. */}
           {imgIndex !== undefined && (
-            <img src={images[imgIndex].url} alt={images[imgIndex].altText} />
+            <img
+              src={images[imgIndex].url}
+              alt={images[imgIndex].altText}
+              onError={() => setImgIndex(imgIndex + 1)}
+            />
           )}
         </div>
         {images.length > 1 && (
