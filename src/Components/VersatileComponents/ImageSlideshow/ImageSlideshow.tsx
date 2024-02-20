@@ -28,9 +28,13 @@ const ImageSlideshow = ({
     onHomepage ? setImgIndex(Math.floor(Math.random() * images.length)) : setImgIndex(0);
   }, [parkCode, images.length, onHomepage]);
 
-  const changeImage = (): void => {
+  const changeImage = (direction: TDirection): void => {
+    /* Necessary to setSlideshowDirection state value here (its existence is necessary, too) because, if an image doesn't exist (error 404 occurs on the image) while user is scrolling through a park's images, the image that follows the erroneous image in the sequence, whether the user is moving forward or backward through the image array, should be displayed, & the onError callback function needs to know the direction in which the user is scrolling through the images. */
+    if (direction !== slideshowDirection) {
+      setSlideshowDirection(direction);
+    }
     if (imgIndex !== undefined) {
-      if (slideshowDirection === "next") {
+      if (direction === "next") {
         imgIndex === images.length - 1 ? setImgIndex(0) : setImgIndex(imgIndex + 1);
       } else {
         imgIndex === 0 ? setImgIndex(images.length - 1) : setImgIndex(imgIndex - 1);
@@ -48,8 +52,7 @@ const ImageSlideshow = ({
         {images.length > 1 && (
           <i
             onClick={() => {
-              setSlideshowDirection("prev");
-              changeImage();
+              changeImage("prev");
             }}
             className="fas fa-angle-right"
             title="Previous Image"
@@ -61,15 +64,14 @@ const ImageSlideshow = ({
             <img
               src={images[imgIndex].url}
               alt={images[imgIndex].altText}
-              onError={() => changeImage()}
+              onError={() => changeImage(slideshowDirection)}
             />
           )}
         </div>
         {images.length > 1 && (
           <i
             onClick={() => {
-              setSlideshowDirection("next");
-              changeImage();
+              changeImage("next");
             }}
             className="fas fa-angle-right"
             title="Next Image"
