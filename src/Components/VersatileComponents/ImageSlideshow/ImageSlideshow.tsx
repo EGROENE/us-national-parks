@@ -27,9 +27,6 @@ const ImageSlideshow = ({
   useEffect(() => {
     onHomepage ? setImgIndex(Math.floor(Math.random() * images.length)) : setImgIndex(0);
   }, [parkCode, images.length, onHomepage]);
-  /* console.log(parkCode);
-  console.log(images.length);
-  console.log(imgIndex); */
 
   const changeImage = (): void => {
     if (imgIndex !== undefined) {
