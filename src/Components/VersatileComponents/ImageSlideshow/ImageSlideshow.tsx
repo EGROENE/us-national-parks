@@ -21,6 +21,8 @@ const ImageSlideshow = ({
 }) => {
   const [imgIndex, setImgIndex] = useState<number | undefined>();
 
+  const [slideshowDirection, setSlideshowDirection] = useState<TDirection>("next");
+
   /* If ParkCard is on homepage, setImgIndex to random number, depending on length of images array. If not on homepage, setImgIndex to zero to avoid potential 'undefined' errors: */
   useEffect(() => {
     onHomepage ? setImgIndex(Math.floor(Math.random() * images.length)) : setImgIndex(0);
@@ -29,21 +31,12 @@ const ImageSlideshow = ({
   console.log(images.length);
   console.log(imgIndex); */
 
-  const changeImage = (
-    direction: TDirection,
-    imgArray: {
-      credit: string;
-      title: string;
-      altText: string;
-      caption: string;
-      url: string;
-    }[]
-  ): void => {
+  const changeImage = (): void => {
     if (imgIndex !== undefined) {
-      if (direction === "next") {
-        imgIndex === imgArray.length - 1 ? setImgIndex(0) : setImgIndex(imgIndex + 1);
+      if (slideshowDirection === "next") {
+        imgIndex === images.length - 1 ? setImgIndex(0) : setImgIndex(imgIndex + 1);
       } else {
-        imgIndex === 0 ? setImgIndex(imgArray.length - 1) : setImgIndex(imgIndex - 1);
+        imgIndex === 0 ? setImgIndex(images.length - 1) : setImgIndex(imgIndex - 1);
       }
     }
   };
@@ -57,7 +50,10 @@ const ImageSlideshow = ({
       >
         {images.length > 1 && (
           <i
-            onClick={() => changeImage("prev", images)}
+            onClick={() => {
+              setSlideshowDirection("prev");
+              changeImage();
+            }}
             className="fas fa-angle-right"
             title="Previous Image"
           ></i>
@@ -68,13 +64,16 @@ const ImageSlideshow = ({
             <img
               src={images[imgIndex].url}
               alt={images[imgIndex].altText}
-              onError={() => setImgIndex(imgIndex + 1)}
+              onError={() => changeImage()}
             />
           )}
         </div>
         {images.length > 1 && (
           <i
-            onClick={() => changeImage("next", images)}
+            onClick={() => {
+              setSlideshowDirection("next");
+              changeImage();
+            }}
             className="fas fa-angle-right"
             title="Next Image"
           ></i>
