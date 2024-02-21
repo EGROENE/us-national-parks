@@ -73,6 +73,52 @@ const ParkCurrentWeather = ({
               {" "}
               <p>Last Updated: {`${lastUpdatedTime}`}</p>
               <div className="weather-info-container">
+                <div className="basic-weather-info-container">
+                  <div className="weather-img-container">
+                    <img src={parkWeather?.current.condition.icon} />
+                  </div>
+                  <div className="basic-weather-info-text-container">
+                    <WeatherDatapoint
+                      datapoint="current-temp"
+                      dataIsDisplayed={displayCelsius}
+                      setDataIsDisplayed={setDisplayCelsius}
+                      data={{
+                        datumOne: parkWeather?.current.temp_f,
+                        datumTwo: parkWeather?.current.feelslike_c,
+                      }}
+                      units={{ unitOne: "F", unitTwo: "C" }}
+                      dataMetric="°"
+                      separator=" | "
+                      stylingClass="selected-unit"
+                    />
+                    <p>{parkWeather?.current.condition.text}</p>
+                    <WeatherDatapoint
+                      dataLabel="Feels like: "
+                      dataIsDisplayed={displayCelsius}
+                      setDataIsDisplayed={setDisplayCelsius}
+                      data={{
+                        datumOne: parkWeather?.current.temp_f,
+                        datumTwo: parkWeather?.current.feelslike_c,
+                      }}
+                      units={{ unitOne: "F", unitTwo: "C" }}
+                      dataMetric="°"
+                      separator=" | "
+                      stylingClass="selected-unit"
+                    />
+                    <WeatherDatapoint
+                      dataLabel="Wind: "
+                      dataIsDisplayed={windInKM}
+                      setDataIsDisplayed={setWindInKM}
+                      data={{
+                        datumOne: parkWeather?.current.wind_mph,
+                        datumTwo: parkWeather?.current.wind_kph,
+                      }}
+                      units={{ unitOne: "mph", unitTwo: "km/h" }}
+                      separator=" | "
+                      stylingClass="selected-unit"
+                    />
+                  </div>
+                </div>
                 <div className="extended-weather-info">
                   <p>UV Index: {parkWeather?.current.uv.toFixed(1)}</p>
                   <p>Humidity: {parkWeather?.current.humidity}%</p>
@@ -124,52 +170,6 @@ const ParkCurrentWeather = ({
                     separator=" | "
                     stylingClass="selected-unit"
                   />
-                </div>
-                <div className="basic-weather-info-container">
-                  <div className="weather-img-container">
-                    <img src={parkWeather?.current.condition.icon} />
-                  </div>
-                  <div className="basic-weather-info-text-container">
-                    <WeatherDatapoint
-                      datapoint="current-temp"
-                      dataIsDisplayed={displayCelsius}
-                      setDataIsDisplayed={setDisplayCelsius}
-                      data={{
-                        datumOne: parkWeather?.current.temp_f,
-                        datumTwo: parkWeather?.current.feelslike_c,
-                      }}
-                      units={{ unitOne: "F", unitTwo: "C" }}
-                      dataMetric="°"
-                      separator=" | "
-                      stylingClass="selected-unit"
-                    />
-                    <p>{parkWeather?.current.condition.text}</p>
-                    <WeatherDatapoint
-                      dataLabel="Feels like: "
-                      dataIsDisplayed={displayCelsius}
-                      setDataIsDisplayed={setDisplayCelsius}
-                      data={{
-                        datumOne: parkWeather?.current.temp_f,
-                        datumTwo: parkWeather?.current.feelslike_c,
-                      }}
-                      units={{ unitOne: "F", unitTwo: "C" }}
-                      dataMetric="°"
-                      separator=" | "
-                      stylingClass="selected-unit"
-                    />
-                    <WeatherDatapoint
-                      dataLabel="Wind: "
-                      dataIsDisplayed={windInKM}
-                      setDataIsDisplayed={setWindInKM}
-                      data={{
-                        datumOne: parkWeather?.current.wind_mph,
-                        datumTwo: parkWeather?.current.wind_kph,
-                      }}
-                      units={{ unitOne: "mph", unitTwo: "km/h" }}
-                      separator=" | "
-                      stylingClass="selected-unit"
-                    />
-                  </div>
                 </div>
               </div>
               <p className="weather-source">Data provided by weatherapi.com</p>
