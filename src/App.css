@@ -9,7 +9,7 @@
   position: fixed;
   top: 50%;
   left: 50%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
 }
 
 .loader > .fa-paw {
@@ -29,8 +29,8 @@
 }
 
 .paw-3 {
-  transform: rotate(20deg) translate(-60px,-60px);
-   animation: show 2s ease-in-out infinite;
+  transform: rotate(20deg) translate(-60px, -60px);
+  animation: show 2s ease-in-out infinite;
   animation-delay: 1s;
 }
 
@@ -39,7 +39,8 @@
     opacity: 0;
     visibility: none;
     display: none;
-  } to {
+  }
+  to {
     opacity: 1;
     visibility: none;
     display: inline-block;
@@ -101,7 +102,8 @@
 .fail-fetch-message-container {
   display: flex;
   flex-direction: column;
-  align-items: center;}
+  align-items: center;
+}
 
 .fail-fetch-message-container p {
   margin-top: 10rem;
@@ -433,7 +435,7 @@
 
 .current-weather-container .fail-fetch-message-container {
   margin: 1rem 0;
-  background-color: rgba(0,0,0,0.6);
+  background-color: rgba(0, 0, 0, 0.6);
   padding: 2rem;
 }
 
@@ -467,10 +469,10 @@
   width: 80%;
   padding: 0.5rem 0;
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: row;
   align-items: center;
   justify-content: space-around;
-  background-color: rgba(0,0,0,0.6);
+  background-color: rgba(0, 0, 0, 0.6);
 }
 
 .temperature-container {
@@ -531,7 +533,7 @@
 }
 
 .basic-weather-info-text-container .datapoint-container {
-  margin: 0
+  margin: 0;
 }
 
 .basic-weather-info-text-container .datapoint-container span {
@@ -546,7 +548,7 @@
 
 .current-temp-container p {
   font-size: 2rem;
-  margin: 0
+  margin: 0;
 }
 
 .park-google-maps-link:hover {
@@ -573,7 +575,7 @@
   align-items: center;
 }
 
-.park-page-img-slideshow-container .slideshow-container .slideshow-img-container  {
+.park-page-img-slideshow-container .slideshow-container .slideshow-img-container {
   width: 77%;
 }
 
@@ -683,7 +685,7 @@
 
 .contact-infos-container header {
   font-size: 1.5rem;
-  color: var(--theme-cream)
+  color: var(--theme-cream);
 }
 
 .contact-infos-container span,
@@ -736,7 +738,7 @@
   background-color: var(--theme-brown);
   cursor: pointer;
   transition: border-color 0.25s;
-  margin: 1rem ;
+  margin: 1rem;
   color: white;
   text-decoration: none;
 }
