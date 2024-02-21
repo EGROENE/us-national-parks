@@ -1,6 +1,6 @@
 <h2>United States National Parks</h2> <br/>
 
-My goals in working on this app were as follows: to practice working with React Context API to manage data in a simpler & more efficient way than prop drilling, practice working efficiently with RESTful APIs (2 different ones used in this app), practice working with React Router, & to practice writing clean code.
+My goals in working on this app were as follows: to practice working with React Context API to manage data in a simpler & more efficient way than prop drilling, practice working efficiently with RESTful APIs (2 different ones used in this app), practice working with React Router, practice using React hooks (both custom & native), & to practice writing clean code.
 
 From the users' perspective, the app presents info on the national parks of the United States. I used data from the National Parks Service API to display a card on the homepage (not all at once; user can choose to load more by clicking a button the displays as they scroll down) for each park. To get data on only national parks & not on all parks included in the API, I had to limit the results to only parks whose designation contained the strings "National Park" or "National and State Parks", which was easy to do by using a .filter() method on the data returned by the API. Since there are over 60 parks, I built a tool by which users can filter parks by state or territory, as well as search funtionality, whereby users can see parks that meet at least one of several criteria. <br/>
 
