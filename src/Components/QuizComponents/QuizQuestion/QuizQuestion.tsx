@@ -71,7 +71,7 @@ const QuizQuestion = ({ question }: { question: TQuizQuestion | undefined }) => 
           </button>
         ))}
       </div>
-      {questionAnswered && question?.comment}
+      {questionAnswered && <p>{question?.comment}</p>}
       <div className="quiz-nav-btns-container">
         <button onClick={() => resetQuiz()}>Restart Quiz</button>
         <button

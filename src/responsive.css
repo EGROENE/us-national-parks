@@ -394,6 +394,10 @@
     .park-alerts-container {
         height: 27rem;
     }
+
+    .quiz-content-container p {
+        font-size: 0.75rem;
+    }
 }
 
 @media screen and (max-width: 400px) {
