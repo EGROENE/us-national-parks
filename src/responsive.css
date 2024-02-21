@@ -533,6 +533,10 @@
 }
 
 @media screen and (max-width: 320px) {
+    .search-box input {
+        width: 13rem;
+    }
+
     .homepage-park-slideshow-container.img-arrows-container {
         width: 100%;
     }
