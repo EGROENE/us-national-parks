@@ -167,12 +167,13 @@
   padding: 1rem;
   border-top-right-radius: 0.25rem;
   border-bottom-right-radius: 0.25rem;
-  height: 7px;
+  height: 4px;
   color: white;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 1.5rem;
+  margin-left: -2px;
 }
 
 .search-box i:hover {
