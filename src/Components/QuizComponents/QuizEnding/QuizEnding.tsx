@@ -2,7 +2,8 @@ import { Link } from "react-router-dom";
 import { useQuizContext } from "../../../Hooks/useQuizContext";
 
 const QuizEnding = () => {
-  const { score, resetQuiz, quizLength } = useQuizContext();
+  const { score, resetQuiz, currentQuestions } = useQuizContext();
+  const quizLength = currentQuestions?.length;
 
   let feedback: string = "Abysmal.";
   if (score && quizLength) {

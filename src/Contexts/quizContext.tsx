@@ -43,7 +43,6 @@ export const QuizContextProvider = ({ children }: { children: ReactNode }) => {
       )
     );
   }, [totalQuestionsSelected, setCurrentQuestions]);
-  const quizLength = currentQuestions?.length;
 
   const quizContextValues: TQuizContext = {
     totalQuestionsSelected,
@@ -60,7 +59,6 @@ export const QuizContextProvider = ({ children }: { children: ReactNode }) => {
     setRandomizedAnswers,
     selectedAnswer,
     setSelectedAnswer,
-    quizLength,
     resetQuiz,
   };
 

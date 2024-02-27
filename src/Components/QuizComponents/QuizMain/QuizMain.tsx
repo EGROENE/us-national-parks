@@ -9,7 +9,8 @@ import QuizQuestion from "../QuizQuestion/QuizQuestion";
 import QuizEnding from "../QuizEnding/QuizEnding";
 
 const QuizMain = () => {
-  const { quizLength, currentQuestions, questionIndex } = useQuizContext();
+  const { currentQuestions, questionIndex } = useQuizContext();
+  const quizLength = currentQuestions?.length;
 
   // Variables pertaining to logic that determines parts of quiz that should render (done to make return statement more readable):
   const quizNotStarted: boolean = !quizLength;

@@ -6,6 +6,7 @@ import { useQuizContext } from "../../../Hooks/useQuizContext";
 
 const QuizQuestion = ({ question }: { question: TQuizQuestion | undefined }) => {
   const {
+    currentQuestions,
     setQuestionAnswered,
     setSelectedAnswer,
     setRandomizedAnswers,
@@ -16,9 +17,9 @@ const QuizQuestion = ({ question }: { question: TQuizQuestion | undefined }) => 
     questionIndex,
     randomizedAnswers,
     setQuestionIndex,
-    quizLength,
     resetQuiz,
   } = useQuizContext();
+  const quizLength = currentQuestions?.length;
 
   const setBackgroundImage = () => {
     const randNum = Math.floor(Math.random() * quizBackgroundImages.length);
