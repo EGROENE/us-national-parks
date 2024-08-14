@@ -451,6 +451,10 @@
   color: white;
 }
 
+.weather-modal-header-container {
+  text-align: center;
+}
+
 .current-weather-background {
   position: relative;
   display: flex;

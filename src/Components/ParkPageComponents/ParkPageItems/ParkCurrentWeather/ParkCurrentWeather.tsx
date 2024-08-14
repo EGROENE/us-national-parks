@@ -60,12 +60,14 @@ const ParkCurrentWeather = ({
             title="Close Current Weather"
             className="fas fa-times"
           ></i>
-          <header className="park-modal-intro-header" style={{ color: "white" }}>
-            Weather in
-          </header>
-          <header className="park-modal-header" style={{ color: "white" }}>
-            {parkName}
-          </header>
+          <div className="weather-modal-header-container">
+            <header className="park-modal-intro-header" style={{ color: "white" }}>
+              Weather in
+            </header>
+            <header className="park-modal-header" style={{ color: "white" }}>
+              {parkName}
+            </header>
+          </div>
           {wasErrorFetchingWeather ? (
             <FailFetchMessage />
           ) : (
