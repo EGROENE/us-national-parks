@@ -94,6 +94,10 @@
     bottom: 1.75rem;
   }
 
+  .current-weather-container {
+    height: 43vh;
+  }
+
   .weather-info-container {
     width: 96%;
   }
@@ -123,6 +127,10 @@
   .park-alert {
     width: 20rem;
     margin: 1rem 0.5rem;
+  }
+
+  .current-weather-container {
+    height: 56vh;
   }
 }
 
@@ -214,8 +222,15 @@
     right: 3%;
   }
 
+  .current-weather-container {
+    height: 44vh;
+  }
+
   .weather-info-container {
     padding: 0;
+    flex-direction: row;
+    max-height: 100%;
+    overflow-y: scroll;
   }
 
   .basic-weather-info-text-container {
@@ -246,10 +261,6 @@
   .nearby-parks-container .park-card img {
     width: 11rem;
     height: 8rem;
-  }
-
-  .weather-info-container {
-    flex-direction: column;
   }
 
   .basic-weather-info-container {
@@ -293,6 +304,10 @@
 }
 
 @media screen and (max-width: 500px) and (max-height: 853px) {
+  .current-weather-container {
+    height: 50vh;
+  }
+
   .weather-info-container {
     padding: 0;
     height: 26rem;
@@ -303,17 +318,26 @@
     margin-left: 3rem;
   }
 
+  .weather-img-container img {
+    height: 8rem;
+  }
+
+  .current-temp {
+    font-size: 2rem;
+  }
+
   .extended-weather-info {
     width: 90%;
     display: flex;
     justify-content: space-between;
     align-items: start;
     flex-wrap: wrap;
+    flex-direction: column;
   }
 
   .extended-weather-info p,
   .datapoint-container {
-    margin: 0.5rem 0;
+    margin: 0.25rem 0;
     font-size: 1rem;
   }
 }
@@ -451,6 +475,8 @@
   .weather-info-container {
     padding: 0;
     height: 20rem;
+    max-height: 100%;
+    overflow-y: scroll;
   }
 
   .basic-weather-info-text-container {
@@ -476,6 +502,18 @@
 
   .park-alerts-container {
     height: 27rem;
+  }
+
+  .current-weather-container {
+    height: 54vh;
+  }
+
+  .current-temp {
+    font-size: 2rem;
+  }
+
+  .basic-weather-info-text-container {
+    text-align: left;
   }
 
   .quiz-content-container p {
@@ -599,10 +637,6 @@
     height: 2.5rem;
   }
 
-  .current-temp {
-    font-size: 2.5rem;
-  }
-
   .park-page-img-slideshow-container img {
     width: 16rem;
     height: 10rem;
@@ -617,10 +651,6 @@
 @media screen and (max-width: 375px) and (max-height: 667px) {
   .current-weather-container {
     height: 71vh;
-  }
-
-  .current-weather-container p {
-    margin: 0;
   }
 }
 
@@ -665,6 +695,7 @@
 
   .weather-info-container {
     height: 12rem;
+    padding: 1.5rem 0.25rem;
   }
 
   .basic-weather-info-text-container p {
@@ -748,6 +779,10 @@
     margin: 0.25rem 0 0 0;
   }
 
+  .weather-info-container {
+    height: 10rem;
+  }
+
   .current-weather-container {
     height: 62vh;
   }
@@ -764,8 +799,12 @@
     height: 6rem;
   }
 
+  .current-temp-units-container {
+    font-size: 1.25rem;
+  }
+
   .current-temp {
-    font-size: 2rem;
+    font-size: 1.5rem;
   }
 
   .extended-weather-info p,
