@@ -533,6 +533,7 @@
   color: white;
   width: 42%;
   padding: 0.5rem 0;
+  margin-top: 1rem;
 }
 
 .basic-weather-info-text-container {
@@ -615,6 +616,10 @@
 
 .park-basic-info-container p {
   margin-top: 0.25rem;
+}
+
+.extended-weather-info {
+  margin-top: 1rem;
 }
 
 .park-page-bottom-section button {
