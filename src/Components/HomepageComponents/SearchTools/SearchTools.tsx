@@ -4,10 +4,10 @@ import Search from "../Search/Search";
 
 const SearchTools = () => {
   return (
-    <div className="search-tools">
+    <search className="search-tools">
       <Filter />
       <Search />
-    </div>
+    </search>
   );
 };
 export default SearchTools;
